@@ -34,3 +34,7 @@ Originalens kjøpsdialog hadde ikke den lille, faste koffertgrensen man kunne ha
 Dette er fortsatt ikke et dokumentert «90 % likt» eller komplett spill. Originalens juridiske konsekvenser, beskyttelse, transportører, hendelsesbredde og lengre fortellinger er ikke fullt gjenskapt. Elektronikk og samlerklokker er beholdt fra eldre testversjoner. Kontantgivende virksomheter og ruter må vurderes opp mot lagerbasert omsetning for å unngå to økonomisystemer som trekker i hver sin retning.
 
 Den viktigste åpne designjobben er sen kampanje: målet er store beslutninger fremfor flere rutineklikk. Raske penger og høy rang beviser ikke at dette er løst. QA skal undersøke dette kritisk og foreslå avgrensede forbedringer.
+
+## Reiser og kalenderhendelser
+
+Lokale kalenderperioder for påske, 17. mai og jul/nyttår påvirker markedet. Innkjøpsdialogen oppgir planlagt hjemkomst og om du er bortreist under hele eller deler av perioden. Ankomst på hendelsens første dag regnes ikke som fravær fra den. Ingen reise forkortes for å rekke en kalenderhendelse; strategiske valg kan stoppe fremvisningen, men gjenværende reisedager beholdes. Et aktivt salgsapparat og faste driftsavtaler fortsetter under fraværet.

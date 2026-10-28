@@ -1,6 +1,12 @@
 {
   "schema": 1,
-  "engineSha256": "c26d8ea77248ec0c53c59716adda2e5fb09c7544f197e49ab2317c7ca2a38e75",
+  "engineSha256": "ddbe4eb3fa1c2b462ce8cfeb8b21decfc8b45a8fa028de5f17485d36154f1e5c",
+  "engineFiles": [
+    "engine.js",
+    "strategy.js",
+    "commerce.js",
+    "calendar.js"
+  ],
   "seedsPerProfile": 30,
   "balanceVerdict": "exploratory_only_not_a_balance_approval",
   "summary": {
@@ -10,10 +16,10 @@
       "stalled": 0,
       "completed": 30,
       "automationReached": 30,
-      "medianAutomationDay": 168,
+      "medianAutomationDay": 152,
       "godfathers": 30,
       "medianGodfatherDay": 525,
-      "medianFinalCash": 350540499,
+      "medianFinalCash": 352569604,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0
     },
@@ -26,7 +32,7 @@
       "medianAutomationDay": 172,
       "godfathers": 30,
       "medianGodfatherDay": 539,
-      "medianFinalCash": 347699667,
+      "medianFinalCash": 348219250,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0
     },
@@ -36,10 +42,10 @@
       "stalled": 0,
       "completed": 30,
       "automationReached": 30,
-      "medianAutomationDay": 156,
+      "medianAutomationDay": 140,
       "godfathers": 30,
-      "medianGodfatherDay": 539,
-      "medianFinalCash": 332760101,
+      "medianGodfatherDay": 532,
+      "medianFinalCash": 335645890,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0
     }

@@ -47,6 +47,7 @@ Koden har foreløpig flere påbygg rundt en eldre motor. Det gjør den lett å k
 - `dist/engine.js`: eldre grunnmotor.
 - `dist/strategy.js`: byer, lag, simulerte rivaler, avtaler og ukedrift.
 - `dist/commerce.js`: innkjøp, dagkalender, lager, salg, rang, lån og delegering.
+- `dist/calendar.js`: lokale høytidsperioder, markedseffekter og reisevarsler.
 - `dist/game.js`, `dist/market-ui.js`, `dist/game.css`: spillflate og dialoger.
 - `qa/`: tekniske tester, simuleringsagenter, statisk server og syntetiske visuelle fixtures.
 
