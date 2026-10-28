@@ -1,0 +1,7 @@
+node_modules/
+qa/reports/
+*.tar.gz
+.openai/
+.env*
+!.env.example
+*.log

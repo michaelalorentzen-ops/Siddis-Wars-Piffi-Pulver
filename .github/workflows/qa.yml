@@ -1,0 +1,36 @@
+name: Technical QA and exploratory balance
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Check browser scripts
+        run: for file in dist/*.js; do node --check "$file"; done
+      - name: Technical commerce invariants
+        run: npm test
+      - name: Strategic mechanics
+        run: npm run qa:strategy
+      - name: Deterministic exploratory balance
+        run: npm run qa:balance
+      - name: Synthetic fixtures for visual reviewers
+        run: npm run qa:fixtures
+      - name: Publish QA evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: qa-evidence
+          path: qa/reports/
+          if-no-files-found: warn
+          retention-days: 14

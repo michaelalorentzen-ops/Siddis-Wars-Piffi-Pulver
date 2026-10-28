@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "engineSha256": "c26d8ea77248ec0c53c59716adda2e5fb09c7544f197e49ab2317c7ca2a38e75",
+  "seedsPerProfile": 30,
+  "balanceVerdict": "exploratory_only_not_a_balance_approval",
+  "summary": {
+    "careful": {
+      "runs": 30,
+      "technicalFailures": 0,
+      "stalled": 0,
+      "completed": 30,
+      "automationReached": 30,
+      "medianAutomationDay": 168,
+      "godfathers": 30,
+      "medianGodfatherDay": 525,
+      "medianFinalCash": 350540499,
+      "medianManualAfterGodfather": 0,
+      "medianRecoveryWeeks": 0
+    },
+    "expansion": {
+      "runs": 30,
+      "technicalFailures": 0,
+      "stalled": 0,
+      "completed": 30,
+      "automationReached": 30,
+      "medianAutomationDay": 172,
+      "godfathers": 30,
+      "medianGodfatherDay": 539,
+      "medianFinalCash": 347699667,
+      "medianManualAfterGodfather": 0,
+      "medianRecoveryWeeks": 0
+    },
+    "aggressive": {
+      "runs": 30,
+      "technicalFailures": 0,
+      "stalled": 0,
+      "completed": 30,
+      "automationReached": 30,
+      "medianAutomationDay": 156,
+      "godfathers": 30,
+      "medianGodfatherDay": 539,
+      "medianFinalCash": 332760101,
+      "medianManualAfterGodfather": 0,
+      "medianRecoveryWeeks": 0
+    }
+  },
+  "warnings": [
+    "careful: Godfather may arrive too early for an eleven-year campaign",
+    "expansion: Godfather may arrive too early for an eleven-year campaign",
+    "aggressive: Godfather may arrive too early for an eleven-year campaign"
+  ],
+  "note": "Reference run for independent review, not an approved balance target. Re-run npm run qa:balance."
+}

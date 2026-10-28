@@ -1,0 +1,8 @@
+const fs=require('node:fs'),path=require('node:path');const {Game:G,create,assertState}=require('./load.cjs');const out=path.join(__dirname,'reports','fixtures');fs.mkdirSync(out,{recursive:true});
+function write(name,s){s.qaFixture=true;assertState(s);fs.writeFileSync(path.join(out,name+'.json'),JSON.stringify(s,null,2));}
+write('01-new-player',create(1));
+const inventory=create(1);G.act(inventory,'tripBuy',{origin:0,cart:G.GOODS.map((_,i)=>i===0?30:0)});write('02-home-with-inventory',inventory);
+const late=create(42);late.day=2700;late.week=Math.floor(late.day/7);late.cash=120000000;late.rep=220;late.influence=150;late.managers=5;late.cities=[0,1,2,3,4];late.districts=[0,1,2,3,4];late.businesses=[0,1,2,3];late.crew={members:24,trained:20,loyalty:85,fatigue:12};G.upgrade(late);for(const b of Object.values(late.branches))Object.assign(b,{level:3,focus:'influence',approach:'alliance',pressure:15});G.refreshRank(late);late.autoSell=true;late.stock[0]=100000;late.basis[0]=100;late.stock[5]=5000;late.basis[5]=500;for(const l of late.lords)l.scouted=late.week;late.factories={0:{level:3},1:{level:2},2:{level:2}};G.act(late,'routeAdd',{origin:3,city:1,good:0,qty:600,carrier:1,adapt:true});write('03-synthetic-godfather',late);
+const conflict=JSON.parse(JSON.stringify(late));conflict.seed=1;G.act(conflict,'battle',4);write('04-after-conflict',conflict);
+const event=JSON.parse(JSON.stringify(late));event.branches[4].level=1;event.event={kind:'city',city:4,stage:1};write('05-city-decision',event);
+console.log('Wrote five SYNTHETIC UI fixtures to qa/reports/fixtures. They are not balance runs.');
