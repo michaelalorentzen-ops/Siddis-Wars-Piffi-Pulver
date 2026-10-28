@@ -24,6 +24,8 @@ jobs:
         run: npm run qa:strategy
       - name: Deterministic exploratory balance
         run: npm run qa:balance
+      - name: Separate inherited-mode comparison
+        run: npm run qa:meta
       - name: Synthetic fixtures for visual reviewers
         run: npm run qa:fixtures
       - name: Publish QA evidence

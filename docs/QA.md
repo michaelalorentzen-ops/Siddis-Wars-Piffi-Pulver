@@ -62,3 +62,17 @@ Les ENDGAME.md og QA-REVIEW-1.md før vurdering. Etterprøv forskjellen mellom p
 - Inntektsfordelingen i rapporten er BRUTTO, ikke overskudd etter varekjøp og produksjon. Bruk regnskapet til nettoanalyse.
 
 Sju syntetiske lagringer inkluderer nå et maktråd og et pågående prosjekt. De er UI-fixtures, ikke dokumentasjon på opptjent progresjon.
+
+
+## Ny runde: alfa 0.5 / reinvestering
+
+Kjør også `npm run qa:meta`. Les SCALING.md. Ti syntetiske UI-lagringer inkluderer et regionalt nettverk, en sterkere rival-koalisjon og en separat arverunde.
+
+- Mål produktiv reinvestering / positivt driftsoverskudd etter Gudfar. Kontantreserver fra før Gudfar kan gjøre enkelte andeler større enn 100 %; ikke skjul dette med klamping.
+- Kontroller 18 avgrensede aktive områdemål. Ikke rapporter en prosent av uendelige nivåer. At ingen av våre seeds tar alt er ikke et bevis om en optimal spiller.
+- Test dyrere nivåer, marginalt avtagende kapasitet og økende grunnleggende tilbakebetalingstid. Egen handel kan gi annen tilbakebetaling enn rammeavtalen alene.
+- Test fullt lager, underleverandører, ruteoppgradering, kontrollspenn, avvikling, ny ring og delegerte kapitalreserver. Ingen varer skal forsvinne og alt skal fortsatt kunne selges.
+- Test gjentatte maktkamper mot samme rival. Sammenlign styrke, mobiliseringskostnad, nødvendige leveranser, faktiske crew-tap og avtagende fordel. Kampanjeutgifter skal ikke øke bokført eiendelsverdi.
+- Standardrunder starter uten arvebonus. Arverunder må være tydelig merket og ikke blandes med en standardrekord. Meta-rapporten er et lite, separat utvalg.
+- Kontroller korte kalenderoverganger: avreise, hjemkomst, delvis reise ved et valg, gatesalg, hvile, hopp over, av/på og redusert bevegelse. Animasjonen må vise faktisk dagendring, ikke ønsket periodestørrelse.
+- Flere rådsvarianter er fortsatt ikke bevis på bedre beslutningskvalitet. Undersøk om nye kapitalplaner gir reelle alternativer eller bare en dominerende automatikk.

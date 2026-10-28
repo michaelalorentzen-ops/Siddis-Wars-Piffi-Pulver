@@ -48,3 +48,8 @@ Se [ENDGAME.md](ENDGAME.md) for maktråd, byspesifikke prosjektmål, styringsfor
 ## Alfa 0.4
 
 Se [ENDGAME.md](ENDGAME.md) for maktråd, byspesifikke prosjektmål, styringsformer, institusjoner, produksjonsøkonomi og vedvarende arv. Den tidligere faste 65 %-prisen på overskudd erstattes med fallende marginalpris; hele beholdningen kan fortsatt selges.
+
+
+## Alfa 0.5
+
+Se [SCALING.md](SCALING.md). Sluttspillets kapitalplaner, regionale kontrollspenn, faktiske kapasitetskostnader og rivalmobilisering bygger videre på 0.4. Kalenderoverganger visualiserer faktisk tidsbruk.

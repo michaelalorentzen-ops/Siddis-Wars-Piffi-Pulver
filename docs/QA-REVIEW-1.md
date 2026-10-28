@@ -27,3 +27,16 @@ F04: Added gross revenue breakdown by source. Distribution and routes dominate t
 The inventory regression test now uses an expanded five-city network to demonstrate sales over 3M without a cash cap. A million-unit dump in one small market no longer guarantees that revenue. Separate tests verify that all quantities clear and the average oversupply price falls. The demand curve is not a hard monetary ceiling.
 
 Remaining review priorities: large late-game cash balances, council repetition, player understanding of project failure conditions, and aggressive strategy rewards. Changes to bots are explicit in qa/simulate.cjs.
+
+
+## Follow-up to round 2: alpha 0.5
+
+S6 now has uncapped infrastructure/factory/route tiers with 18% cost growth, diminishing capacity gains and visible basic payback; regional rings and a finite control span; optional automated capital plans; and productive imperial value instead of cash as the final score. The benchmark is finite active areas, not a percentage of infinite levels. Actual results are saved in qa/baseline.json.
+
+F08: Capital is invested into productive infrastructure and regions rather than removed through an arbitrary wealth tax. Reporting separates invested capital, operating surplus, retained cash and imperial value. Independently review asset values and rental/framework income; this is a new economic model, not a final balance approval.
+
+F09: Permanent per-rival victories increase strength, cost, required deliveries and crew attrition; rewards diminish. War mobilization is excluded from productive asset book value. New tests cover the old-action fallback bypass, route preview costs and replacement of weaker territories.
+
+F10: Eight scenario kinds are exercised instead of four. The remaining question is qualitative repetition; do not close it solely from coverage counts.
+
+Also fixed a duplicated +10% national demand bonus in alpha 0.4. Added actual-day calendar transitions with skip/disable/reduced-motion support. The action motor remains synchronous; animation never grants or truncates days.

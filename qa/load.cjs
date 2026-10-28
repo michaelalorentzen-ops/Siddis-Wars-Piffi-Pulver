@@ -2,7 +2,8 @@ require('../dist/engine.js');
 require('../dist/strategy.js');
 require('../dist/commerce.js');
 require('../dist/calendar.js');
-const Game=require('../dist/endgame.js');
+require('../dist/endgame.js');
+const Game=require('../dist/scaling.js');
 function create(seed=1){const s=Game.fresh();s.seed=seed>>>0;return s;}
 function assertState(s){
  if(!Game.valid(s))throw new Error('Invalid state at day '+s.day);

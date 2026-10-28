@@ -2,7 +2,7 @@
 
 Arbeidsnavn i spillet: **Vestkyst**. En Stavanger-basert, nettleserlokal strategispill-alfa fra 2026 til 2036.
 
-**Status: alfa 0.4. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
+**Status: alfa 0.5. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
 
 ## Kjør lokalt
 
@@ -38,7 +38,7 @@ npm run qa:fixtures
 
 ## Viktige begrensninger
 
-Første simulering viste Gudfar etter omtrent halvannet år. Alfa 0.4 legger til Maktrådet, lokale målprosjekter, styringsformer, institusjoner, automatisk beredskap og reelle produksjonskostnader. Effektive simuleringsagenter når fortsatt Gudfar på omtrent to år og bygger store formuer; tempo, gjentakelse og den aggressive veien er fortsatt åpne QA-temaer. Se docs/ENDGAME.md for endringene og begrensningene.
+Tidligere alfaer nådde Gudfar etter halvannet–to år og bygget store ubrukte formuer. I alfa 0.5 når de tre agentprofilene Gudfar rundt dag 1 239–1 323 i median, og reinvesterer 71–90 % av positivt driftsoverskudd etterpå. Dette er utforskende resultater fra endrede agentpolicyer, ikke godkjent balanse. Se docs/ENDGAME.md og docs/SCALING.md for modell, arvemodus, kalenderoverganger og begrensninger.
 
 Koden har foreløpig flere påbygg rundt en eldre motor. Det gjør den lett å kjøre uten verktøykjede, men en ryddigere domenemodell bør vurderes før mer innhold legges til. Tilfeldighetsgenerator, innholdsdata og motor bør etter hvert skilles tydeligere.
 
@@ -47,6 +47,8 @@ Koden har foreløpig flere påbygg rundt en eldre motor. Det gjør den lett å k
 - `dist/engine.js`: eldre grunnmotor.
 - `dist/strategy.js`: byer, lag, simulerte rivaler, avtaler og ukedrift.
 - `dist/commerce.js`: innkjøp, dagkalender, lager, salg, rang, lån og delegering.
+- `dist/scaling.js`: reinvestering, kapasitet, regionale ringer, rivalvekst og separat arvemodus.
+- `dist/scaling-ui.js` og `dist/time-ui.js`: Imperiet og kalenderoverganger.
 - `dist/endgame.js`: maktråd, byprosjekter, styringsformer, institusjoner og nye rangkrav.
 - `dist/endgame-ui.js`: Maktrådet og synlig prosjektfremdrift.
 - `dist/calendar.js`: lokale høytidsperioder, markedseffekter og reisevarsler.
