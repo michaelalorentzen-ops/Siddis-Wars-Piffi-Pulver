@@ -26,6 +26,8 @@ jobs:
         run: npm run qa:balance
       - name: Separate inherited-mode comparison
         run: npm run qa:meta
+      - name: Synthetic exchange stress
+        run: npm run qa:exchange
       - name: Synthetic fixtures for visual reviewers
         run: npm run qa:fixtures
       - name: Publish QA evidence

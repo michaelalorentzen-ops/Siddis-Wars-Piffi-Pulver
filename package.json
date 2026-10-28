@@ -1,6 +1,6 @@
 {
   "name": "siddis-wars-piffi-pulver",
-  "version": "0.5.0-alpha",
+  "version": "0.6.0-alpha",
   "private": true,
   "description": "Vestkyst: Stavanger strategy game and reproducible QA harness",
   "engines": {
@@ -12,6 +12,7 @@
     "qa:balance": "node qa/simulate.cjs --seeds 30",
     "qa:fixtures": "node qa/fixtures.cjs",
     "start": "node qa/serve.cjs",
-    "qa:meta": "node qa/meta.cjs"
+    "qa:meta": "node qa/meta.cjs",
+    "qa:exchange": "node qa/exchange-stress.cjs"
   }
 }

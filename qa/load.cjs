@@ -3,8 +3,9 @@ require('../dist/strategy.js');
 require('../dist/commerce.js');
 require('../dist/calendar.js');
 require('../dist/endgame.js');
-const Game=require('../dist/scaling.js');
-function create(seed=1){const s=Game.fresh();s.seed=seed>>>0;return s;}
+require('../dist/scaling.js');
+const Game=require('../dist/exchange.js');
+function create(seed=1){const s=Game.fresh();Game.seedCampaign(s,seed);return s;}
 function assertState(s){
  if(!Game.valid(s))throw new Error('Invalid state at day '+s.day);
  if(s.cash<0||!Number.isFinite(s.cash))throw new Error('Invalid cash');

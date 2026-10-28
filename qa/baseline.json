@@ -1,13 +1,14 @@
 {
   "schema": 1,
-  "engineSha256": "fe13c3cfc5d654c29ff8ee3fa581fc4eb464323d824d50bb84ce0f50c400492d",
+  "engineSha256": "7d7535c6c988e6d3792e92b635ddd93421e4844b0f7375352818185c7ee00a71",
   "engineFiles": [
     "engine.js",
     "strategy.js",
     "commerce.js",
     "calendar.js",
     "endgame.js",
-    "scaling.js"
+    "scaling.js",
+    "exchange.js"
   ],
   "hashMethod": "SHA-256 of concatenated raw engineFiles bytes in listed order",
   "qaAgentSha256": "0996054c6fcd8a6d33114ea09472c8e27bf296d7e0144d6079106e08c935b61c",
@@ -112,5 +113,5 @@
     }
   },
   "warnings": [],
-  "note": "Exploratory alpha 0.5 reference. Standard mode only. Changed capital policies are not a controlled ablation; inherited mode is reported separately."
+  "note": "Alpha 0.6 regression reference. Campaign agents do not trade stocks. Market-only stress and inherited modes are reported separately. Not a balance approval."
 }

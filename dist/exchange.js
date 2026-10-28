@@ -1,0 +1,52 @@
+(function(root){
+'use strict';
+const G=root.Game,old={fresh:G.fresh,upgrade:G.upgrade,valid:G.valid,act:G.act,week:G.onStrategicWeek};
+G.STOCKS=[
+ {id:'NFE',name:'Nordsjø Fantasi Energi',sector:'Olje',price:14800,yield:.045,vol:.035,color:'#d7ac61'},
+ {id:'RRS',name:'Rust & Regn Shipping',sector:'Shipping',price:9200,yield:.035,vol:.05,color:'#7fabb0'},
+ {id:'PFS',name:'Piffi Sjømat',sector:'Sjømat',price:11400,yield:.03,vol:.04,color:'#ba927c'},
+ {id:'BBE',name:'Betong & Bunad Eiendom',sector:'Eiendom',price:20500,yield:.055,vol:.025,color:'#a3ad7a'},
+ {id:'JMI',name:'Jærkraft Mekaniske',sector:'Industri',price:7800,yield:.03,vol:.035,color:'#a6a291'},
+ {id:'NLK',name:'NordlysKode',sector:'Teknologi',price:18600,yield:.008,vol:.075,color:'#a696bb'},
+ {id:'HHA',name:'Hydrogenhåpet',sector:'Hydrogen',price:4600,yield:0,vol:.11,color:'#7fa27d'},
+ {id:'SKS',name:'SkagenSpare',sector:'Finans',price:12700,yield:.04,vol:.04,color:'#bea17b'}
+];
+const shocks=[
+ {title:'Oljebrems i Nordsjøen',text:'Utbyggere kutter budsjetter. Olje og underleverandører faller.',fx:{Olje:-.12,Industri:-.06,Shipping:-.025}},
+ {title:'Rederiene får fulle ordrebøker',text:'Fiktive fraktrater skyter fart. Shipping leder oppgangen.',fx:{Shipping:.14,Industri:.025}},
+ {title:'Renteryktet som snudde markedet',text:'Dyrere finansiering rammer eiendom. Finansaksjer får et løft.',fx:{Eiendom:-.10,Finans:.04,Teknologi:-.04}},
+ {title:'Kodefest på Østlandet',text:'Optimismen løper foran resultatene. Teknologi og hydrogen prises opp.',fx:{Teknologi:.15,Hydrogen:.10}},
+ {title:'Hydrogenløftet sprekker',text:'Et oppdiktet prosjekt utsettes. Hydrogenhåpet får en tung uke.',fx:{Hydrogen:-.24,Industri:-.02}},
+ {title:'Bedre marginer på kysten',text:'Sjømat og shipping melder om sterkere etterspørsel.',fx:{Sjømat:.10,Shipping:.045}},
+ {title:'Markedet tar pengene av bordet',text:'En bred korreksjon treffer flere sektorer samtidig.',fx:{Olje:-.055,Shipping:-.06,Sjømat:-.045,Eiendom:-.04,Industri:-.05,Teknologi:-.11,Hydrogen:-.15,Finans:-.04}},
+ {title:'Nye investeringer gir optimisme',text:'Et fiktivt investeringsløft styrker industri, olje og finans.',fx:{Industri:.10,Olje:.06,Finans:.04}}
+];
+function hash(seed,w,salt){let n=(seed^Math.imul(w+1,0x9e3779b1)^Math.imul(salt+1,0x85ebca6b))>>>0;n=Math.imul(n^(n>>>16),0x7feb352d)>>>0;n=Math.imul(n^(n>>>15),0x846ca68b)>>>0;return ((n^(n>>>16))>>>0)/4294967296;}
+function initial(s,seed=s.seed){const prices=Object.fromEntries(G.STOCKS.map(c=>[c.id,c.price]));return {version:1,seed:seed>>>0,lastWeek:s.week,prices,positions:{},used:{},usedWeek:s.week,history:[{week:s.week,...prices}],news:[],realized:0,dividends:0,fees:0,plan:'manual',trades:[]};}
+function state(s){s.exchange??=initial(s);return s.exchange;}
+function record(s,r){s.ledger.unshift({week:s.week,day:s.day,...r});s.ledger=s.ledger.slice(0,120);}
+G.upgrade=s=>{old.upgrade(s);state(s);return s;};
+G.fresh=()=>{const s=old.fresh();state(s);return s;};
+// QA supplies the complete campaign seed before any day has elapsed.
+G.seedCampaign=(s,seed)=>{if(s.day!==0||Object.values(state(s).positions).some(p=>p.qty))throw Error('Campaign seed is already in use');s.seed=seed>>>0;s.exchange=initial(s,s.seed);return s;};
+G.stockValue=s=>Object.entries(state(s).positions).reduce((n,[id,p])=>n+p.qty*state(s).prices[id]/100,0);
+G.netWorth=s=>Math.max(0,s.cash+(s.bank||0)-(s.loan?.balance||0)+G.stockValue(s));
+G.stockIndex=s=>Math.round(G.STOCKS.reduce((n,c)=>n+state(s).prices[c.id]/c.price,0)/G.STOCKS.length*1000);
+G.stockQuote=function(s,id,side,qty){const c=G.STOCKS.find(c=>c.id===id),e=state(s);if(!c||!['buy','sell'].includes(side)||!Number.isSafeInteger(qty)||qty<1||qty>10000000)return null;const used=e.usedWeek===s.week?(e.used[id]||0):0,available=Math.max(0,250000-used),position=e.positions[id]||{qty:0,cost:0,eligible:0},limit=Math.min(available,side==='sell'?position.qty:10000000-position.qty),impact=qty/250000*.012,unitCents=side==='buy'?Math.ceil(e.prices[id]*(1+.004+impact)):Math.max(1,Math.floor(e.prices[id]*(1-.004-impact))),gross=Math.round(qty*unitCents/100),fee=Math.max(250,Math.ceil(gross*.0015)),basis=side==='sell'?Math.round(position.cost*qty/Math.max(1,position.qty)):0,total=side==='buy'?gross+fee:gross-fee;return {id,side,qty,limit,valid:qty<=limit,unit:unitCents/100,gross,fee,total,basis,profit:side==='sell'?total-basis:null};};
+function trade(s,id,side,qty){const q=G.stockQuote(s,id,side,qty),e=state(s);if(!q?.valid)return 'Velg en gyldig mengde innenfor ukas likviditet og beholdningen.';if((side==='buy'&&s.cash<q.total)||(side==='sell'&&s.cash+q.total<0))return 'Ikke nok kontanter til handelen og kurtasjen.';if(e.usedWeek!==s.week){e.used={};e.usedWeek=s.week;}const p=e.positions[id]??={qty:0,cost:0,eligible:0};if(side==='buy'){s.cash-=q.total;p.qty+=qty;p.cost+=q.total;}else{s.cash+=q.total;p.qty-=qty;p.cost-=q.basis;p.eligible=Math.min(p.eligible,p.qty);e.realized+=q.profit;if(!p.qty)p.cost=0;}e.used[id]=(e.used[id]||0)+qty;e.fees+=q.fee;e.trades.unshift({...q,week:s.week,day:s.day});e.trades=e.trades.slice(0,60);record(s,{title:'Børs / '+(side==='buy'?'kjøp ':'salg ')+id,gross:side==='buy'?0:q.gross,cost:q.fee,supply:side==='buy'?q.gross:0,net:side==='buy'?-q.total:q.total,profit:side==='sell'?q.profit:undefined,status:qty+' aksjer · spread og markedspåvirkning inngår i kursen'});return q;}
+function week(s){const e=state(s);if(e.lastWeek>=s.week)return;for(let w=e.lastWeek+1;w<=s.week;w++){
+ const shock=w%8===0?shocks[Math.floor(hash(e.seed,w,999)*shocks.length)]:null;if(shock)e.news.unshift({week:w,title:shock.title,text:shock.text});const broad=(hash(e.seed,w,0)-.5)*.036;
+ for(let i=0;i<G.STOCKS.length;i++){const c=G.STOCKS[i],prior=e.prices[c.id],sector=(hash(e.seed,w,20+i)-.5)*c.vol*1.5,change=Math.max(-.6,Math.min(.6,.0018+broad+sector+(shock?.fx[c.sector]||0))),beforeDividend=Math.max(100,Math.round(prior*(1+change))),dividend=w%13===0?Math.min(Math.round(beforeDividend*c.yield/4),Math.max(0,beforeDividend-100)):0,p=e.positions[c.id];e.prices[c.id]=Math.max(100,beforeDividend-dividend);
+ if(dividend&&p?.eligible){const paid=Math.round(p.eligible*dividend/100);s.cash+=paid;e.dividends+=paid;record(s,{title:'Børs / utbytte '+c.id,gross:paid,net:paid,status:p.eligible+' kvalifiserte aksjer. Utbyttet er trukket fra kursen.'});}
+ if(p)p.eligible=p.qty;
+ }
+ e.history.push({week:w,...e.prices});e.history=e.history.slice(-53);e.news=e.news.slice(0,12);e.used={};e.usedWeek=w;
+ }e.lastWeek=s.week;
+}
+function automatic(s){const e=state(s);if(e.plan==='manual'||s.week%4||s.rankLevel<3||s.event||s.trip)return;const reserve=G.capitalReserve(s),budget=Math.max(0,(s.cash-reserve-(s.loan?.balance||0))*.1),stocks=e.plan==='income'?G.STOCKS.filter(c=>c.yield>=.04):G.STOCKS;if(budget<25000)return;for(const c of stocks){const allocation=Math.min(budget/stocks.length,Math.max(0,s.cash-reserve-(s.loan?.balance||0))),unit=e.prices[c.id]/100,qty=Math.min(250000-(e.used[c.id]||0),Math.max(0,Math.floor((allocation-250)/(unit*1.02))));if(qty<1)continue;const q=G.stockQuote(s,c.id,'buy',qty);if(q?.valid&&q.total<=allocation)trade(s,c.id,'buy',qty);}}
+G.onStrategicWeek=s=>{week(s);old.week(s);automatic(s);G.refreshRank(s);};
+G.act=function(s,type,arg){G.upgrade(s);if(!['stockBuy','stockSell','stockPlan'].includes(type))return old.act(s,type,arg);if(s.ended)return 'Runden er avsluttet.';if(s.event||s.trip)return 'Fullfør avgjørelsen eller reisen først.';if(s.rankLevel<3)return 'Børsen åpner som Bakmann.';if(type==='stockPlan'){if(!['manual','income','diverse'].includes(arg))return 'Velg en gyldig spareplan.';s.exchange.plan=arg;return arg==='manual'?'Du velger børsinvesteringene selv.':'Megleren investerer hver fjerde uke, med driftsreserve og 10 % av fri kapital.';}
+ const result=trade(s,arg?.id,type==='stockBuy'?'buy':'sell',arg?.qty);if(typeof result==='string')return result;const cash=s.cash,from=s.day;G.elapse(s,1);G.refreshRank(s);s.summary={days:s.day-from,weeks:(s.day-from)/7,net:s.cash-cash+(type==='stockBuy'?-result.total:result.total),stop:'Børshandelen er bokført. Én handelsdag går.'};return (type==='stockBuy'?'Kjøpt ':'Solgt ')+result.qty+' '+result.id+'. '+(type==='stockBuy'?result.total.toLocaleString('nb-NO')+' kr trukket.':result.total.toLocaleString('nb-NO')+' kr til kassa.');};
+G.valid=s=>{try{if(!old.valid(s))return false;if(!s.exchange)return true;const e=s.exchange,known=id=>G.STOCKS.some(c=>c.id===id);return e.version===1&&Number.isInteger(e.seed)&&e.seed>=0&&e.seed<=4294967295&&Number.isInteger(e.lastWeek)&&e.lastWeek>=0&&e.lastWeek<=s.week&&Number.isInteger(e.usedWeek)&&e.usedWeek>=0&&e.usedWeek<=s.week&&G.STOCKS.every(c=>Number.isSafeInteger(e.prices[c.id])&&e.prices[c.id]>=100)&&Object.entries(e.positions).every(([id,p])=>known(id)&&Number.isSafeInteger(p.qty)&&p.qty>=0&&p.qty<=10000000&&Number.isFinite(p.cost)&&p.cost>=0&&Number.isSafeInteger(p.eligible)&&p.eligible>=0&&p.eligible<=p.qty)&&Object.entries(e.used).every(([id,n])=>known(id)&&Number.isInteger(n)&&n>=0&&n<=250000)&&['manual','income','diverse'].includes(e.plan)&&Number.isFinite(e.realized)&&['dividends','fees'].every(k=>Number.isFinite(e[k])&&e[k]>=0)&&Array.isArray(e.history)&&e.history.length>=1&&e.history.length<=53&&e.history.every(h=>Number.isInteger(h.week)&&h.week>=0&&h.week<=s.week&&G.STOCKS.every(c=>Number.isSafeInteger(h[c.id])&&h[c.id]>=100))&&Array.isArray(e.news)&&e.news.length<=12&&e.news.every(n=>Number.isInteger(n.week)&&n.week>=0&&n.week<=s.week&&typeof n.title==='string'&&typeof n.text==='string')&&Array.isArray(e.trades)&&e.trades.length<=60&&e.trades.every(t=>known(t.id)&&['buy','sell'].includes(t.side)&&Number.isSafeInteger(t.qty)&&t.qty>0&&Number.isFinite(t.total)&&Number.isFinite(t.gross)&&t.gross>=0&&Number.isFinite(t.fee)&&t.fee>=0&&(t.profit===null||Number.isFinite(t.profit))&&Number.isInteger(t.day)&&t.day>=0&&t.day<=s.day);}catch(_){return false;}};
+if(typeof module!=='undefined')module.exports=G;
+})(typeof window!=='undefined'?window:globalThis);

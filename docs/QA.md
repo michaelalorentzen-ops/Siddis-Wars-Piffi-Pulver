@@ -76,3 +76,18 @@ Kjør også `npm run qa:meta`. Les SCALING.md. Ti syntetiske UI-lagringer inklud
 - Standardrunder starter uten arvebonus. Arverunder må være tydelig merket og ikke blandes med en standardrekord. Meta-rapporten er et lite, separat utvalg.
 - Kontroller korte kalenderoverganger: avreise, hjemkomst, delvis reise ved et valg, gatesalg, hvile, hopp over, av/på og redusert bevegelse. Animasjonen må vise faktisk dagendring, ikke ønsket periodestørrelse.
 - Flere rådsvarianter er fortsatt ikke bevis på bedre beslutningskvalitet. Undersøk om nye kapitalplaner gir reelle alternativer eller bare en dominerende automatikk.
+
+
+## Ny runde: alfa 0.6 / Oslo Fantasibørs
+
+Les EXCHANGE.md. Kjør `npm run qa:exchange` i tillegg til øvrige sjekker. Elleve syntetiske fixtures inkluderer en portefølje. De ordinære kampanjeagentene handler ikke aksjer og er ikke børsbalansebevis.
+
+- Kontroller ordre, faktisk dagendring, spread, markedspåvirkning, kurtasje og samlet ukeslikviditet. Ugyldige og ufinansierte ordrer må ikke endre beholdning, kontanter eller dager.
+- Kontroller vektet kostgrunnlag, delvis salg og skillet mellom salgsproveny og realisert resultat.
+- Kontroller registreringsdato, kvartalsutbytte og ex-utbyttekurs. Et raskt kjøp–salg på uendret kurs skal gi tap.
+- Kontroller at spareplanen bevarer driftsreserve og gjeldsdekning, ikke tar ut bankmidler og ikke legger til skjulte kalenderdager.
+- Kontroller seed-replay, porteføljeimport og avvisning av ugyldige historieserier/handler. Gamle lagringer skal få tom portefølje uten eiendelstap.
+- Vurder risiko og avkastning uavhengig. Et syntetisk tap er ikke en teknisk feil, og en lønnsom kurv er ikke garanti om fremtidig gevinst.
+- Kontroller store porteføljer i kombinasjon med operative kapitalplaner og Gudfar-progresjon. Kursverdi inngår i netto formue, ikke direkte i produktiv sluttscore.
+
+F11–F13 fra runde 3 står fortsatt til videre vurdering. Denne runden implementerer brukerens børsønske; den hevder ikke å ha løst infrastrukturnivåenes tilbakebetalingstid eller bevist optimal områdefordeling.

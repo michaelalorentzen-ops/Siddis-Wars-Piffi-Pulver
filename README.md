@@ -2,7 +2,7 @@
 
 Arbeidsnavn i spillet: **Vestkyst**. En Stavanger-basert, nettleserlokal strategispill-alfa fra 2026 til 2036.
 
-**Status: alfa 0.5. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
+**Status: alfa 0.6. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
 
 ## Kjør lokalt
 
@@ -47,6 +47,7 @@ Koden har foreløpig flere påbygg rundt en eldre motor. Det gjør den lett å k
 - `dist/engine.js`: eldre grunnmotor.
 - `dist/strategy.js`: byer, lag, simulerte rivaler, avtaler og ukedrift.
 - `dist/commerce.js`: innkjøp, dagkalender, lager, salg, rang, lån og delegering.
+- `dist/exchange.js` og `dist/exchange-ui.js`: Oslo Fantasibørs med portefølje, utbytte, kursrisiko og regnskap.
 - `dist/scaling.js`: reinvestering, kapasitet, regionale ringer, rivalvekst og separat arvemodus.
 - `dist/scaling-ui.js` og `dist/time-ui.js`: Imperiet og kalenderoverganger.
 - `dist/endgame.js`: maktråd, byprosjekter, styringsformer, institusjoner og nye rangkrav.
@@ -56,3 +57,6 @@ Koden har foreløpig flere påbygg rundt en eldre motor. Det gjør den lett å k
 - `qa/`: tekniske tester, simuleringsagenter, statisk server og syntetiske visuelle fixtures.
 
 Ingen Sites-identitet, publiseringstilgang, hemmeligheter eller personlig spillagring skal inn i dette repoet. Havneillustrasjonen er laget for prosjektet; originalspillets kode og bilder er ikke distribuert her. Inspirasjonskilden er [Løpegutten](https://lopegutten.com/).
+
+
+Alfa 0.6 legger til en valgfri fiktiv Oslo-børs. Se docs/EXCHANGE.md. `npm run qa:exchange` er isolert, syntetisk markedsstress; de vanlige kampanjeagentene bruker ikke børsen.
