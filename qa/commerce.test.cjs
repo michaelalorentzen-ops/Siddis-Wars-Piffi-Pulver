@@ -28,7 +28,7 @@ test('debt does not buy a rank and has a visible premium and due date',()=>{
  const s=create();G.act(s,'borrow');assert.equal(s.cash,18000);assert.equal(s.loan.balance,12000);assert.equal(s.loan.due,28);assert.equal(G.netWorth(s),6000);assert.equal(s.rankLevel,0);assertState(s);
 });
 test('warehousing preserves cost basis and automatic distribution sells all stock without a monthly cash cap',()=>{
- const s=create();s.cash=1e6;G.refreshRank(s);s.managers=2;s.autoSell=true;s.stock[0]=1000000;s.basis[0]=100;
+ const s=create();s.cash=1e6;G.refreshRank(s);s.managers=20;s.cities=[0,1,2,3,4];G.upgrade(s);s.autoSell=true;s.stock[0]=1000000;s.basis[0]=100;
  G.act(s,'stash',{good:0,to:'stash'});assert.equal(s.stock[0],0);assert.equal(s.stash[0],1000000);G.act(s,'week');
  assert.equal(s.stock[0]+s.stash[0],0);const row=s.ledger.find(r=>r.title.startsWith('Salgsapparat'));assert.equal(row.q,1000000);assert(row.gross>3000000);assert(row.cost>0);assertState(s);
 });

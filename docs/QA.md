@@ -46,3 +46,19 @@ Bevar kjernen i tidlig varehandel, kapitalbinding, kalender, risiko og gradvise 
 `[P0/P1/P2/P3] Kort tittel` etterfulgt av trigger, reproduksjon, forventet oppførsel, faktisk oppførsel og bevis. P0: ødelagt spill/lagring; P1: alvorlig økonomi-/progresjonsfeil; P2: tydelig funksjons-/UX-feil; P3: mindre avvik.
 
 Oppgi eksplisitt hva som ikke ble testet. Ikke beskriv en utestet antakelse som en feil eller en grønn sjekk som en komplett kvalitetsgodkjenning.
+
+
+## Ny runde: alfa 0.4 / Maktrådet
+
+Les ENDGAME.md og QA-REVIEW-1.md før vurdering. Etterprøv forskjellen mellom pengemengde og meningsfulle avgjørelser. Rapporter gjentakelse i de fire maktrådsscenarioene; 50+ valg betyr ikke automatisk at alle er gode.
+
+- Prøv begge lokale veier i hver by, også uten forutsetninger, og bekreft faktisk fremdrift eller feil ved fristen.
+- Kontroller at egen kontroll har en fordel som forsvarer tap av folk, søkelys og dårligere samarbeidsvilkår.
+- Prøv å overse/utsette råd, bytte styringsform, avbryte prosjekt, importere gammel Gudfar-lagring og spille videre til 2036.
+- Sammenlign full produksjon med markedstilpasset drift. Alt skal selges automatisk, men overskudd kan selges med tap; ingen skjult pengegrense.
+- Kontroller om beredskap faktisk fjerner unødvendige ukeklikk og om prisen er rimelig. Den er variabel og inngår ikke i prognosen for faste utgifter.
+- QA-agentene er endret til å bruke de nye handlingene og omfordele ruter; gamle og nye simuleringer er derfor ikke en kontrollert årsakstest.
+- `medianAdvanceShareAfterGodfather` teller også rest/week/waitDay/shift som tidshandlinger. Nye gameplayhandlinger rapporteres separat. Godfather-grupper og hele kampanjer må ikke blandes.
+- Inntektsfordelingen i rapporten er BRUTTO, ikke overskudd etter varekjøp og produksjon. Bruk regnskapet til nettoanalyse.
+
+Sju syntetiske lagringer inkluderer nå et maktråd og et pågående prosjekt. De er UI-fixtures, ikke dokumentasjon på opptjent progresjon.

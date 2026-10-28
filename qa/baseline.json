@@ -1,12 +1,15 @@
 {
   "schema": 1,
-  "engineSha256": "c83d0feb11381f5354dc5f72835be3a488c4c03eff39ab87c7bfcd1ef5626b33",
+  "engineSha256": "a50fd82686109af448b9f199459d467616766c9ff40649480011e80e6acdd34b",
   "engineFiles": [
     "engine.js",
     "strategy.js",
     "commerce.js",
-    "calendar.js"
+    "calendar.js",
+    "endgame.js"
   ],
+  "hashMethod": "SHA-256 of concatenated raw engineFiles bytes in listed order",
+  "qaAgentSha256": "80528c43a015fb1dc9eb4296fd749dd255e6b00a27e01a35bb581425c95c0241",
   "seedsPerProfile": 30,
   "balanceVerdict": "exploratory_only_not_a_balance_approval",
   "summary": {
@@ -18,10 +21,23 @@
       "automationReached": 30,
       "medianAutomationDay": 152,
       "godfathers": 30,
-      "medianGodfatherDay": 525,
-      "medianFinalCash": 352569604,
+      "medianGodfatherDay": 728,
+      "medianFinalCash": 1014560183,
       "medianManualAfterGodfather": 0,
-      "medianRecoveryWeeks": 0
+      "medianRecoveryWeeks": 0,
+      "medianCouncilDecisions": 54,
+      "medianProjectsWon": 6,
+      "medianProjectsLost": 0,
+      "medianCouncilCrewLosses": 0,
+      "medianStrategicAfterGodfather": 57,
+      "medianAdvanceShareAfterGodfather": 0.4142857142857143,
+      "maxStrategicGapWeeks": 12,
+      "medianRevenue": {
+        "local": 150575498,
+        "routes": 1126087097,
+        "distribution": 1955000142,
+        "contracts": 13021553
+      }
     },
     "expansion": {
       "runs": 30,
@@ -31,10 +47,23 @@
       "automationReached": 30,
       "medianAutomationDay": 172,
       "godfathers": 30,
-      "medianGodfatherDay": 539,
-      "medianFinalCash": 348219250,
+      "medianGodfatherDay": 700,
+      "medianFinalCash": 787310751,
       "medianManualAfterGodfather": 0,
-      "medianRecoveryWeeks": 0
+      "medianRecoveryWeeks": 0,
+      "medianCouncilDecisions": 54,
+      "medianProjectsWon": 6,
+      "medianProjectsLost": 0,
+      "medianCouncilCrewLosses": 0,
+      "medianStrategicAfterGodfather": 59,
+      "medianAdvanceShareAfterGodfather": 0.4125874125874126,
+      "maxStrategicGapWeeks": 12,
+      "medianRevenue": {
+        "local": 183076753,
+        "routes": 1238710016,
+        "distribution": 2038113959,
+        "contracts": 12986684
+      }
     },
     "aggressive": {
       "runs": 30,
@@ -44,17 +73,32 @@
       "automationReached": 30,
       "medianAutomationDay": 140,
       "godfathers": 30,
-      "medianGodfatherDay": 532,
-      "medianFinalCash": 335645890,
+      "medianGodfatherDay": 728,
+      "medianFinalCash": 1045387455,
       "medianManualAfterGodfather": 0,
-      "medianRecoveryWeeks": 0
+      "medianRecoveryWeeks": 0,
+      "medianCouncilDecisions": 53,
+      "medianProjectsWon": 34,
+      "medianProjectsLost": 1,
+      "medianCouncilCrewLosses": 22,
+      "medianStrategicAfterGodfather": 87,
+      "medianAdvanceShareAfterGodfather": 0.2600896860986547,
+      "maxStrategicGapWeeks": 12,
+      "medianRevenue": {
+        "local": 165714634,
+        "routes": 1146648825,
+        "distribution": 1759146555,
+        "contracts": 11871368
+      }
     }
   },
   "warnings": [
     "careful: Godfather may arrive too early for an eleven-year campaign",
+    "careful: large accumulated endgame cash; assess capital uses and economic stakes",
     "expansion: Godfather may arrive too early for an eleven-year campaign",
-    "aggressive: Godfather may arrive too early for an eleven-year campaign"
+    "expansion: large accumulated endgame cash; assess capital uses and economic stakes",
+    "aggressive: Godfather may arrive too early for an eleven-year campaign",
+    "aggressive: large accumulated endgame cash; assess capital uses and economic stakes"
   ],
-  "note": "Reference run for independent review, not an approved balance target. Re-run npm run qa:balance.",
-  "hashMethod": "SHA-256 of concatenated raw engineFiles bytes in listed order"
+  "note": "Exploratory alpha 0.4 reference; agent policies changed along with gameplay. Not an approved balance target."
 }

@@ -2,7 +2,7 @@
 
 Arbeidsnavn i spillet: **Vestkyst**. En Stavanger-basert, nettleserlokal strategispill-alfa fra 2026 til 2036.
 
-**Status: alfa 0.3. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
+**Status: alfa 0.4. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
 
 ## Kjør lokalt
 
@@ -38,7 +38,7 @@ npm run qa:fixtures
 
 ## Viktige begrensninger
 
-Første simulering viste at spilleragentene kunne bli Gudfar etter omtrent halvannet år. Økonomisk vekst og sen progresjon er derfor kjente QA-temaer. Det er heller ikke bevist at de sene valgene fyller hele perioden på en god måte.
+Første simulering viste Gudfar etter omtrent halvannet år. Alfa 0.4 legger til Maktrådet, lokale målprosjekter, styringsformer, institusjoner, automatisk beredskap og reelle produksjonskostnader. Effektive simuleringsagenter når fortsatt Gudfar på omtrent to år og bygger store formuer; tempo, gjentakelse og den aggressive veien er fortsatt åpne QA-temaer. Se docs/ENDGAME.md for endringene og begrensningene.
 
 Koden har foreløpig flere påbygg rundt en eldre motor. Det gjør den lett å kjøre uten verktøykjede, men en ryddigere domenemodell bør vurderes før mer innhold legges til. Tilfeldighetsgenerator, innholdsdata og motor bør etter hvert skilles tydeligere.
 
@@ -47,6 +47,8 @@ Koden har foreløpig flere påbygg rundt en eldre motor. Det gjør den lett å k
 - `dist/engine.js`: eldre grunnmotor.
 - `dist/strategy.js`: byer, lag, simulerte rivaler, avtaler og ukedrift.
 - `dist/commerce.js`: innkjøp, dagkalender, lager, salg, rang, lån og delegering.
+- `dist/endgame.js`: maktråd, byprosjekter, styringsformer, institusjoner og nye rangkrav.
+- `dist/endgame-ui.js`: Maktrådet og synlig prosjektfremdrift.
 - `dist/calendar.js`: lokale høytidsperioder, markedseffekter og reisevarsler.
 - `dist/game.js`, `dist/market-ui.js`, `dist/game.css`: spillflate og dialoger.
 - `qa/`: tekniske tester, simuleringsagenter, statisk server og syntetiske visuelle fixtures.

@@ -12,3 +12,18 @@ Review of initial commit a783e28; calendar changes came afterward.
 The automated checks do not certify balance or a finished game. The original review also left browser trade flows, export/import and comparison with Lopegutten untested.
 
 Validation: 22 engine tests pass; strategy checks pass; 90 campaign simulations complete with no technical failures or stalls. Balance results remain unchanged, including the early Godfather warning.
+
+
+## Follow-up: alpha 0.4
+
+F01: Partially addressed through objective-based promotion. The 80M cash requirement is unchanged; charters, institutions and a national/succession project now matter. Still open: optimized agents reach Godfather around two years, below the reviewer's suggested 1200–1800 days. We have not added an artificial date gate.
+
+F02: New recurring council every 8–12 weeks, eight city charter paths, repeatable rival campaigns, national and succession projects. Delegated heat management replaces routine rest clicks. Measure decision quality and repetition independently, not just action counts.
+
+F03: Doctrine and council options change prices, risk, throughput, loyalty, pressure and actual crew. Aggressive agents incur real crew losses and pursue more rival campaigns. The bots now check operational prerequisites before starting projects. Independently assess rewards versus losses and possible campaign farming.
+
+F04: Added gross revenue breakdown by source. Distribution and routes dominate these agents' gross revenue; contracts are a small share. This is evidence against contracts being the main revenue driver for these updated agents, not a controlled ablation of the initial engine.
+
+The inventory regression test now uses an expanded five-city network to demonstrate sales over 3M without a cash cap. A million-unit dump in one small market no longer guarantees that revenue. Separate tests verify that all quantities clear and the average oversupply price falls. The demand curve is not a hard monetary ceiling.
+
+Remaining review priorities: large late-game cash balances, council repetition, player understanding of project failure conditions, and aggressive strategy rewards. Changes to bots are explicit in qa/simulate.cjs.

@@ -38,3 +38,13 @@ Den viktigste åpne designjobben er sen kampanje: målet er store beslutninger f
 ## Reiser og kalenderhendelser
 
 Lokale kalenderperioder for påske, 17. mai og jul/nyttår påvirker markedet. Innkjøpsdialogen oppgir planlagt hjemkomst og om du er bortreist under hele eller deler av perioden. Ankomst på hendelsens første dag regnes ikke som fravær fra den. Ingen reise forkortes for å rekke en kalenderhendelse; strategiske valg kan stoppe fremvisningen, men gjenværende reisedager beholdes. Et aktivt salgsapparat og faste driftsavtaler fortsetter under fraværet.
+
+
+## Alfa 0.4
+
+Se [ENDGAME.md](ENDGAME.md) for maktråd, byspesifikke prosjektmål, styringsformer, institusjoner, produksjonsøkonomi og vedvarende arv. Den tidligere faste 65 %-prisen på overskudd erstattes med fallende marginalpris; hele beholdningen kan fortsatt selges.
+
+
+## Alfa 0.4
+
+Se [ENDGAME.md](ENDGAME.md) for maktråd, byspesifikke prosjektmål, styringsformer, institusjoner, produksjonsøkonomi og vedvarende arv. Den tidligere faste 65 %-prisen på overskudd erstattes med fallende marginalpris; hele beholdningen kan fortsatt selges.
