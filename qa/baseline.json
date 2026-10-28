@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "engineSha256": "4fb99547925bdb82f078718fe92ebbdf63d9b12fb2de951db86bf755e8238a9e",
+  "engineSha256": "c83d0feb11381f5354dc5f72835be3a488c4c03eff39ab87c7bfcd1ef5626b33",
   "engineFiles": [
     "engine.js",
     "strategy.js",
@@ -55,5 +55,6 @@
     "expansion: Godfather may arrive too early for an eleven-year campaign",
     "aggressive: Godfather may arrive too early for an eleven-year campaign"
   ],
-  "note": "Reference run for independent review, not an approved balance target. Re-run npm run qa:balance."
+  "note": "Reference run for independent review, not an approved balance target. Re-run npm run qa:balance.",
+  "hashMethod": "SHA-256 of concatenated raw engineFiles bytes in listed order"
 }

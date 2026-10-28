@@ -51,5 +51,7 @@ else {msg=previousAct(s,type,arg);}
 G.refreshRank(s);if(msg)log(s,msg);return msg;
 };
 G.valid=function(s){if(!previousValid(s))return false;if(s.commerce!==3)return true;return Number.isInteger(s.day)&&s.day>=0&&s.day<=G.END_DAY&&Math.floor(s.day/7)===s.week&&Number.isInteger(s.rankLevel)&&s.rankLevel>=0&&s.rankLevel<=5&&['stash','basis','saturation'].every(k=>Array.isArray(s[k])&&s[k].length===G.GOODS.length&&s[k].every(n=>Number.isFinite(n)&&n>=0))&&Array.isArray(s.tradeHistory)&&Number.isFinite(s.trips)&&Number.isFinite(s.sales)&&(!s.loan||Number.isFinite(s.loan.balance)&&s.loan.balance>=0&&Number.isInteger(s.loan.due))&&s.routes.every(r=>Number.isInteger(r.origin)&&G.ORIGINS[r.origin]&&G.ORIGINS[r.origin].goods[r.good]);};
+// Forecast fixed obligations only; do not present uncertain trading income as cash.
+G.fixedCosts=function(s,weeks){const requested=Math.max(0,Math.floor(Number(weeks)||0)),remaining=Math.max(0,Math.floor((G.END_DAY-s.day)/7)),count=s.ended?0:Math.min(requested,remaining);return {weeks:count,weekly:G.upkeep(s),total:count*G.upkeep(s)};};
 if(typeof module!=='undefined')module.exports=G;
 })(typeof window!=='undefined'?window:globalThis);
