@@ -1,0 +1,11 @@
+(function(root){
+'use strict';
+root.Game.CIVIC_EVENTS=[
+ {id:'jazz',name:'Scenen i mai',calendar:'maijazz',speaker:'Ada',text:'«Me har artister. Me mangler et sted folk faktisk har råd til å komme inn.» Nora kan spleise med næringslivet. Bjørnar tilbyr å sette navnet sitt over døra.',sectors:{Eiendom:.006,Teknologi:.004},source:'https://maijazz.no/',fact:'Mai:jazz arrangeres i Stavanger. Spillvindu 4.–10. mai er modellering, ikke en kunngjort fremtidig festivaldato.'},
+ {id:'may17',name:'Et bord etter toget',calendar:'may17',speaker:'Mamma',text:'«Ungane har gått langt. Folkå som bar stoler òg.» Mamma ber om mat til nabolaget. Bjørnar vil kjøpe sponsorplassen og la andre ta regningen.',sectors:{Sjømat:.006,Eiendom:.003},source:'https://stavangerbyarkiv.no/nettutstillinger/17-mai-komiteen-og-17-mai-program/',fact:'17. mai er Norges nasjonaldag. Spillvinduet inkluderer dagene rundt feiringen.'},
+ {id:'gladmat',name:'Plass ved Vågen',calendar:'gladmat',speaker:'Nora',text:'«En bod er en avtale med byen. Skriv hvem som betaler, og hvem som får sitte.» Små produsenter vil dele plass. Bjørnar vil selge hele plassen videre.',sectors:{Sjømat:.008,Shipping:.004},source:'https://gladmat.no/arrangementer/gladmatfestivalen2026/',fact:'Gladmat 2026 ble arrangert 24.–27. juni. Spillvindu 24.–30. juni i andre år er en modellert festivalsesong.'},
+ {id:'energy',name:'Bordene rundt energimøtet',calendar:'energy',speaker:'Nora',text:'«Bjørnar selger introduksjoner han ikke eier. Me kan gi lærlingene en plass uten å kjøpe oss et bilde.» Velg hvem den åpne kvelden skal være til for.',sectors:{Olje:.008,Industri:.006,Teknologi:.004},source:'https://www.ons.no/article/how-will-the-best-ons-ever-be-topped',fact:'ONS har vært arrangert annethvert år. Spillvindu 24.–30. august i partallsår er en spillregel, ikke offisielle datoer frem mot 2036.'},
+ {id:'winter',name:'Lys i et tomt lokale',calendar:'christmas',speaker:'Raggen',text:'«Det står folk utenfor mens me telle årets overskudd.» Nora foreslår en åpen kveld med ordentlige avtaler. Bjørnar har allerede bestilt et pressebilde.',sectors:{Eiendom:.004,Sjømat:.004,Finans:-.003},source:null,fact:'Julevinduet er en lokal fortelling lagt til spillets eksisterende juleperiode.'}
+];
+if(typeof module!=='undefined')module.exports=root.Game.CIVIC_EVENTS;
+})(typeof window!=='undefined'?window:globalThis);
