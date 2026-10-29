@@ -91,3 +91,17 @@ Les EXCHANGE.md. Kjør `npm run qa:exchange` i tillegg til øvrige sjekker. Elle
 - Kontroller store porteføljer i kombinasjon med operative kapitalplaner og Gudfar-progresjon. Kursverdi inngår i netto formue, ikke direkte i produktiv sluttscore.
 
 F11–F13 fra runde 3 står fortsatt til videre vurdering. Denne runden implementerer brukerens børsønske; den hevder ikke å ha løst infrastrukturnivåenes tilbakebetalingstid eller bevist optimal områdefordeling.
+
+
+## Ny runde: alfa 0.7 / opplevelse
+
+Les EXPERIENCE.md. `npm run qa:experience` kjører 3 seeds × 3 profiler fra ordinære 8 000 kr. For bredere dekning: `node qa/experience-sim.cjs --seeds 30 --output experience-full.json`. Full rapport inkluderer motorhash før/etter, slik at en kjøring under redigering ikke forveksles med en frossen build.
+
+- Følg én historie fra første valg til siste følge. Sjekk at meningsfullt ulike valg er forståelige uten å røpe resultatteksten på forhånd.
+- Test dialog, faktisk tid, lager, regnskap, gjenstandseffekt og etterfølgende scene sammen. Sjekk gjentatt klikk, utilgjengelige valg og siste dager av 2036.
+- Kontroller at gammel rå lagring valideres før migrering, og at delvis ødelagt ny historietilstand avvises.
+- Følg alle tre akter: valgets kostnad, folk som forlater laget, kvartalsforpliktelser, neste akt og epilog. Bekreft at fred har reelle følger og at ikke alt løses med penger.
+- Spilltest på 390 og 1366 piksler: tre neste trekk, kontakt, oppdrag, steder, jobb, risiko, scene, avanserte visninger og redusert bevegelse.
+- Rapporter om valgene er interessante, dominerende, gjentakende eller uforståelige. Antall oppdrag, meldinger eller klikk er ikke en moromåling.
+
+F11 er avgrenset med ærlig prognose og tryggere automatikk, F12 er fortsatt åpent og nå synlig i rapportene. F13 har bredere parvis dekning. Ikke meld alle tre som fullstendig løst.

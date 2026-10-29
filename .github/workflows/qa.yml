@@ -17,7 +17,7 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - name: Check browser scripts
-        run: for file in dist/*.js; do node --check "$file"; done
+        run: find dist -name "*.js" -exec node --check {} \;
       - name: Technical commerce invariants
         run: npm test
       - name: Strategic mechanics
@@ -26,6 +26,8 @@ jobs:
         run: npm run qa:balance
       - name: Separate inherited-mode comparison
         run: npm run qa:meta
+      - name: Normal-start story and endgame smoke
+        run: npm run qa:experience
       - name: Synthetic exchange stress
         run: npm run qa:exchange
       - name: Synthetic fixtures for visual reviewers

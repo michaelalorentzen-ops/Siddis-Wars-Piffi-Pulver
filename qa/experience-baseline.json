@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "sourceBefore": {
+    "sha256": "e2f79bc2cb24b66545a0f58c5161d50154d39ea84b2ea23e5efa17b1e00eecf7",
+    "files": [
+      {
+        "file": "dist/engine.js",
+        "sha256": "71c6100e82df74bd2d1027162bd9f5f49252688234448797f288c5eb583b8a49"
+      },
+      {
+        "file": "dist/strategy.js",
+        "sha256": "db2070448b9b6287f547660fc03f8a2fa455ecffb608b338e76939d1d6429b2a"
+      },
+      {
+        "file": "dist/commerce.js",
+        "sha256": "4341f7eadaa23a21f94ba0a6c51454e7dfeaecc8357583c5415c73604efc64df"
+      },
+      {
+        "file": "dist/calendar.js",
+        "sha256": "62574afd787d1dd02ecf46a3954fdc43b9888434d54069711cfd9445a4c9cd7c"
+      },
+      {
+        "file": "dist/endgame.js",
+        "sha256": "09ef6227d0cdc7dea8cca4e216c17d8cedce27db20cd5692743adaa752885c66"
+      },
+      {
+        "file": "dist/scaling.js",
+        "sha256": "fe606711a8d346e11bd807849f60f9ef5112a9f05972733b5dc4301ec1761e83"
+      },
+      {
+        "file": "dist/exchange.js",
+        "sha256": "27aa918357cb5b10c5869b65e2374a4c86fa9a30c2f628ad127e4452cf5c6b8f"
+      },
+      {
+        "file": "dist/bus.js",
+        "sha256": "f0b5dcfda122da185cf9d893b8322d810476cf96b41dc7b7dbb0eb0908108933"
+      },
+      {
+        "file": "dist/content/characters.js",
+        "sha256": "d6af4fb831dbb9625686982f1f80a80df7f0e144294d892ffd6b652771d9ebd4"
+      },
+      {
+        "file": "dist/content/quests.js",
+        "sha256": "62c325cd02aea0b142ca90fe88bc44adb17e91cffb7bfe33c088dda01381f2a6"
+      },
+      {
+        "file": "dist/quests.js",
+        "sha256": "01bab9ba93f04200d643b7376cd055146396fe763f745a8cac362e2f07e52d2b"
+      },
+      {
+        "file": "dist/content/crimes.js",
+        "sha256": "60c37774e74dece62576c518008862c38ac8020ca764c5837b1f379e95ff1932"
+      },
+      {
+        "file": "dist/crime.js",
+        "sha256": "8255f5fae9d9920e6cd48138b753fe8a2a148c72e74b0f5c70ec14d44a1404e3"
+      },
+      {
+        "file": "dist/arc.js",
+        "sha256": "206c82f390a57f9109936df626752ce7c9f0e15e881e452307a7009771f0bd01"
+      }
+    ]
+  },
+  "sourceAfter": {
+    "sha256": "e2f79bc2cb24b66545a0f58c5161d50154d39ea84b2ea23e5efa17b1e00eecf7",
+    "files": [
+      {
+        "file": "dist/engine.js",
+        "sha256": "71c6100e82df74bd2d1027162bd9f5f49252688234448797f288c5eb583b8a49"
+      },
+      {
+        "file": "dist/strategy.js",
+        "sha256": "db2070448b9b6287f547660fc03f8a2fa455ecffb608b338e76939d1d6429b2a"
+      },
+      {
+        "file": "dist/commerce.js",
+        "sha256": "4341f7eadaa23a21f94ba0a6c51454e7dfeaecc8357583c5415c73604efc64df"
+      },
+      {
+        "file": "dist/calendar.js",
+        "sha256": "62574afd787d1dd02ecf46a3954fdc43b9888434d54069711cfd9445a4c9cd7c"
+      },
+      {
+        "file": "dist/endgame.js",
+        "sha256": "09ef6227d0cdc7dea8cca4e216c17d8cedce27db20cd5692743adaa752885c66"
+      },
+      {
+        "file": "dist/scaling.js",
+        "sha256": "fe606711a8d346e11bd807849f60f9ef5112a9f05972733b5dc4301ec1761e83"
+      },
+      {
+        "file": "dist/exchange.js",
+        "sha256": "27aa918357cb5b10c5869b65e2374a4c86fa9a30c2f628ad127e4452cf5c6b8f"
+      },
+      {
+        "file": "dist/bus.js",
+        "sha256": "f0b5dcfda122da185cf9d893b8322d810476cf96b41dc7b7dbb0eb0908108933"
+      },
+      {
+        "file": "dist/content/characters.js",
+        "sha256": "d6af4fb831dbb9625686982f1f80a80df7f0e144294d892ffd6b652771d9ebd4"
+      },
+      {
+        "file": "dist/content/quests.js",
+        "sha256": "62c325cd02aea0b142ca90fe88bc44adb17e91cffb7bfe33c088dda01381f2a6"
+      },
+      {
+        "file": "dist/quests.js",
+        "sha256": "01bab9ba93f04200d643b7376cd055146396fe763f745a8cac362e2f07e52d2b"
+      },
+      {
+        "file": "dist/content/crimes.js",
+        "sha256": "60c37774e74dece62576c518008862c38ac8020ca764c5837b1f379e95ff1932"
+      },
+      {
+        "file": "dist/crime.js",
+        "sha256": "8255f5fae9d9920e6cd48138b753fe8a2a148c72e74b0f5c70ec14d44a1404e3"
+      },
+      {
+        "file": "dist/arc.js",
+        "sha256": "206c82f390a57f9109936df626752ce7c9f0e15e881e452307a7009771f0bd01"
+      }
+    ]
+  },
+  "durationMs": 95046,
+  "measuredScopes": [
+    "Real 8000 kr start; no state grants",
+    "Complete 2026–2036 campaigns through public G.act",
+    "Existing trade/delegation heuristic with varied quest, crime and arc decisions",
+    "Persistence validation after every injected action",
+    "Seed replay covered separately by integration tests"
+  ],
+  "limitations": [
+    "Heuristic policies are not human playtests or an approval of fun or balance",
+    "Quest completion depends on profile: high heat can leave later social quests unfinished",
+    "No browser rendering, accessibility, save-file IO or audio is exercised here"
+  ],
+  "method": "Exploratory public-action heuristic. Starts from the real 8,000 kr campaign; no privileged cash, crew, stock, rank or clock mutation. Existing business agent plus injected story actions. This tests technical progression, not enjoyment or a balance approval.",
+  "seedsPerProfile": 30,
+  "summary": {
+    "careful": {
+      "runs": 30,
+      "normalStarts": 30,
+      "completed": 30,
+      "invalid": 0,
+      "errors": 0,
+      "stalled": 0,
+      "arcResolved": 30,
+      "threeActs": 30,
+      "medianObligations": 14236481,
+      "medianCash": 139585604,
+      "minQuests": 3,
+      "maxQuests": 4,
+      "crimeAttempts": 1946,
+      "arcResponses": 180,
+      "rejectedInjections": 0
+    },
+    "expansion": {
+      "runs": 30,
+      "normalStarts": 30,
+      "completed": 30,
+      "invalid": 0,
+      "errors": 0,
+      "stalled": 0,
+      "arcResolved": 30,
+      "threeActs": 30,
+      "medianObligations": 16626195,
+      "medianCash": 231567596,
+      "minQuests": 1,
+      "maxQuests": 3,
+      "crimeAttempts": 2039,
+      "arcResponses": 180,
+      "rejectedInjections": 0
+    },
+    "aggressive": {
+      "runs": 30,
+      "normalStarts": 30,
+      "completed": 30,
+      "invalid": 0,
+      "errors": 0,
+      "stalled": 0,
+      "arcResolved": 30,
+      "threeActs": 30,
+      "medianObligations": 4139024,
+      "medianCash": 207825460,
+      "minQuests": 1,
+      "maxQuests": 2,
+      "crimeAttempts": 2819,
+      "arcResponses": 180,
+      "rejectedInjections": 0
+    }
+  }
+}

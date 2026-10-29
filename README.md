@@ -2,7 +2,7 @@
 
 Arbeidsnavn i spillet: **Vestkyst**. En Stavanger-basert, nettleserlokal strategispill-alfa fra 2026 til 2036.
 
-**Status: alfa 0.6. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
+**Status: alfa 0.7. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
 
 ## Kjør lokalt
 
@@ -40,7 +40,7 @@ npm run qa:fixtures
 
 Tidligere alfaer nådde Gudfar etter halvannet–to år og bygget store ubrukte formuer. I alfa 0.5 når de tre agentprofilene Gudfar rundt dag 1 239–1 323 i median, og reinvesterer 71–90 % av positivt driftsoverskudd etterpå. Dette er utforskende resultater fra endrede agentpolicyer, ikke godkjent balanse. Se docs/ENDGAME.md og docs/SCALING.md for modell, arvemodus, kalenderoverganger og begrensninger.
 
-Koden har foreløpig flere påbygg rundt en eldre motor. Det gjør den lett å kjøre uten verktøykjede, men en ryddigere domenemodell bør vurderes før mer innhold legges til. Tilfeldighetsgenerator, innholdsdata og motor bør etter hvert skilles tydeligere.
+Nye systemer registrerer handlinger, migrering, validering og hendelser gjennom `bus.js`; fortellingsdata ligger separat i `content/`. Eldre handel og imperiedrift bruker fortsatt kompatibilitetslag. Dette er en gradvis opprydding, ikke en påstand om at hele motoren er skrevet om.
 
 ## Filer
 
@@ -60,3 +60,6 @@ Ingen Sites-identitet, publiseringstilgang, hemmeligheter eller personlig spilla
 
 
 Alfa 0.6 legger til en valgfri fiktiv Oslo-børs. Se docs/EXCHANGE.md. `npm run qa:exchange` er isolert, syntetisk markedsstress; de vanlige kampanjeagentene bruker ikke børsen.
+
+
+Alfa 0.7 prioriterer spillopplevelsen: fire oppdragslinjer, ni kontakter, opptjente gjenstander med faktiske effekter, ni risikojobber, 14 steder og en rival-/etterforskningshistorie i tre akter. Se [EXPERIENCE.md](docs/EXPERIENCE.md). Kjør `npm run qa:experience` for ni ordinære kampanjer som også bruker disse handlingene.

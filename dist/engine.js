@@ -24,6 +24,7 @@ if(type==='choice'){if(!s.event||![0,1].includes(i))return 'Ingen hendelse.';con
 if(type==='week'||type==='rest'||type==='shift'){s.week++;let gross=income(s),factor=s.policy==='safe'?.8:s.policy==='growth'?1.3:1;let trade=s.auto?Math.round((1500+s.rep*95)*s.managers):0;const costs=s.managers*750+500;let net=Math.round(gross*factor+trade-costs)+(type==='shift'?3500:0);if(type==='shift')s.rep+=1;if(type==='rest'){s.heat=Math.max(0,s.heat-20);net=Math.round(net*.5);}else{s.heat=Math.max(0,Math.min(100,s.heat+(s.policy==='growth'?5:s.policy==='safe'?-6:-2)+(s.auto?2:0)));}s.cash=Math.max(0,s.cash+net);s.lastIncome=net;if(gross||trade)s.rep+=s.policy==='growth'?2:1;if(s.heat>=75){const fine=Math.round(s.cash*.08);s.cash-=fine;s.heat-=25;note(s,`Etterforskning kostet deg ${fine.toLocaleString('nb-NO')} kr. Søkelyset faller.`);}msg=`Uke ${s.week}: ${net>=0?'+':''}${net.toLocaleString('nb-NO')} kr etter drift.`;if(s.week%6===0)s.event={id:(s.week/6-1)%EVENTS.length};if(s.week>=574){s.ended=true;s.event=null;msg='2036 er over. Historien din er skrevet.';}}
 if(msg)note(s,msg);if(type==='sell')act(s,'week');return msg;}
 function outcome(s){const coast=s.cities.includes(1)&&s.districts.length>=3,country=s.cities.length===5,exit=s.cash>=5000000&&s.heat<=25;return {won:s.goal==='coast'?coast:s.goal==='country'?country:exit,coast,country,exit};}
-root.Game={GOODS,DISTRICTS,CITIES,BUSINESSES,EVENTS,fresh,prices,rank,income,act,outcome};
+function addHeat(s,n){s.heat=Math.max(0,Math.min(100,s.heat+n*(n>0?(root.Game.itemModifiers?.(s).heatGain||1):1)));}
+root.Game={addHeat,GOODS,DISTRICTS,CITIES,BUSINESSES,EVENTS,fresh,prices,rank,income,act,outcome};
 if(typeof module!=='undefined')module.exports=root.Game;
 })(typeof window!=='undefined'?window:globalThis);

@@ -4,7 +4,14 @@ require('../dist/commerce.js');
 require('../dist/calendar.js');
 require('../dist/endgame.js');
 require('../dist/scaling.js');
-const Game=require('../dist/exchange.js');
+require('../dist/exchange.js');
+require('../dist/bus.js');
+require('../dist/content/characters.js');
+require('../dist/content/quests.js');
+require('../dist/quests.js');
+require('../dist/content/crimes.js');
+require('../dist/crime.js');
+const Game=require('../dist/arc.js');
 function create(seed=1){const s=Game.fresh();Game.seedCampaign(s,seed);return s;}
 function assertState(s){
  if(!Game.valid(s))throw new Error('Invalid state at day '+s.day);

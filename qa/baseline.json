@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "engineSha256": "7d7535c6c988e6d3792e92b635ddd93421e4844b0f7375352818185c7ee00a71",
+  "engineSha256": "844aa9809617606e4bc760856715f3ba8677e8e7f6d61be50bd27c8e42ca18e6",
   "engineFiles": [
     "engine.js",
     "strategy.js",
@@ -8,10 +8,17 @@
     "calendar.js",
     "endgame.js",
     "scaling.js",
-    "exchange.js"
+    "exchange.js",
+    "bus.js",
+    "content/characters.js",
+    "content/quests.js",
+    "quests.js",
+    "content/crimes.js",
+    "crime.js",
+    "arc.js"
   ],
   "hashMethod": "SHA-256 of concatenated raw engineFiles bytes in listed order",
-  "qaAgentSha256": "0996054c6fcd8a6d33114ea09472c8e27bf296d7e0144d6079106e08c935b61c",
+  "qaAgentSha256": "bf49c3d0cf474eaff786a83195b50b1807b5116bdde8237dc514351661d5fbd2",
   "seedsPerProfile": 30,
   "balanceVerdict": "exploratory_only_not_a_balance_approval",
   "summary": {
@@ -24,13 +31,17 @@
       "medianAutomationDay": 152,
       "godfathers": 30,
       "medianGodfatherDay": 1323,
-      "medianFinalCash": 123213896,
+      "medianFinalCash": 167395521,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0,
-      "medianInvested": 1094576271,
-      "medianReinvestmentShare": 0.9019025848742602,
-      "medianImperialValue": 982794266,
+      "medianInvested": 997001183,
+      "medianReinvestmentShare": 0.8531755768076492,
+      "medianImperialValue": 899810992,
       "medianAreaShare": 0.6666666666666666,
+      "territoryCompositions": {
+        "alesund|haugesund|jaeren|randaberg|sola|sorlandet|stord": 30
+      },
+      "uniqueTerritoryCompositions": 1,
       "completedAllAreas": 0,
       "medianCouncilKinds": 8,
       "medianCouncilDecisions": 54,
@@ -41,9 +52,9 @@
       "medianAdvanceShareAfterGodfather": 0.41379310344827586,
       "maxStrategicGapWeeks": 12,
       "medianRevenue": {
-        "local": 517212182,
-        "routes": 1089851401,
-        "distribution": 1049337390,
+        "local": 505395730,
+        "routes": 1089502134,
+        "distribution": 984376821,
         "contracts": 13382711
       }
     },
@@ -56,13 +67,17 @@
       "medianAutomationDay": 172,
       "godfathers": 30,
       "medianGodfatherDay": 1239,
-      "medianFinalCash": 183542732,
+      "medianFinalCash": 220307556,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0,
-      "medianInvested": 1190751408,
-      "medianReinvestmentShare": 0.7775400778297731,
-      "medianImperialValue": 1054267009,
+      "medianInvested": 1147807311,
+      "medianReinvestmentShare": 0.7449418078663252,
+      "medianImperialValue": 1012879825,
       "medianAreaShare": 0.6666666666666666,
+      "territoryCompositions": {
+        "alesund|haugesund|jaeren|randaberg|sola|sorlandet|stord": 30
+      },
+      "uniqueTerritoryCompositions": 1,
       "completedAllAreas": 0,
       "medianCouncilKinds": 8,
       "medianCouncilDecisions": 54,
@@ -73,9 +88,9 @@
       "medianAdvanceShareAfterGodfather": 0.41379310344827586,
       "maxStrategicGapWeeks": 12,
       "medianRevenue": {
-        "local": 622257125,
-        "routes": 1384384289,
-        "distribution": 1051346208,
+        "local": 611403008,
+        "routes": 1384738125,
+        "distribution": 993178918,
         "contracts": 12989722
       }
     },
@@ -88,13 +103,17 @@
       "medianAutomationDay": 140,
       "godfathers": 30,
       "medianGodfatherDay": 1253,
-      "medianFinalCash": 128474283,
+      "medianFinalCash": 185662971,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0,
-      "medianInvested": 1140496845,
-      "medianReinvestmentShare": 0.7120459448164793,
-      "medianImperialValue": 830466405,
+      "medianInvested": 999909350,
+      "medianReinvestmentShare": 0.6645927626472157,
+      "medianImperialValue": 739665243,
       "medianAreaShare": 0.6666666666666666,
+      "territoryCompositions": {
+        "alesund|haugesund|jaeren|randaberg|sola|sorlandet|stord": 30
+      },
+      "uniqueTerritoryCompositions": 1,
       "completedAllAreas": 0,
       "medianCouncilKinds": 8,
       "medianCouncilDecisions": 53,
@@ -105,13 +124,13 @@
       "medianAdvanceShareAfterGodfather": 0.26519337016574585,
       "maxStrategicGapWeeks": 12,
       "medianRevenue": {
-        "local": 692835158,
-        "routes": 1289675527,
-        "distribution": 1060159553,
+        "local": 677082647,
+        "routes": 1291435583,
+        "distribution": 988514164,
         "contracts": 11795364
       }
     }
   },
   "warnings": [],
-  "note": "Alpha 0.6 regression reference. Campaign agents do not trade stocks. Market-only stress and inherited modes are reported separately. Not a balance approval."
+  "note": "Alpha 0.7 regression reference. Ordinary economy agents do not pursue story or exchange; experience and inherited comparisons are separate. Infrastructure forecasting avoids financially unproductive automatic upgrades. Current territory compositions reveal a common policy/control-span bottleneck. Not a balance or fun approval."
 }
