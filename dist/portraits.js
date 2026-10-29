@@ -1,0 +1,25 @@
+(function(root){
+'use strict';
+// Original vector portraits. The cast is fictional; no external faces or image requests.
+const faces={
+ raggen:{name:'Raggen',bg:'#92734e',skin:'#c19c78',coat:'#344c50',hair:'#3a3430',shape:'M28 38Q23 13 49 15Q75 11 75 38L67 29 54 32 40 27 33 42Z',beard:true,wear:'work'},
+ mamma:{name:'Mamma',bg:'#75836c',skin:'#d3b18e',coat:'#764f4c',hair:'#a9a499',shape:'M24 52Q14 18 44 13Q78 8 79 44L75 69 66 61 68 31Q51 25 33 34L33 66 23 70Z',wear:'scarf',age:true},
+ siv:{name:'Siv Velde',bg:'#738d91',skin:'#d7b79a',coat:'#a98546',hair:'#382d2d',shape:'M27 39Q23 12 48 13Q71 10 76 37L66 24 57 31 38 29 31 44Z',wear:'rider',freckles:true},
+ nora:{name:'Nora Rein',bg:'#8b8272',skin:'#caa486',coat:'#263b43',hair:'#343039',shape:'M25 65L23 31Q30 10 55 12Q77 14 77 39L77 66 67 69 67 30 57 25 32 36 34 68Z',wear:'shirt',glasses:true},
+ iman:{name:'Iman Bakke',bg:'#9a775f',skin:'#a77a59',coat:'#405b52',hair:'#25282a',shape:'M26 35Q24 23 31 20Q31 10 43 15Q50 7 58 14Q72 12 74 24L73 39 66 31 34 31 29 44Z',wear:'work'},
+ tor:{name:'Tor Sunde',bg:'#526e79',skin:'#c3a587',coat:'#283c49',hair:'#b4b1a2',shape:'M27 36L28 25 69 24 73 40 65 34 35 36 30 46Z',wear:'skipper',beard:true,age:true},
+ ada:{name:'Ada Røst',bg:'#96786e',skin:'#bc947a',coat:'#625477',hair:'#272a30',shape:'M23 65Q18 43 25 26Q34 12 50 15Q70 11 78 31L77 66 67 70 65 32 56 28 34 35 33 69Z',wear:'scarf',earring:true},
+ bjornar:{name:'Bjørnar Vik',bg:'#858069',skin:'#c5a88c',coat:'#24343b',hair:'#413b36',shape:'M26 37L25 26Q37 10 60 14L75 25 72 38 64 27 31 32 29 43Z',wear:'suit'},
+ haugland:{name:'Haugland',bg:'#63746e',skin:'#c6ad91',coat:'#697367',hair:'#aaa797',shape:'M27 41L25 27Q32 15 44 18L44 25 62 25 63 18 74 27 73 43 66 36 65 28 35 29 32 44Z',wear:'raincoat',age:true}
+};
+function resolve(value){const key=String(value||'').toLocaleLowerCase('nb-NO').trim();return Object.keys(faces).find(id=>id===key||faces[id].name.toLocaleLowerCase('nb-NO')===key||faces[id].name.split(' ')[0].toLocaleLowerCase('nb-NO')===key)||null;}
+function portrait(value){const id=resolve(value),f=faces[id];if(!f)return null;
+ const collar=f.wear==='suit'?'<path d="M35 81L49 96 64 81 57 120H40Z" fill="#d1c7af"/><path d="M48 94L54 94 58 120H44Z" fill="#8c5d49"/><path d="M31 80L44 111 35 104 29 89M68 80L55 111 66 104 73 90" fill="none" stroke="#586264" stroke-width="2"/>':f.wear==='scarf'?'<path d="M31 76Q49 92 69 76L67 93 55 100 59 120 43 120 43 96 29 86Z" fill="#baa07a"/><path d="M32 84L63 88M43 99L53 96" stroke="#735e4d" stroke-width="2"/>':f.wear==='work'?'<path d="M28 84L43 98 49 81 58 98 72 84M18 108H35M65 108H82" fill="none" stroke="#bca06d" stroke-width="3"/>':f.wear==='rider'?'<path d="M28 84L46 101 57 82M17 109L34 100M66 101L84 111" fill="none" stroke="#d8c37f" stroke-width="4"/>':'<path d="M32 82L43 102 49 83 58 102 69 82M49 102V120" fill="none" stroke="#88918a" stroke-width="2"/>';
+ const beard=f.beard?`<path d="M31 51L37 69 50 78 65 66 70 51 62 60 57 61 50 66 43 61 37 59Z" fill="${f.hair}"/><path d="M43 61L56 61" stroke="#c2aa8a" stroke-width="1.5"/>`:'<path d="M43 65Q50 68 58 64" fill="none" stroke="#78564b" stroke-width="1.6"/>';
+ const glasses=f.glasses?'<path d="M30 46L45 45 45 54 32 54ZM55 45L70 46 68 54 55 54Z" fill="none" stroke="#272e33" stroke-width="2.4"/><path d="M45 47H55" stroke="#272e33" stroke-width="2"/>':'';
+ const extra=f.wear==='skipper'?'<path d="M25 28L29 17Q47 10 70 18L75 30Z" fill="#26323c"/><path d="M25 30Q50 36 77 28L72 35 28 36Z" fill="#1a242d"/><path d="M31 24H68" stroke="#9f997b" stroke-width="2"/>':'';
+ return `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-contact-portrait="${id}"><rect width="100" height="120" fill="${f.bg}"/><path d="M0 19L100 0M0 42L100 23M0 65L100 46M0 88L100 69M0 111L100 92" stroke="#e5dcc2" stroke-opacity=".09" stroke-width="1"/><path d="M5 120Q7 88 31 80L40 74H60L70 81Q93 87 97 120Z" fill="${f.coat}"/><path d="M41 67H60L62 84 50 94 38 83Z" fill="${f.skin}"/><path d="M29 32Q31 20 50 20Q68 20 72 34L68 61 59 75 48 79 36 69 30 54Z" fill="${f.skin}"/><path d="M58 26L67 35 64 58 58 69 51 73 56 60Z" fill="#2a3033" opacity=".12"/><path d="${f.shape}" fill="${f.hair}"/>${extra}<path d="M36 43L44 42M56 42L65 44" stroke="${f.hair}" stroke-width="2.5"/><path d="M37 49H42M57 49H63" stroke="#303336" stroke-width="2.2"/><path d="M49 48L46 58 52 59" fill="none" stroke="#8b6c57" stroke-width="1.5"/>${beard}${glasses}${f.age?'<path d="M34 55L40 57M60 56L66 54M40 34H58" stroke="#806f60" stroke-width="1" opacity=".7"/>':''}${f.freckles?'<path d="M35 56H37M40 58H42M60 57H62M65 55H67" stroke="#946d52" stroke-width="1.5"/>':''}${f.earring?'<circle cx="71" cy="58" r="3" fill="none" stroke="#d4b77d" stroke-width="1.6"/>':''}${collar}<path d="M0 119H100" stroke="#d9c28e" stroke-width="2"/></svg>`;
+}
+if(root.Game)root.Game.contactPortrait=portrait;
+if(typeof module!=='undefined')module.exports={portrait,resolve,ids:Object.keys(faces)};
+})(typeof window!=='undefined'?window:globalThis);

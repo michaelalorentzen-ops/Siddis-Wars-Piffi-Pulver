@@ -22,8 +22,14 @@ jobs:
         run: npm test
       - name: Strategic mechanics
         run: npm run qa:strategy
+      - name: Early progression with real starting cash
+        run: npm run qa:early
       - name: Deterministic exploratory balance
         run: npm run qa:balance
+      - name: Same-engine manual ownership control
+        run: node qa/simulate.cjs --seeds 3 --no-ownership --output balance-manual-ownership.json
+      - name: Paired ownership comparison
+        run: node qa/ownership-compare.cjs
       - name: Separate inherited-mode comparison
         run: npm run qa:meta
       - name: Normal-start story and endgame smoke

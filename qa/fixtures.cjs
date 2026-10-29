@@ -11,4 +11,9 @@ const regional=JSON.parse(JSON.stringify(late));regional.scale.levels={warehouse
 const coalition=JSON.parse(JSON.stringify(regional));coalition.event={kind:'empire',id:6,city:4};coalition.scale.rivals[4].wins=4;write('09-rival-coalition',coalition);
 const inherited=create(42);inherited.scale.mode='dynasty';inherited.scale.legacy=3;write('10-inherited-round',inherited);
 const exchange=JSON.parse(JSON.stringify(late));exchange.event=null;G.act(exchange,'stockBuy',{id:'NFE',qty:10000});G.act(exchange,'stockBuy',{id:'HHA',qty:5000});write('11-exchange-portfolio',exchange);
-console.log('Wrote eleven SYNTHETIC UI fixtures to qa/reports/fixtures. They are not balance runs.');
+// The owner-board states are deliberately synthetic visual review fixtures.
+const owner=create(19);owner.day=1302;owner.week=186;owner.rankLevel=5;owner.cash=150000000;owner.rep=240;owner.influence=200;owner.managers=5;owner.cities=[0,1,2,3,4];owner.crew={members:32,trained:18,loyalty:80,fatigue:0};owner.empire.institutions.counsel=1;owner.scale.reinvestment='manual';owner.routes=G.CITIES.map((c,city)=>({id:city+1,city,good:0,qty:100,carrier:2,origin:0,adapt:true,active:true,last:'Levert'}));owner.nextRoute=6;delete owner.ownership;G.upgrade(owner);write('12-owner-offers',owner);
+G.act(owner,'ownershipInvest',{city:0,path:'partners',level:0});write('13-owner-construction',owner);
+for(let n=0;n<34;n++){owner.week++;owner.day=owner.week*7;for(const r of owner.routes)owner.ledger.unshift({week:owner.week,day:owner.day,route:r.id,q:100,gross:30000,supply:10000,freight:1000,refund:0,net:19000,title:'Synthetic confirmed delivery',status:'Levert'});owner.ledger=owner.ledger.slice(0,120);G.emit('week',owner);}
+write('14-owner-counteroffer',owner);
+console.log('Wrote fourteen SYNTHETIC UI fixtures to qa/reports/fixtures. They are not balance runs.');

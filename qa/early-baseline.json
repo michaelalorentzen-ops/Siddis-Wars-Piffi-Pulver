@@ -1,0 +1,514 @@
+{
+  "schema": 1,
+  "seedsPerProfile": 30,
+  "sourceBefore": {
+    "sha256": "e9d9fa77c859833e0dac705778cc16a9ed575da8dab467652e06003e901ff2ed",
+    "files": [
+      {
+        "file": "dist/engine.js",
+        "sha256": "9ec5184c9457d5c7744931bb623f02fee908113a778205f9e4594ccc7af86fd5"
+      },
+      {
+        "file": "dist/strategy.js",
+        "sha256": "474941f953e6b8fbc869be5bdb3e6f58ac8d7c672d578ad499688d654e59dfd0"
+      },
+      {
+        "file": "dist/commerce.js",
+        "sha256": "dffb44373dcb2f6d53290daba386677932770f0745ff6ab1feb0bbd732ebe29f"
+      },
+      {
+        "file": "dist/calendar.js",
+        "sha256": "b6ea6151ada69bc3b2ed7a6e76a662749f3082452185ac298206dc49fea94c12"
+      },
+      {
+        "file": "dist/endgame.js",
+        "sha256": "649272d8660abdae6ffbc2543192c1a247fb5214c8083180509a8194e1d3acf0"
+      },
+      {
+        "file": "dist/scaling.js",
+        "sha256": "bb94ae2b6cbb22f0b99655f3fcd774fb7f07135e1d483c749f3c6160e649aefe"
+      },
+      {
+        "file": "dist/exchange.js",
+        "sha256": "5ee2cf150410bc3af1ae30dd11ccf86136d2429be6fac970a551ba7b643f9073"
+      },
+      {
+        "file": "dist/bus.js",
+        "sha256": "8aa2de6322d47fa2d65cc63f7322c84e637769e92c93b24b69c8c6c179b3242e"
+      },
+      {
+        "file": "dist/regional.js",
+        "sha256": "4838b16b4ccaac40e932d125ed7f1ad0d9aa3ff0f62fe4b1935d1f52747ba156"
+      },
+      {
+        "file": "dist/legacy-fund.js",
+        "sha256": "1a74e39374f53594ee04e13dd49804378d3723d0fa9996abf36e3a82badd8d05"
+      },
+      {
+        "file": "dist/content/characters.js",
+        "sha256": "f4dbf6cd17fd271fc4e126a0a272b1799dbdee60dda4cceb805a7f7693d67bc3"
+      },
+      {
+        "file": "dist/content/quests.js",
+        "sha256": "d848ed5cfd043f90b6cfdd67948e2c3eeef10d265fae9bf125f0ee237e09cf74"
+      },
+      {
+        "file": "dist/quests.js",
+        "sha256": "28c85b3cd9ced38d7dcc40aca13370bc53d51917e65e0857d85fd023c2ccde14"
+      },
+      {
+        "file": "dist/content/crimes.js",
+        "sha256": "735ee01f622853fa1d1f4eef488d02c982fafa937a68c874fd2e3e9e81f3affc"
+      },
+      {
+        "file": "dist/crime.js",
+        "sha256": "d6cdcc5d31fe9bc3a4d9c02ce7441b7afb27e2fabbe66cb03f06b0a0c491412d"
+      },
+      {
+        "file": "dist/arc.js",
+        "sha256": "a5228a094f2bb6ee71ed9a139ef3b6401e3e8b19b2511f87659fdd1cc73799f2"
+      },
+      {
+        "file": "dist/content/events.js",
+        "sha256": "3b1c8053c7f72af2af951eecac57a3c504abfb773f18784366bf69fc494d7bf0"
+      },
+      {
+        "file": "dist/world.js",
+        "sha256": "94465b135a205333396948b3b46e7e8f68c084d0e2d429bce1a658be33936774"
+      },
+      {
+        "file": "dist/content/coast.js",
+        "sha256": "117bb9496a6311a37e5dd1dbc3ddeff851fb1c32cc7c22f73432c111a3c8184b"
+      },
+      {
+        "file": "dist/coast.js",
+        "sha256": "613923072fd6690ed88c2872f3d6182fa5e025622a3b90ac3ddb82dda2158873"
+      },
+      {
+        "file": "dist/content/places.js",
+        "sha256": "a64d05adc6e669288bd3566b92769abd3a4323c1aa7571165446fa86142ac897"
+      },
+      {
+        "file": "dist/content/ownership.js",
+        "sha256": "f5b845b95eb6fc3d510669d810dd44031035bba6c3fbf2536ed27d22bb716ec2"
+      },
+      {
+        "file": "dist/ownership.js",
+        "sha256": "4faf0a4a829b4cd935585072131951753fdd98015f7fe850280e6fc047099fe6"
+      }
+    ]
+  },
+  "sourceAfter": {
+    "sha256": "e9d9fa77c859833e0dac705778cc16a9ed575da8dab467652e06003e901ff2ed",
+    "files": [
+      {
+        "file": "dist/engine.js",
+        "sha256": "9ec5184c9457d5c7744931bb623f02fee908113a778205f9e4594ccc7af86fd5"
+      },
+      {
+        "file": "dist/strategy.js",
+        "sha256": "474941f953e6b8fbc869be5bdb3e6f58ac8d7c672d578ad499688d654e59dfd0"
+      },
+      {
+        "file": "dist/commerce.js",
+        "sha256": "dffb44373dcb2f6d53290daba386677932770f0745ff6ab1feb0bbd732ebe29f"
+      },
+      {
+        "file": "dist/calendar.js",
+        "sha256": "b6ea6151ada69bc3b2ed7a6e76a662749f3082452185ac298206dc49fea94c12"
+      },
+      {
+        "file": "dist/endgame.js",
+        "sha256": "649272d8660abdae6ffbc2543192c1a247fb5214c8083180509a8194e1d3acf0"
+      },
+      {
+        "file": "dist/scaling.js",
+        "sha256": "bb94ae2b6cbb22f0b99655f3fcd774fb7f07135e1d483c749f3c6160e649aefe"
+      },
+      {
+        "file": "dist/exchange.js",
+        "sha256": "5ee2cf150410bc3af1ae30dd11ccf86136d2429be6fac970a551ba7b643f9073"
+      },
+      {
+        "file": "dist/bus.js",
+        "sha256": "8aa2de6322d47fa2d65cc63f7322c84e637769e92c93b24b69c8c6c179b3242e"
+      },
+      {
+        "file": "dist/regional.js",
+        "sha256": "4838b16b4ccaac40e932d125ed7f1ad0d9aa3ff0f62fe4b1935d1f52747ba156"
+      },
+      {
+        "file": "dist/legacy-fund.js",
+        "sha256": "1a74e39374f53594ee04e13dd49804378d3723d0fa9996abf36e3a82badd8d05"
+      },
+      {
+        "file": "dist/content/characters.js",
+        "sha256": "f4dbf6cd17fd271fc4e126a0a272b1799dbdee60dda4cceb805a7f7693d67bc3"
+      },
+      {
+        "file": "dist/content/quests.js",
+        "sha256": "d848ed5cfd043f90b6cfdd67948e2c3eeef10d265fae9bf125f0ee237e09cf74"
+      },
+      {
+        "file": "dist/quests.js",
+        "sha256": "28c85b3cd9ced38d7dcc40aca13370bc53d51917e65e0857d85fd023c2ccde14"
+      },
+      {
+        "file": "dist/content/crimes.js",
+        "sha256": "735ee01f622853fa1d1f4eef488d02c982fafa937a68c874fd2e3e9e81f3affc"
+      },
+      {
+        "file": "dist/crime.js",
+        "sha256": "d6cdcc5d31fe9bc3a4d9c02ce7441b7afb27e2fabbe66cb03f06b0a0c491412d"
+      },
+      {
+        "file": "dist/arc.js",
+        "sha256": "a5228a094f2bb6ee71ed9a139ef3b6401e3e8b19b2511f87659fdd1cc73799f2"
+      },
+      {
+        "file": "dist/content/events.js",
+        "sha256": "3b1c8053c7f72af2af951eecac57a3c504abfb773f18784366bf69fc494d7bf0"
+      },
+      {
+        "file": "dist/world.js",
+        "sha256": "94465b135a205333396948b3b46e7e8f68c084d0e2d429bce1a658be33936774"
+      },
+      {
+        "file": "dist/content/coast.js",
+        "sha256": "117bb9496a6311a37e5dd1dbc3ddeff851fb1c32cc7c22f73432c111a3c8184b"
+      },
+      {
+        "file": "dist/coast.js",
+        "sha256": "613923072fd6690ed88c2872f3d6182fa5e025622a3b90ac3ddb82dda2158873"
+      },
+      {
+        "file": "dist/content/places.js",
+        "sha256": "a64d05adc6e669288bd3566b92769abd3a4323c1aa7571165446fa86142ac897"
+      },
+      {
+        "file": "dist/content/ownership.js",
+        "sha256": "f5b845b95eb6fc3d510669d810dd44031035bba6c3fbf2536ed27d22bb716ec2"
+      },
+      {
+        "file": "dist/ownership.js",
+        "sha256": "4faf0a4a829b4cd935585072131951753fdd98015f7fe850280e6fc047099fe6"
+      }
+    ]
+  },
+  "agentsBefore": [
+    {
+      "file": "qa/load.cjs",
+      "sha256": "a2490cdff918b36a7e9d371f07d95d5cdd3de4a42d2ed02cd0b2dc9b8091bbc9"
+    },
+    {
+      "file": "qa/simulate.cjs",
+      "sha256": "87ffb180fa3c6078a1ad27c2b196298433f430574ea12e119fec5257ae0a4297"
+    },
+    {
+      "file": "qa/experience-sim.cjs",
+      "sha256": "036b3c8f410ef137c25aadbc680a5f89b53a0cf5b6b751f31c60d25062ed8437"
+    },
+    {
+      "file": "qa/early-progress.cjs",
+      "sha256": "a8c8f84a2137c9231f7aacc90fef91631dd95e431efff5634abcbb06ed7d4db3"
+    }
+  ],
+  "agentsAfter": [
+    {
+      "file": "qa/load.cjs",
+      "sha256": "a2490cdff918b36a7e9d371f07d95d5cdd3de4a42d2ed02cd0b2dc9b8091bbc9"
+    },
+    {
+      "file": "qa/simulate.cjs",
+      "sha256": "87ffb180fa3c6078a1ad27c2b196298433f430574ea12e119fec5257ae0a4297"
+    },
+    {
+      "file": "qa/experience-sim.cjs",
+      "sha256": "036b3c8f410ef137c25aadbc680a5f89b53a0cf5b6b751f31c60d25062ed8437"
+    },
+    {
+      "file": "qa/early-progress.cjs",
+      "sha256": "a8c8f84a2137c9231f7aacc90fef91631dd95e431efff5634abcbb06ed7d4db3"
+    }
+  ],
+  "verdict": "exploratory_only_not_a_balance_or_fun_approval",
+  "method": "Unchanged business and integrated policies, real 8000 kr start; stop the next business-policy iteration after first rank or60business calls. Integrated total includes injected public player choices and is evaluated against60total actions. No browser clicks measured.",
+  "limitations": [
+    "Early measurements stop before2036; they do not show that human players understand the interface or enjoy the progression.",
+    "An integrated injected choice can reach rank before its already planned business call completes; first-rank fields freeze at the actual crossing, while final row day/cash can be later.",
+    "Jobs-only control is a separately labelled greedy expected-payoff heuristic capped at90actual days or60actions, using balanced default strategy and no quests, trades or state grants. It is not the historical round6 policy or an optimal player.",
+    "Every seed remains in the report, including customs losses and failures to reach rank."
+  ],
+  "definitions": {
+    "firstRankActions": "Completed outer public player actions up to and including the first observed rank >= 1. Nested automatic engine actions and UI navigation are excluded. Injected story decisions in the integrated simulator count separately and also count toward its total.",
+    "firstRankDay": "Actual game day on the first completed public action observed at rank >= 1; null if never reached.",
+    "firstRankClicks": "Not measured by engine simulations. Always null; actions are not a browser click count.",
+    "itemPaths": "Owned item attribution uses actual recorded quest choices mapped to their reward definition. help = help choice, dark = exploit choice; other, unknown or ambiguous evidence remains explicit. No history is invented for imported items."
+  },
+  "summaries": {
+    "business-careful": {
+      "runs": 30,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 66,
+      "medianFirstRankActions": 15,
+      "maxFirstRankActions": 35,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 15,
+      "medianFirstRankInjectedActions": 0,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 29,
+          "median": 1
+        },
+        "district": {
+          "total": 30,
+          "median": 1
+        },
+        "shift": {
+          "total": 4,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 292,
+          "median": 9
+        },
+        "tripBuy": {
+          "total": 140,
+          "median": 4
+        }
+      },
+      "customsLosses": 8,
+      "recoveries": 4,
+      "errors": 0
+    },
+    "business-expansion": {
+      "runs": 30,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 56,
+      "medianFirstRankActions": 13,
+      "maxFirstRankActions": 35,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 13,
+      "medianFirstRankInjectedActions": 0,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 28,
+          "median": 1
+        },
+        "district": {
+          "total": 28,
+          "median": 1
+        },
+        "shift": {
+          "total": 14,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 266,
+          "median": 8
+        },
+        "tripBuy": {
+          "total": 119,
+          "median": 3
+        }
+      },
+      "customsLosses": 8,
+      "recoveries": 14,
+      "errors": 0
+    },
+    "business-aggressive": {
+      "runs": 30,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 56,
+      "medianFirstRankActions": 13,
+      "maxFirstRankActions": 35,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 13,
+      "medianFirstRankInjectedActions": 0,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 29,
+          "median": 1
+        },
+        "district": {
+          "total": 29,
+          "median": 1
+        },
+        "shift": {
+          "total": 16,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 273,
+          "median": 8
+        },
+        "tripBuy": {
+          "total": 118,
+          "median": 3
+        }
+      },
+      "customsLosses": 9,
+      "recoveries": 16,
+      "errors": 0
+    },
+    "integrated-careful": {
+      "runs": 30,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 64,
+      "medianFirstRankActions": 21,
+      "maxFirstRankActions": 42,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 15,
+      "medianFirstRankInjectedActions": 6,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 28,
+          "median": 1
+        },
+        "crimeAttempt": {
+          "total": 113,
+          "median": 3
+        },
+        "district": {
+          "total": 30,
+          "median": 1
+        },
+        "questChoice": {
+          "total": 90,
+          "median": 3
+        },
+        "shift": {
+          "total": 4,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 324,
+          "median": 10
+        },
+        "tripBuy": {
+          "total": 136,
+          "median": 3
+        }
+      },
+      "customsLosses": 16,
+      "recoveries": 4,
+      "errors": 0
+    },
+    "integrated-expansion": {
+      "runs": 30,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 72,
+      "medianFirstRankActions": 22,
+      "maxFirstRankActions": 45,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 15,
+      "medianFirstRankInjectedActions": 7,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 28,
+          "median": 1
+        },
+        "crimeAttempt": {
+          "total": 139,
+          "median": 4
+        },
+        "district": {
+          "total": 24,
+          "median": 1
+        },
+        "questChoice": {
+          "total": 90,
+          "median": 3
+        },
+        "shift": {
+          "total": 7,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 298,
+          "median": 10
+        },
+        "tripBuy": {
+          "total": 111,
+          "median": 3
+        }
+      },
+      "customsLosses": 12,
+      "recoveries": 7,
+      "errors": 0
+    },
+    "integrated-aggressive": {
+      "runs": 30,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 40,
+      "medianFirstRankActions": 13,
+      "maxFirstRankActions": 41,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 8,
+      "medianFirstRankInjectedActions": 5,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 29,
+          "median": 1
+        },
+        "crimeAttempt": {
+          "total": 110,
+          "median": 2
+        },
+        "district": {
+          "total": 8,
+          "median": 0
+        },
+        "questChoice": {
+          "total": 90,
+          "median": 3
+        },
+        "shift": {
+          "total": 8,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 203,
+          "median": 5
+        },
+        "tripBuy": {
+          "total": 92,
+          "median": 2
+        }
+      },
+      "customsLosses": 9,
+      "recoveries": 8,
+      "errors": 0
+    }
+  },
+  "jobsOnly": {
+    "runs": 30,
+    "firstRankReached": 0,
+    "firstRankUnreached": 30,
+    "medianFirstRankDay": null,
+    "medianFirstRankActions": null,
+    "maxFirstRankActions": null,
+    "firstRankWithin60Actions": 0,
+    "medianFirstRankBusinessActions": null,
+    "medianFirstRankInjectedActions": null,
+    "firstRankClicks": null,
+    "firstRankActionsByType": {},
+    "medianCash": 27743,
+    "minCash": 17984,
+    "maxCash": 32755,
+    "critical": 53,
+    "errors": 0
+  }
+}

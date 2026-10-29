@@ -2,7 +2,7 @@
 
 Arbeidsnavn i spillet: **Vestkyst**. En Stavanger-basert, nettleserlokal strategispill-alfa fra 2026 til 2036.
 
-**Status: alfa 0.9. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
+**Status: alfa 0.10. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
 
 ## Kjør lokalt
 
@@ -19,9 +19,14 @@ npm start
 ```sh
 npm test
 npm run qa:strategy
+npm run qa:early
 npm run qa:balance
+npm run qa:experience
+npm run qa:coast
 npm run qa:fixtures
 ```
+
+`npm run qa:early` måler handlinger og dager til første rang fra vanlig startkapital i både forretnings- og historiepolicy, med tap og mislykkede forsøk beholdt. Det måler ikke menneskelige nettleserklikk. `qa:meta` og `qa:exchange` dekker henholdsvis arvemoduser og separat markedsstress.
 
 `qa/reports/balance.json` inneholder alle seedede spillforløp, profiler, progresjonsdager, økonomi, tap og varsler. Rapporten er generert lokalt og er ignorert i Git; CI laster den opp som et artifact. Kjør `node qa/simulate.cjs --seeds 5` for en rask prøve eller `--seeds 100` for bredere dekning.
 
@@ -47,13 +52,15 @@ Nye systemer registrerer handlinger, migrering, validering og hendelser gjennom 
 - `dist/engine.js`: eldre grunnmotor.
 - `dist/strategy.js`: byer, lag, simulerte rivaler, avtaler og ukedrift.
 - `dist/commerce.js`: innkjøp, dagkalender, lager, salg, rang, lån og delegering.
-- `dist/exchange.js` og `dist/exchange-ui.js`: Oslo Fantasibørs med portefølje, utbytte, kursrisiko og regnskap.
+- `dist/exchange.js` og `dist/exchange-ui.js`: Siddisbørsen med portefølje, utbytte, kursrisiko og regnskap.
 - `dist/scaling.js`: reinvestering, kapasitet, regionale ringer, rivalvekst og separat arvemodus.
 - `dist/scaling-ui.js` og `dist/time-ui.js`: Imperiet og kalenderoverganger.
 - `dist/endgame.js`: maktråd, byprosjekter, styringsformer, institusjoner og nye rangkrav.
 - `dist/endgame-ui.js`: Maktrådet og synlig prosjektfremdrift.
 - `dist/calendar.js`: lokale høytidsperioder, markedseffekter og reisevarsler.
 - `dist/game.js`, `dist/market-ui.js`, `dist/game.css`: spillflate og dialoger.
+- `dist/content/ownership.js`, `dist/ownership.js`, `dist/ownership-ui.js` og `dist/ownership.css`: Eierbordet, oppkjøp, fullmakter og rivalenes mottilbud.
+- `dist/portraits.js`: egne vektorportretter av kontaktene.
 - `qa/`: tekniske tester, simuleringsagenter, statisk server og syntetiske visuelle fixtures.
 
 Ingen Sites-identitet, publiseringstilgang, hemmeligheter eller personlig spillagring skal inn i dette repoet. Havneillustrasjonen er laget for prosjektet; originalspillets kode og bilder er ikke distribuert her. Inspirasjonskilden er [Løpegutten](https://lopegutten.com/).
@@ -71,6 +78,8 @@ Regional ekspansjon kan organiseres med lokale medeiere, ansatt regionledelse el
 
 
 Alfa 0.9 utvider byen til 32 steder i fire regioner, med to sammenhengende kyst- og byhistorier, fire nye illustrasjoner og kildebelagt lokalhistorie. Valgene påvirker tid, penger, tillit og laget. Kysthistoriene kan delegeres etter at vanlig delegering er opptjent, med siste avgjørelse beholdt hos spilleren. Nye spillere får en kort oppstart med navn, ambisjon og et første møte med Raggen. Eksisterende lagringer går rett til spillet. Oppgjør vises med faktisk kontantendring og forløpt tid uten å stanse handlingen.
+
+Alfa 0.10 legger til **Eierbordet**: fem selskaper med tre utbyggingstrinn hver, lokale medeiere eller heleid kontroll, og rivaler som svarer på veksten. Kapitalen bindes ved signering; nye inntekter krever åtte vellykkede driftsuker med leveranser og et lojalt lag. Eierfullmakt er et eget, uttrykkelig valg og starter manuelt også i eldre lagringer med automatisk kapitalplan. Kontaktportretter og tydelige bymapper gir menneskene og avtalene mer plass. Se [OWNERSHIP.md](docs/OWNERSHIP.md) for faktiske vilkår, reserve, tilbakebetaling, mottilbud, migrering og åpne balansefunn. Tidlig progresjon og item-veier måles bedre; nye rapporter er ikke i seg selv en godkjenning av tempo eller spillglede.
 
 ## Publisering
 
