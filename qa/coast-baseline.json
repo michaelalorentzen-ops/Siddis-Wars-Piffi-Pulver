@@ -2,14 +2,32 @@
   "schema": 1,
   "financialDefinitions": {
     "legacyGiven": "s.legacyFund.paid: irreversible contributions to the chosen legacy recipients. Reported separately from productive reinvestment; never added into a combined reinvestment score.",
-    "productiveReinvestment": "s.scale.invested: cumulative recorded infrastructure, territory, route-capacity and factory investment. This engine counter is not a claim to include every capital purchase.",
+    "productiveReinvestment": "s.scale.invested: cumulative recorded infrastructure, territory, route-capacity, factory and ownership-stage investment. This engine counter is not a claim to include every capital purchase.",
     "postGodfatherProductiveReinvestment": "s.scale.postInvested: the same recorded productive investment after reaching Godfather.",
     "cashNetWorthRatio": "cash / cashNetWorthDenominator, where cashNetWorthDenominator is the reported netWorth in kroner. Null when netWorth is nonpositive; ratios may exceed 1 when liabilities reduce net worth. Summary median is the median of defined per-run ratios, not a ratio of medians.",
     "cashImperialValueRatio": "cash / cashImperialValueDenominator, where cashImperialValueDenominator is G.empireScore(s).value (also reported as imperialValue), the engine productive imperial valuation in kroner. This is distinct from net worth. Null when imperial value is nonpositive; summary medians use defined per-run ratios, not a ratio of medians.",
+    "ownershipInvested": "s.ownership.invested: actual funded productive acquisition/expansion capital, already included once in scale.invested; not added to it again. Completed firms/stages are reported separately from active construction.",
+    "ownershipNegotiationExpenseRecorded": "Costs of buyout counteroffer responses in retained firm history (at most18rows per firm). Operating negotiation expense, never productive investment; this is retained-record evidence, not a guaranteed lifetime expense counter.",
     "reinvestmentShare": "Existing s.scale.postInvested / s.scale.postOperating counter ratio, retained unchanged. legacyGiven is a separate use of cash and is not included in the numerator."
   },
+  "progressionDefinitions": {
+    "firstRankActions": "Completed outer public player actions up to and including the first observed rank >= 1. Nested automatic engine actions and UI navigation are excluded. Injected story decisions in the integrated simulator count separately and also count toward its total.",
+    "firstRankDay": "Actual game day on the first completed public action observed at rank >= 1; null if never reached.",
+    "firstRankClicks": "Not measured by engine simulations. Always null; actions are not a browser click count.",
+    "itemPaths": "Owned item attribution uses actual recorded quest choices mapped to their reward definition. help = help choice, dark = exploit choice; other, unknown or ambiguous evidence remains explicit. No history is invented for imported items."
+  },
+  "ownershipPolicy": {
+    "enabled": true,
+    "scope": "New post-Godfather policy extension only: the original business decisions before Godfather are unchanged.",
+    "mandates": {
+      "careful": "partners",
+      "expansion": "control",
+      "aggressive": "control"
+    },
+    "control": "With disableOwnership:true the agent does not adopt an ownership mandate; the same current engine and all other profile decisions remain in use. This is a paired policy control, not the historical alpha0.9 engine."
+  },
   "sourceBefore": {
-    "sha256": "d531fccb891ca813c7eeffa3c85bd782298fb303807359380b3c284fc8d5339a",
+    "sha256": "e9d9fa77c859833e0dac705778cc16a9ed575da8dab467652e06003e901ff2ed",
     "files": [
       {
         "file": "dist/engine.js",
@@ -33,7 +51,7 @@
       },
       {
         "file": "dist/scaling.js",
-        "sha256": "a937a1e602e5b891afc6c9826699e3e201b7af5be50b04d8945c19bef3e876e7"
+        "sha256": "bb94ae2b6cbb22f0b99655f3fcd774fb7f07135e1d483c749f3c6160e649aefe"
       },
       {
         "file": "dist/exchange.js",
@@ -45,7 +63,7 @@
       },
       {
         "file": "dist/regional.js",
-        "sha256": "1de0eeccb86fad24713080a686fed7569d4f1af99de375fcb2cc0a964a348784"
+        "sha256": "4838b16b4ccaac40e932d125ed7f1ad0d9aa3ff0f62fe4b1935d1f52747ba156"
       },
       {
         "file": "dist/legacy-fund.js",
@@ -73,7 +91,7 @@
       },
       {
         "file": "dist/arc.js",
-        "sha256": "3743e8fb872c0a98a80a228f24cb403c5f14fc79bfa6156afa6b078aeca4661d"
+        "sha256": "a5228a094f2bb6ee71ed9a139ef3b6401e3e8b19b2511f87659fdd1cc73799f2"
       },
       {
         "file": "dist/content/events.js",
@@ -94,11 +112,19 @@
       {
         "file": "dist/content/places.js",
         "sha256": "a64d05adc6e669288bd3566b92769abd3a4323c1aa7571165446fa86142ac897"
+      },
+      {
+        "file": "dist/content/ownership.js",
+        "sha256": "f5b845b95eb6fc3d510669d810dd44031035bba6c3fbf2536ed27d22bb716ec2"
+      },
+      {
+        "file": "dist/ownership.js",
+        "sha256": "4faf0a4a829b4cd935585072131951753fdd98015f7fe850280e6fc047099fe6"
       }
     ]
   },
   "sourceAfter": {
-    "sha256": "d531fccb891ca813c7eeffa3c85bd782298fb303807359380b3c284fc8d5339a",
+    "sha256": "e9d9fa77c859833e0dac705778cc16a9ed575da8dab467652e06003e901ff2ed",
     "files": [
       {
         "file": "dist/engine.js",
@@ -122,7 +148,7 @@
       },
       {
         "file": "dist/scaling.js",
-        "sha256": "a937a1e602e5b891afc6c9826699e3e201b7af5be50b04d8945c19bef3e876e7"
+        "sha256": "bb94ae2b6cbb22f0b99655f3fcd774fb7f07135e1d483c749f3c6160e649aefe"
       },
       {
         "file": "dist/exchange.js",
@@ -134,7 +160,7 @@
       },
       {
         "file": "dist/regional.js",
-        "sha256": "1de0eeccb86fad24713080a686fed7569d4f1af99de375fcb2cc0a964a348784"
+        "sha256": "4838b16b4ccaac40e932d125ed7f1ad0d9aa3ff0f62fe4b1935d1f52747ba156"
       },
       {
         "file": "dist/legacy-fund.js",
@@ -162,7 +188,7 @@
       },
       {
         "file": "dist/arc.js",
-        "sha256": "3743e8fb872c0a98a80a228f24cb403c5f14fc79bfa6156afa6b078aeca4661d"
+        "sha256": "a5228a094f2bb6ee71ed9a139ef3b6401e3e8b19b2511f87659fdd1cc73799f2"
       },
       {
         "file": "dist/content/events.js",
@@ -183,10 +209,18 @@
       {
         "file": "dist/content/places.js",
         "sha256": "a64d05adc6e669288bd3566b92769abd3a4323c1aa7571165446fa86142ac897"
+      },
+      {
+        "file": "dist/content/ownership.js",
+        "sha256": "f5b845b95eb6fc3d510669d810dd44031035bba6c3fbf2536ed27d22bb716ec2"
+      },
+      {
+        "file": "dist/ownership.js",
+        "sha256": "4faf0a4a829b4cd935585072131951753fdd98015f7fe850280e6fc047099fe6"
       }
     ]
   },
-  "durationMs": 24296,
+  "durationMs": 26877,
   "measuredScopes": [
     "Real 8000 kr start; no state grants",
     "Complete 2026–2036 campaigns through public G.act",
@@ -202,23 +236,90 @@
     "Godfather reach is reported independently of arc activation: late arc access alone does not prove rank progression.",
     "economy actions count only business-policy calls; playerActionsAfterGodfather also includes injected story/mandate actions. The separate denominators are retained, not substituted."
   ],
-  "method": "Exploratory public-action heuristic. Starts from the real 8,000 kr campaign; no privileged cash, crew, stock, rank or clock mutation. Existing business agent plus injected story actions. This tests technical progression, not enjoyment or a balance approval.",
+  "method": "Exploratory public-action heuristic. Starts from the real 8,000 kr campaign; no privileged cash, crew, stock, rank or clock mutation. Existing business agent plus injected story actions and an explicitly declared optional post-Godfather ownership mandate. This tests technical progression, not enjoyment or a balance approval.",
   "seedsPerProfile": 3,
   "includeCoast": true,
   "progressionFailures": [],
   "summary": {
     "careful": {
       "runs": 3,
-      "medianLegacyGiven": 218947658,
-      "medianProductiveReinvestment": 265513580,
-      "medianPostGodfatherProductiveReinvestment": 123287327,
-      "medianNetWorth": 1240185831,
-      "medianCashNetWorthDenominator": 1240185831,
-      "medianCashNetWorthRatio": 0.06780168818103519,
+      "firstRankReached": 3,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 84,
+      "medianFirstRankActions": 27,
+      "maxFirstRankActions": 35,
+      "firstRankWithin60Actions": 3,
+      "medianFirstRankBusinessActions": 17,
+      "medianFirstRankInjectedActions": 10,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "coastChoice": {
+          "total": 12,
+          "median": 4
+        },
+        "crewCare": {
+          "total": 1,
+          "median": 0
+        },
+        "crimeAttempt": {
+          "total": 10,
+          "median": 3
+        },
+        "district": {
+          "total": 3,
+          "median": 1
+        },
+        "questChoice": {
+          "total": 9,
+          "median": 3
+        },
+        "streetSell": {
+          "total": 37,
+          "median": 11
+        },
+        "tripBuy": {
+          "total": 13,
+          "median": 4
+        }
+      },
+      "itemMeasuredRuns": 3,
+      "medianItemsOwned": 4,
+      "medianItemsByPath": {
+        "help": 2,
+        "dark": 0,
+        "other": 2,
+        "unknown": 0,
+        "ambiguous": 0
+      },
+      "medianOwnershipInvested": 196200000,
+      "medianOwnershipCompletedFirms": 4,
+      "medianOwnershipCompletedStages": 7,
+      "medianOwnershipActiveProjects": 0,
+      "medianOwnershipPendingDecisions": 0,
+      "medianOwnershipNegotiationExpenseRecorded": 3150000,
+      "ownershipMandates": {
+        "manual": 0,
+        "partners": 3,
+        "control": 0
+      },
+      "medianOwnershipCompletedPaths": {
+        "partners": 4,
+        "control": 0
+      },
+      "medianOwnershipCommittedPaths": {
+        "partners": 4,
+        "control": 0
+      },
+      "medianLegacyGiven": 227080583,
+      "medianProductiveReinvestment": 432794273,
+      "medianPostGodfatherProductiveReinvestment": 290568020,
+      "medianNetWorth": 1191157258,
+      "medianCashNetWorthDenominator": 1191157258,
+      "medianCashNetWorthRatio": 0.08879551905479806,
       "cashNetWorthRatioDefinedRuns": 3,
-      "medianImperialValue": 375920803,
-      "medianCashImperialValueDenominator": 375920803,
-      "medianCashImperialValueRatio": 0.2654169695435267,
+      "medianImperialValue": 614441023,
+      "medianCashImperialValueDenominator": 614441023,
+      "medianCashImperialValueRatio": 0.19676671813888147,
       "cashImperialValueRatioDefinedRuns": 3,
       "coastCompleted": 3,
       "coastChoices": 48,
@@ -231,9 +332,9 @@
       "stalled": 0,
       "arcResolved": 3,
       "threeActs": 3,
-      "medianObligations": 9705675,
-      "medianCash": 99813548,
-      "medianPlayerTimeShareAfterGodfather": 0.294478527607362,
+      "medianObligations": 9900773,
+      "medianCash": 119304871,
+      "medianPlayerTimeShareAfterGodfather": 0.2926829268292683,
       "minQuests": 4,
       "maxQuests": 4,
       "crimeAttempts": 187,
@@ -241,22 +342,85 @@
       "civicEvents": 150,
       "civicAutomatic": 150,
       "civicShocks": 150,
-      "medianCivicSpend": 3041498,
+      "medianCivicSpend": 3048270,
       "qualifiedMandates": 3,
       "rejectedInjections": 0
     },
     "expansion": {
       "runs": 3,
-      "medianLegacyGiven": 318188143,
-      "medianProductiveReinvestment": 167029009,
-      "medianPostGodfatherProductiveReinvestment": 4460487,
-      "medianNetWorth": 2008064093,
-      "medianCashNetWorthDenominator": 2008064093,
-      "medianCashNetWorthRatio": 0.04928189366998811,
+      "firstRankReached": 3,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 48,
+      "medianFirstRankActions": 18,
+      "maxFirstRankActions": 18,
+      "firstRankWithin60Actions": 3,
+      "medianFirstRankBusinessActions": 10,
+      "medianFirstRankInjectedActions": 8,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "coastChoice": {
+          "total": 12,
+          "median": 4
+        },
+        "crewCare": {
+          "total": 2,
+          "median": 1
+        },
+        "crimeAttempt": {
+          "total": 3,
+          "median": 1
+        },
+        "questChoice": {
+          "total": 9,
+          "median": 3
+        },
+        "streetSell": {
+          "total": 21,
+          "median": 7
+        },
+        "tripBuy": {
+          "total": 6,
+          "median": 2
+        }
+      },
+      "itemMeasuredRuns": 3,
+      "medianItemsOwned": 4,
+      "medianItemsByPath": {
+        "help": 0,
+        "dark": 3,
+        "other": 1,
+        "unknown": 0,
+        "ambiguous": 0
+      },
+      "medianOwnershipInvested": 309600000,
+      "medianOwnershipCompletedFirms": 4,
+      "medianOwnershipCompletedStages": 8,
+      "medianOwnershipActiveProjects": 0,
+      "medianOwnershipPendingDecisions": 0,
+      "medianOwnershipNegotiationExpenseRecorded": 30030000,
+      "ownershipMandates": {
+        "manual": 0,
+        "partners": 0,
+        "control": 3
+      },
+      "medianOwnershipCompletedPaths": {
+        "partners": 0,
+        "control": 4
+      },
+      "medianOwnershipCommittedPaths": {
+        "partners": 0,
+        "control": 4
+      },
+      "medianLegacyGiven": 351554489,
+      "medianProductiveReinvestment": 539376684,
+      "medianPostGodfatherProductiveReinvestment": 376808162,
+      "medianNetWorth": 1902305683,
+      "medianCashNetWorthDenominator": 1902305683,
+      "medianCashNetWorthRatio": 0.06574129916006774,
       "cashNetWorthRatioDefinedRuns": 3,
-      "medianImperialValue": 270551907,
-      "medianCashImperialValueDenominator": 270551907,
-      "medianCashImperialValueRatio": 0.29994738269178856,
+      "medianImperialValue": 855796543,
+      "medianCashImperialValueDenominator": 855796543,
+      "medianCashImperialValueRatio": 0.1461329191183704,
       "cashImperialValueRatioDefinedRuns": 3,
       "coastCompleted": 3,
       "coastChoices": 48,
@@ -269,32 +433,99 @@
       "stalled": 0,
       "arcResolved": 3,
       "threeActs": 3,
-      "medianObligations": 13048020,
-      "medianCash": 81152972,
-      "medianPlayerTimeShareAfterGodfather": 0.34054054054054056,
+      "medianObligations": 11855650,
+      "medianCash": 125060047,
+      "medianPlayerTimeShareAfterGodfather": 0.3387096774193548,
       "minQuests": 4,
       "maxQuests": 4,
-      "crimeAttempts": 203,
+      "crimeAttempts": 204,
       "arcResponses": 18,
       "civicEvents": 150,
       "civicAutomatic": 150,
       "civicShocks": 150,
-      "medianCivicSpend": 3489935,
+      "medianCivicSpend": 3476847,
       "qualifiedMandates": 3,
       "rejectedInjections": 0
     },
     "aggressive": {
       "runs": 3,
-      "medianLegacyGiven": 230223374,
-      "medianProductiveReinvestment": 382013580,
-      "medianPostGodfatherProductiveReinvestment": 188445058,
-      "medianNetWorth": 977260633,
-      "medianCashNetWorthDenominator": 977260633,
-      "medianCashNetWorthRatio": 0.12488625698549209,
+      "firstRankReached": 3,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 46,
+      "medianFirstRankActions": 20,
+      "maxFirstRankActions": 23,
+      "firstRankWithin60Actions": 3,
+      "medianFirstRankBusinessActions": 11,
+      "medianFirstRankInjectedActions": 9,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "coastChoice": {
+          "total": 12,
+          "median": 4
+        },
+        "crewCare": {
+          "total": 3,
+          "median": 1
+        },
+        "crimeAttempt": {
+          "total": 6,
+          "median": 2
+        },
+        "district": {
+          "total": 1,
+          "median": 0
+        },
+        "questChoice": {
+          "total": 9,
+          "median": 3
+        },
+        "streetSell": {
+          "total": 26,
+          "median": 8
+        },
+        "tripBuy": {
+          "total": 6,
+          "median": 2
+        }
+      },
+      "itemMeasuredRuns": 3,
+      "medianItemsOwned": 4,
+      "medianItemsByPath": {
+        "help": 0,
+        "dark": 4,
+        "other": 0,
+        "unknown": 0,
+        "ambiguous": 0
+      },
+      "medianOwnershipInvested": 374600000,
+      "medianOwnershipCompletedFirms": 5,
+      "medianOwnershipCompletedStages": 9,
+      "medianOwnershipActiveProjects": 0,
+      "medianOwnershipPendingDecisions": 0,
+      "medianOwnershipNegotiationExpenseRecorded": 28819000,
+      "ownershipMandates": {
+        "manual": 0,
+        "partners": 0,
+        "control": 3
+      },
+      "medianOwnershipCompletedPaths": {
+        "partners": 0,
+        "control": 5
+      },
+      "medianOwnershipCommittedPaths": {
+        "partners": 0,
+        "control": 5
+      },
+      "medianLegacyGiven": 245094409,
+      "medianProductiveReinvestment": 729946598,
+      "medianPostGodfatherProductiveReinvestment": 536378076,
+      "medianNetWorth": 1003822720,
+      "medianCashNetWorthDenominator": 1003822720,
+      "medianCashNetWorthRatio": 0.1579635642787753,
       "cashNetWorthRatioDefinedRuns": 3,
-      "medianImperialValue": 503348311,
-      "medianCashImperialValueDenominator": 503348311,
-      "medianCashImperialValueRatio": 0.26019772419580045,
+      "medianImperialValue": 1021698829,
+      "medianCashImperialValueDenominator": 1021698829,
+      "medianCashImperialValueRatio": 0.1533353526274751,
       "cashImperialValueRatioDefinedRuns": 3,
       "coastCompleted": 3,
       "coastChoices": 48,
@@ -308,16 +539,16 @@
       "arcResolved": 3,
       "threeActs": 3,
       "medianObligations": 0,
-      "medianCash": 130970085,
-      "medianPlayerTimeShareAfterGodfather": 0.2727272727272727,
+      "medianCash": 154813495,
+      "medianPlayerTimeShareAfterGodfather": 0.28125,
       "minQuests": 4,
       "maxQuests": 4,
-      "crimeAttempts": 262,
+      "crimeAttempts": 261,
       "arcResponses": 18,
       "civicEvents": 150,
       "civicAutomatic": 150,
       "civicShocks": 150,
-      "medianCivicSpend": 3728010,
+      "medianCivicSpend": 3451355,
       "qualifiedMandates": 3,
       "rejectedInjections": 0
     }

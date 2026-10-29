@@ -19,6 +19,8 @@ require('../dist/world.js');
 require('../dist/content/coast.js');
 require('../dist/coast.js');
 require('../dist/content/places.js');
+require('../dist/content/ownership.js');
+require('../dist/ownership.js');
 const Game=globalThis.Game;
 function create(seed=1){const s=Game.fresh();Game.seedCampaign(s,seed);return s;}
 function assertState(s){

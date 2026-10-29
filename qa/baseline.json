@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "engineSha256": "300d3ad44aee1e6026018f5e6407c10b45073fc1b55c8ecd04fae269e581c513",
+  "engineSha256": "a5b0b7ccd265e9853a1a154c56d47d6ee95d66e6d685b3d00fd323e685ee60ca",
   "engineFiles": [
     "engine.js",
     "strategy.js",
@@ -22,25 +22,140 @@
     "world.js",
     "content/coast.js",
     "coast.js",
-    "content/places.js"
+    "content/places.js",
+    "content/ownership.js",
+    "ownership.js"
   ],
   "hashMethod": "SHA-256 of concatenated raw engineFiles bytes in listed order",
-  "qaAgentSha256": "96e1de3306105332a9be927f9d7c75bb93f774632f742828f6fe14d633bca177",
+  "sourceIdentityScope": "Current frozen source bytes at baseline capture after parent-confirmed successful final90run completion. The standalone report itself has no automatic before/after execution snapshots; this capture is not substituted as proof of those absent snapshots.",
+  "qaAgentSha256": "87ffb180fa3c6078a1ad27c2b196298433f430574ea12e119fec5257ae0a4297",
   "seedsPerProfile": 30,
   "balanceVerdict": "exploratory_only_not_a_balance_approval",
+  "method": "Deterministic heuristic agents using public engine actions; declared optional post-Godfather ownership-mandate extension. No privileged cash, crew or stock in balance runs. Synthetic fixture tests are separate.",
+  "profiles": {
+    "careful": {
+      "policy": "safe",
+      "buyDepth": 2,
+      "carrier": 2,
+      "war": false,
+      "doctrine": "federation",
+      "crew": 15
+    },
+    "expansion": {
+      "policy": "balanced",
+      "buyDepth": 3,
+      "carrier": 0,
+      "war": false,
+      "doctrine": "network",
+      "crew": 21
+    },
+    "aggressive": {
+      "policy": "growth",
+      "buyDepth": 5,
+      "carrier": 1,
+      "war": true,
+      "doctrine": "dominion",
+      "crew": 45
+    }
+  },
+  "ownershipPolicy": {
+    "enabled": true,
+    "scope": "New post-Godfather policy extension only: the original business decisions before Godfather are unchanged.",
+    "mandates": {
+      "careful": "partners",
+      "expansion": "control",
+      "aggressive": "control"
+    },
+    "control": "With disableOwnership:true the agent does not adopt an ownership mandate; the same current engine and all other profile decisions remain in use. This is a paired policy control, not the historical alpha0.9 engine."
+  },
+  "financialDefinitions": {
+    "legacyGiven": "s.legacyFund.paid: irreversible contributions to the chosen legacy recipients. Reported separately from productive reinvestment; never added into a combined reinvestment score.",
+    "productiveReinvestment": "s.scale.invested: cumulative recorded infrastructure, territory, route-capacity, factory and ownership-stage investment. This engine counter is not a claim to include every capital purchase.",
+    "postGodfatherProductiveReinvestment": "s.scale.postInvested: the same recorded productive investment after reaching Godfather.",
+    "cashNetWorthRatio": "cash / cashNetWorthDenominator, where cashNetWorthDenominator is the reported netWorth in kroner. Null when netWorth is nonpositive; ratios may exceed 1 when liabilities reduce net worth. Summary median is the median of defined per-run ratios, not a ratio of medians.",
+    "cashImperialValueRatio": "cash / cashImperialValueDenominator, where cashImperialValueDenominator is G.empireScore(s).value (also reported as imperialValue), the engine productive imperial valuation in kroner. This is distinct from net worth. Null when imperial value is nonpositive; summary medians use defined per-run ratios, not a ratio of medians.",
+    "ownershipInvested": "s.ownership.invested: actual funded productive acquisition/expansion capital, already included once in scale.invested; not added to it again. Completed firms/stages are reported separately from active construction.",
+    "ownershipNegotiationExpenseRecorded": "Costs of buyout counteroffer responses in retained firm history (at most18rows per firm). Operating negotiation expense, never productive investment; this is retained-record evidence, not a guaranteed lifetime expense counter.",
+    "reinvestmentShare": "Existing s.scale.postInvested / s.scale.postOperating counter ratio, retained unchanged. legacyGiven is a separate use of cash and is not included in the numerator."
+  },
+  "progressionDefinitions": {
+    "firstRankActions": "Completed outer public player actions up to and including the first observed rank >= 1. Nested automatic engine actions and UI navigation are excluded. Injected story decisions in the integrated simulator count separately and also count toward its total.",
+    "firstRankDay": "Actual game day on the first completed public action observed at rank >= 1; null if never reached.",
+    "firstRankClicks": "Not measured by engine simulations. Always null; actions are not a browser click count.",
+    "itemPaths": "Owned item attribution uses actual recorded quest choices mapped to their reward definition. help = help choice, dark = exploit choice; other, unknown or ambiguous evidence remains explicit. No history is invented for imported items."
+  },
   "summary": {
     "careful": {
       "runs": 30,
-      "medianLegacyGiven": 585780546,
-      "medianProductiveReinvestment": 350513580,
-      "medianPostGodfatherProductiveReinvestment": 208445058,
-      "medianNetWorth": 294339679,
-      "medianCashNetWorthDenominator": 294339679,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 66,
+      "medianFirstRankActions": 15,
+      "maxFirstRankActions": 35,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 15,
+      "medianFirstRankInjectedActions": 0,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 29,
+          "median": 1
+        },
+        "district": {
+          "total": 30,
+          "median": 1
+        },
+        "shift": {
+          "total": 4,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 292,
+          "median": 9
+        },
+        "tripBuy": {
+          "total": 140,
+          "median": 4
+        }
+      },
+      "itemMeasuredRuns": 30,
+      "medianItemsOwned": 0,
+      "medianItemsByPath": {
+        "help": 0,
+        "dark": 0,
+        "other": 0,
+        "unknown": 0,
+        "ambiguous": 0
+      },
+      "medianOwnershipInvested": 403350000,
+      "medianOwnershipCompletedFirms": 5,
+      "medianOwnershipCompletedStages": 11,
+      "medianOwnershipActiveProjects": 0,
+      "medianOwnershipPendingDecisions": 0,
+      "medianOwnershipNegotiationExpenseRecorded": 3937500,
+      "ownershipMandates": {
+        "manual": 0,
+        "partners": 30,
+        "control": 0
+      },
+      "medianOwnershipCompletedPaths": {
+        "partners": 5,
+        "control": 0
+      },
+      "medianOwnershipCommittedPaths": {
+        "partners": 5,
+        "control": 0
+      },
+      "medianLegacyGiven": 452634334,
+      "medianProductiveReinvestment": 911463755,
+      "medianPostGodfatherProductiveReinvestment": 769395233,
+      "medianNetWorth": 307189502,
+      "medianCashNetWorthDenominator": 307189502,
       "medianCashNetWorthRatio": 1,
       "cashNetWorthRatioDefinedRuns": 30,
-      "medianImperialValue": 466738168,
-      "medianCashImperialValueDenominator": 466738168,
-      "medianCashImperialValueRatio": 0.6311916577604598,
+      "medianImperialValue": 1182676712,
+      "medianCashImperialValueDenominator": 1182676712,
+      "medianCashImperialValueRatio": 0.2584267638259342,
       "cashImperialValueRatioDefinedRuns": 30,
       "technicalFailures": 0,
       "stalled": 0,
@@ -49,45 +164,103 @@
       "medianAutomationDay": 160,
       "godfathers": 30,
       "medianGodfatherDay": 1239,
-      "medianFinalCash": 294339679,
+      "medianFinalCash": 307189502,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0,
-      "medianInvested": 350513580,
-      "medianReinvestmentShare": 0.1916662204386752,
-      "medianAreaShare": 0.6111111111111112,
+      "medianInvested": 911463755,
+      "medianReinvestmentShare": 0.4920391476254188,
+      "medianAreaShare": 0.6666666666666666,
       "territoryCompositions": {
-        "haugesund|randaberg|sandnes|sorlandet|stord|trondelag": 29,
-        "aalborg|haugesund|randaberg|sandnes|sorlandet|stord|trondelag": 1
+        "aalborg|haugesund|randaberg|sandnes|sorlandet|stord|trondelag": 30
       },
-      "uniqueTerritoryCompositions": 2,
+      "uniqueTerritoryCompositions": 1,
       "completedAllAreas": 0,
       "medianCouncilKinds": 8,
       "medianCouncilDecisions": 54,
       "medianProjectsWon": 6,
       "medianProjectsLost": 0,
       "medianCouncilCrewLosses": 0,
-      "medianStrategicAfterGodfather": 48,
-      "medianAdvanceShareAfterGodfather": 0.4117647058823529,
+      "medianStrategicAfterGodfather": 49,
+      "medianAdvanceShareAfterGodfather": 0.4083333333333333,
       "maxStrategicGapWeeks": 12,
       "medianRevenue": {
-        "local": 566490634,
-        "routes": 1045570528,
-        "distribution": 1132481678,
+        "local": 1112525784,
+        "routes": 1045825229,
+        "distribution": 1079937707,
         "contracts": 13382711
       }
     },
     "expansion": {
       "runs": 30,
-      "medianLegacyGiven": 729261324,
-      "medianProductiveReinvestment": 438171546,
-      "medianPostGodfatherProductiveReinvestment": 275603024,
-      "medianNetWorth": 306285737,
-      "medianCashNetWorthDenominator": 306285737,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 56,
+      "medianFirstRankActions": 13,
+      "maxFirstRankActions": 35,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 13,
+      "medianFirstRankInjectedActions": 0,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 28,
+          "median": 1
+        },
+        "district": {
+          "total": 28,
+          "median": 1
+        },
+        "shift": {
+          "total": 14,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 266,
+          "median": 8
+        },
+        "tripBuy": {
+          "total": 119,
+          "median": 3
+        }
+      },
+      "itemMeasuredRuns": 30,
+      "medianItemsOwned": 0,
+      "medianItemsByPath": {
+        "help": 0,
+        "dark": 0,
+        "other": 0,
+        "unknown": 0,
+        "ambiguous": 0
+      },
+      "medianOwnershipInvested": 374600000,
+      "medianOwnershipCompletedFirms": 5,
+      "medianOwnershipCompletedStages": 9,
+      "medianOwnershipActiveProjects": 0,
+      "medianOwnershipPendingDecisions": 0,
+      "medianOwnershipNegotiationExpenseRecorded": 31262000,
+      "ownershipMandates": {
+        "manual": 0,
+        "partners": 0,
+        "control": 30
+      },
+      "medianOwnershipCompletedPaths": {
+        "partners": 0,
+        "control": 5
+      },
+      "medianOwnershipCommittedPaths": {
+        "partners": 0,
+        "control": 5
+      },
+      "medianLegacyGiven": 661971614,
+      "medianProductiveReinvestment": 913021499,
+      "medianPostGodfatherProductiveReinvestment": 750452977,
+      "medianNetWorth": 339403137,
+      "medianCashNetWorthDenominator": 339403137,
       "medianCashNetWorthRatio": 1,
       "cashNetWorthRatioDefinedRuns": 30,
-      "medianImperialValue": 607615279,
-      "medianCashImperialValueDenominator": 607615279,
-      "medianCashImperialValueRatio": 0.5151498859701753,
+      "medianImperialValue": 1278746283,
+      "medianCashImperialValueDenominator": 1278746283,
+      "medianCashImperialValueRatio": 0.3013948259339354,
       "cashImperialValueRatioDefinedRuns": 30,
       "technicalFailures": 0,
       "stalled": 0,
@@ -96,45 +269,107 @@
       "medianAutomationDay": 172,
       "godfathers": 30,
       "medianGodfatherDay": 1190,
-      "medianFinalCash": 306285737,
+      "medianFinalCash": 339403137,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0,
-      "medianInvested": 438171546,
-      "medianReinvestmentShare": 0.1784363898521409,
-      "medianAreaShare": 0.7777777777777778,
+      "medianInvested": 913021499,
+      "medianReinvestmentShare": 0.33579359270451775,
+      "medianAreaShare": 0.7222222222222222,
       "territoryCompositions": {
-        "alesund|haugesund|jaeren|ostlandet|sandnes|sola|sorlandet|stord|trondelag": 26,
-        "alesund|haugesund|jaeren|ostlandet|sola|sorlandet|stord|trondelag": 4
+        "alesund|goteborg|haugesund|jaeren|ostlandet|sorlandet|stord|trondelag": 8,
+        "alesund|haugesund|jaeren|ostlandet|sola|sorlandet|stord|trondelag": 9,
+        "alesund|goteborg|haugesund|jaeren|ostlandet|sola|sorlandet|stord|trondelag": 7,
+        "alesund|haugesund|jaeren|ostlandet|sandnes|sola|sorlandet|stord|trondelag": 3,
+        "alesund|haugesund|jaeren|ostlandet|sorlandet|stord|trondelag": 3
       },
-      "uniqueTerritoryCompositions": 2,
+      "uniqueTerritoryCompositions": 5,
       "completedAllAreas": 0,
       "medianCouncilKinds": 8,
       "medianCouncilDecisions": 54,
       "medianProjectsWon": 6,
       "medianProjectsLost": 0,
       "medianCouncilCrewLosses": 0,
-      "medianStrategicAfterGodfather": 49,
-      "medianAdvanceShareAfterGodfather": 0.4112903225806452,
+      "medianStrategicAfterGodfather": 50,
+      "medianAdvanceShareAfterGodfather": 0.408,
       "maxStrategicGapWeeks": 12,
       "medianRevenue": {
-        "local": 946992853,
-        "routes": 1482050375,
-        "distribution": 1108197106,
-        "contracts": 12992122
+        "local": 1575573213,
+        "routes": 1478402495,
+        "distribution": 1048882954,
+        "contracts": 12974807
       }
     },
     "aggressive": {
       "runs": 30,
-      "medianLegacyGiven": 634968914,
-      "medianProductiveReinvestment": 468016740,
-      "medianPostGodfatherProductiveReinvestment": 274448218,
-      "medianNetWorth": 405413461,
-      "medianCashNetWorthDenominator": 405413461,
+      "firstRankReached": 30,
+      "firstRankUnreached": 0,
+      "medianFirstRankDay": 56,
+      "medianFirstRankActions": 13,
+      "maxFirstRankActions": 35,
+      "firstRankWithin60Actions": 30,
+      "medianFirstRankBusinessActions": 13,
+      "medianFirstRankInjectedActions": 0,
+      "firstRankClicks": null,
+      "firstRankActionsByType": {
+        "crewCare": {
+          "total": 29,
+          "median": 1
+        },
+        "district": {
+          "total": 29,
+          "median": 1
+        },
+        "shift": {
+          "total": 16,
+          "median": 0
+        },
+        "streetSell": {
+          "total": 273,
+          "median": 8
+        },
+        "tripBuy": {
+          "total": 118,
+          "median": 3
+        }
+      },
+      "itemMeasuredRuns": 30,
+      "medianItemsOwned": 0,
+      "medianItemsByPath": {
+        "help": 0,
+        "dark": 0,
+        "other": 0,
+        "unknown": 0,
+        "ambiguous": 0
+      },
+      "medianOwnershipInvested": 523400000,
+      "medianOwnershipCompletedFirms": 5,
+      "medianOwnershipCompletedStages": 11,
+      "medianOwnershipActiveProjects": 0,
+      "medianOwnershipPendingDecisions": 0,
+      "medianOwnershipNegotiationExpenseRecorded": 35840000,
+      "ownershipMandates": {
+        "manual": 0,
+        "partners": 0,
+        "control": 30
+      },
+      "medianOwnershipCompletedPaths": {
+        "partners": 0,
+        "control": 5
+      },
+      "medianOwnershipCommittedPaths": {
+        "partners": 0,
+        "control": 5
+      },
+      "medianLegacyGiven": 531754860,
+      "medianProductiveReinvestment": 1173934842,
+      "medianPostGodfatherProductiveReinvestment": 980366320,
+      "medianNetWorth": 458895424,
+      "medianCashNetWorthDenominator": 458895424,
       "medianCashNetWorthRatio": 1,
       "cashNetWorthRatioDefinedRuns": 30,
-      "medianImperialValue": 571188228,
-      "medianCashImperialValueDenominator": 571188228,
-      "medianCashImperialValueRatio": 0.7476302855346304,
+      "medianImperialValue": 1453564543,
+      "medianCashImperialValueDenominator": 1453564543,
+      "medianCashImperialValueRatio": 0.3271581899264951,
       "cashImperialValueRatioDefinedRuns": 30,
       "technicalFailures": 0,
       "stalled": 0,
@@ -143,37 +378,35 @@
       "medianAutomationDay": 140,
       "godfathers": 30,
       "medianGodfatherDay": 1365,
-      "medianFinalCash": 405413461,
+      "medianFinalCash": 458895424,
       "medianManualAfterGodfather": 0,
       "medianRecoveryWeeks": 0,
-      "medianInvested": 468016740,
-      "medianReinvestmentShare": 0.1466889401712424,
-      "medianAreaShare": 0.6666666666666666,
+      "medianInvested": 1173934842,
+      "medianReinvestmentShare": 0.3573787895617054,
+      "medianAreaShare": 0.6111111111111112,
       "territoryCompositions": {
-        "alesund|haugesund|ostlandet|sandnes|sola|sorlandet|trondelag": 20,
-        "alesund|haugesund|ostlandet|sandnes|sola|sorlandet": 8,
-        "alesund|haugesund|ostlandet|sola|sorlandet|trondelag": 2
+        "alesund|haugesund|malmo|ostlandet|sola|sorlandet": 29,
+        "alesund|haugesund|ostlandet|sandnes|sola|sorlandet": 1
       },
-      "uniqueTerritoryCompositions": 3,
+      "uniqueTerritoryCompositions": 2,
       "completedAllAreas": 0,
       "medianCouncilKinds": 8,
       "medianCouncilDecisions": 53,
-      "medianProjectsWon": 29,
+      "medianProjectsWon": 26,
       "medianProjectsLost": 1,
-      "medianCouncilCrewLosses": 36,
-      "medianStrategicAfterGodfather": 65,
-      "medianAdvanceShareAfterGodfather": 0.27325581395348836,
+      "medianCouncilCrewLosses": 40,
+      "medianStrategicAfterGodfather": 62,
+      "medianAdvanceShareAfterGodfather": 0.2768361581920904,
       "maxStrategicGapWeeks": 12,
       "medianRevenue": {
-        "local": 1250555106,
-        "routes": 1386603315,
-        "distribution": 1025839769,
-        "contracts": 11791200
+        "local": 2238012756,
+        "routes": 1370092578,
+        "distribution": 989143270,
+        "contracts": 11777543
       }
     }
   },
   "warnings": [
-    "careful: low reinvestment share after Godfather",
     "careful: large accumulated endgame cash; assess capital uses and economic stakes",
     "expansion: Godfather may arrive too early for an eleven-year campaign",
     "expansion: low reinvestment share after Godfather",
@@ -181,13 +414,5 @@
     "aggressive: low reinvestment share after Godfather",
     "aggressive: large accumulated endgame cash; assess capital uses and economic stakes"
   ],
-  "note": "Alpha 0.9 round 7: 90 standalone economic campaigns, full source list including coast and geography. Productive investment, irrevocable legacy gifts, cash/net-worth and cash/imperial-value ratios are separate measures. Standalone policies already make eligible legacy pledges but do not use stock mandates; integrated experience policies do. High standalone cash and policy/profile differences remain open F28 findings. Exploratory technical baseline, not a balance or fun approval.",
-  "financialDefinitions": {
-    "legacyGiven": "s.legacyFund.paid: irreversible contributions to the chosen legacy recipients. Reported separately from productive reinvestment; never added into a combined reinvestment score.",
-    "productiveReinvestment": "s.scale.invested: cumulative recorded infrastructure, territory, route-capacity and factory investment. This engine counter is not a claim to include every capital purchase.",
-    "postGodfatherProductiveReinvestment": "s.scale.postInvested: the same recorded productive investment after reaching Godfather.",
-    "cashNetWorthRatio": "cash / cashNetWorthDenominator, where cashNetWorthDenominator is the reported netWorth in kroner. Null when netWorth is nonpositive; ratios may exceed 1 when liabilities reduce net worth. Summary median is the median of defined per-run ratios, not a ratio of medians.",
-    "cashImperialValueRatio": "cash / cashImperialValueDenominator, where cashImperialValueDenominator is G.empireScore(s).value (also reported as imperialValue), the engine productive imperial valuation in kroner. This is distinct from net worth. Null when imperial value is nonpositive; summary medians use defined per-run ratios, not a ratio of medians.",
-    "reinvestmentShare": "Existing s.scale.postInvested / s.scale.postOperating counter ratio, retained unchanged. legacyGiven is a separate use of cash and is not included in the numerator."
-  }
+  "note": "Alpha0.10 adds explicit opt-in post-Godfather ownership mandates, funded productive acquisitions, delivery-gated construction and declared rival counteroffers. Actual raw cash still rises in these standalone profiles; lower cash/imperial-value ratios do not prove the cash accumulation problem solved. Compare the exact profile+seed intersection in ownership-comparison-baseline.json. No balance or fun approval."
 }
