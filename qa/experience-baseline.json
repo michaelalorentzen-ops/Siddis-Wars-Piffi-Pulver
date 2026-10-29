@@ -1,47 +1,55 @@
 {
   "schema": 1,
+  "financialDefinitions": {
+    "legacyGiven": "s.legacyFund.paid: irreversible contributions to the chosen legacy recipients. Reported separately from productive reinvestment; never added into a combined reinvestment score.",
+    "productiveReinvestment": "s.scale.invested: cumulative recorded infrastructure, territory, route-capacity and factory investment. This engine counter is not a claim to include every capital purchase.",
+    "postGodfatherProductiveReinvestment": "s.scale.postInvested: the same recorded productive investment after reaching Godfather.",
+    "cashNetWorthRatio": "cash / cashNetWorthDenominator, where cashNetWorthDenominator is the reported netWorth in kroner. Null when netWorth is nonpositive; ratios may exceed 1 when liabilities reduce net worth. Summary median is the median of defined per-run ratios, not a ratio of medians.",
+    "cashImperialValueRatio": "cash / cashImperialValueDenominator, where cashImperialValueDenominator is G.empireScore(s).value (also reported as imperialValue), the engine productive imperial valuation in kroner. This is distinct from net worth. Null when imperial value is nonpositive; summary medians use defined per-run ratios, not a ratio of medians.",
+    "reinvestmentShare": "Existing s.scale.postInvested / s.scale.postOperating counter ratio, retained unchanged. legacyGiven is a separate use of cash and is not included in the numerator."
+  },
   "sourceBefore": {
-    "sha256": "52463029b9b801f7740393d35d3b01f76b95df8841f756f2c881cf13f1e4fef6",
+    "sha256": "d531fccb891ca813c7eeffa3c85bd782298fb303807359380b3c284fc8d5339a",
     "files": [
       {
         "file": "dist/engine.js",
-        "sha256": "dbfa8e01d3bd857f91b0c12f71ba63886c085d3d78012aa3c4965b7ea69ea047"
+        "sha256": "9ec5184c9457d5c7744931bb623f02fee908113a778205f9e4594ccc7af86fd5"
       },
       {
         "file": "dist/strategy.js",
-        "sha256": "00d5ffcc746edb7ba0bf11513ef28e2236a003d13f453e582f36d9946c2a7f52"
+        "sha256": "474941f953e6b8fbc869be5bdb3e6f58ac8d7c672d578ad499688d654e59dfd0"
       },
       {
         "file": "dist/commerce.js",
-        "sha256": "4341f7eadaa23a21f94ba0a6c51454e7dfeaecc8357583c5415c73604efc64df"
+        "sha256": "dffb44373dcb2f6d53290daba386677932770f0745ff6ab1feb0bbd732ebe29f"
       },
       {
         "file": "dist/calendar.js",
-        "sha256": "0eb23bab3723d3504f8ac9d9cffe82b14e5d8247a0e80928e553e9e63278c8f4"
+        "sha256": "b6ea6151ada69bc3b2ed7a6e76a662749f3082452185ac298206dc49fea94c12"
       },
       {
         "file": "dist/endgame.js",
-        "sha256": "09ef6227d0cdc7dea8cca4e216c17d8cedce27db20cd5692743adaa752885c66"
+        "sha256": "649272d8660abdae6ffbc2543192c1a247fb5214c8083180509a8194e1d3acf0"
       },
       {
         "file": "dist/scaling.js",
-        "sha256": "7bb82fd68b6c3afbe37f4ae96821757fc0baa3d4acad8bdc49a0f0ad4b383a5f"
+        "sha256": "a937a1e602e5b891afc6c9826699e3e201b7af5be50b04d8945c19bef3e876e7"
       },
       {
         "file": "dist/exchange.js",
-        "sha256": "2ec01f4e182acfebf0b84f616adf5e8fb71ec882d48e85b4b33dd126ab842b10"
+        "sha256": "5ee2cf150410bc3af1ae30dd11ccf86136d2429be6fac970a551ba7b643f9073"
       },
       {
         "file": "dist/bus.js",
-        "sha256": "23dffba722a788078ae85d44282ff803bbbc2fd10f1117a437e3a972f16dc11a"
+        "sha256": "8aa2de6322d47fa2d65cc63f7322c84e637769e92c93b24b69c8c6c179b3242e"
       },
       {
         "file": "dist/regional.js",
-        "sha256": "345c8dd89f1aa7c4d6e8fac494164f4e4da821e0c5815dff220463025ac87b2a"
+        "sha256": "1de0eeccb86fad24713080a686fed7569d4f1af99de375fcb2cc0a964a348784"
       },
       {
         "file": "dist/legacy-fund.js",
-        "sha256": "d652d240e75cc85bed7d2ddd8e0c417b59977e7a5202808a568f826b5d4846f6"
+        "sha256": "1a74e39374f53594ee04e13dd49804378d3723d0fa9996abf36e3a82badd8d05"
       },
       {
         "file": "dist/content/characters.js",
@@ -49,7 +57,7 @@
       },
       {
         "file": "dist/content/quests.js",
-        "sha256": "5b28892f3fa1256e83384362bb562a81d38dd549cd88cfa67a004fda5391c27b"
+        "sha256": "d848ed5cfd043f90b6cfdd67948e2c3eeef10d265fae9bf125f0ee237e09cf74"
       },
       {
         "file": "dist/quests.js",
@@ -57,68 +65,80 @@
       },
       {
         "file": "dist/content/crimes.js",
-        "sha256": "26b1116f04a027211928cde417a1c8147781dcf5905c01a10dea1aa92b926728"
+        "sha256": "735ee01f622853fa1d1f4eef488d02c982fafa937a68c874fd2e3e9e81f3affc"
       },
       {
         "file": "dist/crime.js",
-        "sha256": "8255f5fae9d9920e6cd48138b753fe8a2a148c72e74b0f5c70ec14d44a1404e3"
+        "sha256": "d6cdcc5d31fe9bc3a4d9c02ce7441b7afb27e2fabbe66cb03f06b0a0c491412d"
       },
       {
         "file": "dist/arc.js",
-        "sha256": "3b112525a43ab7d8a2bdbc0fd23d2c59977e403a2ee636f48f9becb622cb2515"
+        "sha256": "3743e8fb872c0a98a80a228f24cb403c5f14fc79bfa6156afa6b078aeca4661d"
       },
       {
         "file": "dist/content/events.js",
-        "sha256": "8534fe45f96d23eda740c51d5a98f558781a6c4c5771b459c36d69c0ed4ca7e7"
+        "sha256": "3b1c8053c7f72af2af951eecac57a3c504abfb773f18784366bf69fc494d7bf0"
       },
       {
         "file": "dist/world.js",
-        "sha256": "9f1afe1035419ba228c9640a5fffca813348d5a2394343e0dd189966d912079c"
+        "sha256": "94465b135a205333396948b3b46e7e8f68c084d0e2d429bce1a658be33936774"
+      },
+      {
+        "file": "dist/content/coast.js",
+        "sha256": "117bb9496a6311a37e5dd1dbc3ddeff851fb1c32cc7c22f73432c111a3c8184b"
+      },
+      {
+        "file": "dist/coast.js",
+        "sha256": "613923072fd6690ed88c2872f3d6182fa5e025622a3b90ac3ddb82dda2158873"
+      },
+      {
+        "file": "dist/content/places.js",
+        "sha256": "a64d05adc6e669288bd3566b92769abd3a4323c1aa7571165446fa86142ac897"
       }
     ]
   },
   "sourceAfter": {
-    "sha256": "52463029b9b801f7740393d35d3b01f76b95df8841f756f2c881cf13f1e4fef6",
+    "sha256": "d531fccb891ca813c7eeffa3c85bd782298fb303807359380b3c284fc8d5339a",
     "files": [
       {
         "file": "dist/engine.js",
-        "sha256": "dbfa8e01d3bd857f91b0c12f71ba63886c085d3d78012aa3c4965b7ea69ea047"
+        "sha256": "9ec5184c9457d5c7744931bb623f02fee908113a778205f9e4594ccc7af86fd5"
       },
       {
         "file": "dist/strategy.js",
-        "sha256": "00d5ffcc746edb7ba0bf11513ef28e2236a003d13f453e582f36d9946c2a7f52"
+        "sha256": "474941f953e6b8fbc869be5bdb3e6f58ac8d7c672d578ad499688d654e59dfd0"
       },
       {
         "file": "dist/commerce.js",
-        "sha256": "4341f7eadaa23a21f94ba0a6c51454e7dfeaecc8357583c5415c73604efc64df"
+        "sha256": "dffb44373dcb2f6d53290daba386677932770f0745ff6ab1feb0bbd732ebe29f"
       },
       {
         "file": "dist/calendar.js",
-        "sha256": "0eb23bab3723d3504f8ac9d9cffe82b14e5d8247a0e80928e553e9e63278c8f4"
+        "sha256": "b6ea6151ada69bc3b2ed7a6e76a662749f3082452185ac298206dc49fea94c12"
       },
       {
         "file": "dist/endgame.js",
-        "sha256": "09ef6227d0cdc7dea8cca4e216c17d8cedce27db20cd5692743adaa752885c66"
+        "sha256": "649272d8660abdae6ffbc2543192c1a247fb5214c8083180509a8194e1d3acf0"
       },
       {
         "file": "dist/scaling.js",
-        "sha256": "7bb82fd68b6c3afbe37f4ae96821757fc0baa3d4acad8bdc49a0f0ad4b383a5f"
+        "sha256": "a937a1e602e5b891afc6c9826699e3e201b7af5be50b04d8945c19bef3e876e7"
       },
       {
         "file": "dist/exchange.js",
-        "sha256": "2ec01f4e182acfebf0b84f616adf5e8fb71ec882d48e85b4b33dd126ab842b10"
+        "sha256": "5ee2cf150410bc3af1ae30dd11ccf86136d2429be6fac970a551ba7b643f9073"
       },
       {
         "file": "dist/bus.js",
-        "sha256": "23dffba722a788078ae85d44282ff803bbbc2fd10f1117a437e3a972f16dc11a"
+        "sha256": "8aa2de6322d47fa2d65cc63f7322c84e637769e92c93b24b69c8c6c179b3242e"
       },
       {
         "file": "dist/regional.js",
-        "sha256": "345c8dd89f1aa7c4d6e8fac494164f4e4da821e0c5815dff220463025ac87b2a"
+        "sha256": "1de0eeccb86fad24713080a686fed7569d4f1af99de375fcb2cc0a964a348784"
       },
       {
         "file": "dist/legacy-fund.js",
-        "sha256": "d652d240e75cc85bed7d2ddd8e0c417b59977e7a5202808a568f826b5d4846f6"
+        "sha256": "1a74e39374f53594ee04e13dd49804378d3723d0fa9996abf36e3a82badd8d05"
       },
       {
         "file": "dist/content/characters.js",
@@ -126,7 +146,7 @@
       },
       {
         "file": "dist/content/quests.js",
-        "sha256": "5b28892f3fa1256e83384362bb562a81d38dd549cd88cfa67a004fda5391c27b"
+        "sha256": "d848ed5cfd043f90b6cfdd67948e2c3eeef10d265fae9bf125f0ee237e09cf74"
       },
       {
         "file": "dist/quests.js",
@@ -134,27 +154,39 @@
       },
       {
         "file": "dist/content/crimes.js",
-        "sha256": "26b1116f04a027211928cde417a1c8147781dcf5905c01a10dea1aa92b926728"
+        "sha256": "735ee01f622853fa1d1f4eef488d02c982fafa937a68c874fd2e3e9e81f3affc"
       },
       {
         "file": "dist/crime.js",
-        "sha256": "8255f5fae9d9920e6cd48138b753fe8a2a148c72e74b0f5c70ec14d44a1404e3"
+        "sha256": "d6cdcc5d31fe9bc3a4d9c02ce7441b7afb27e2fabbe66cb03f06b0a0c491412d"
       },
       {
         "file": "dist/arc.js",
-        "sha256": "3b112525a43ab7d8a2bdbc0fd23d2c59977e403a2ee636f48f9becb622cb2515"
+        "sha256": "3743e8fb872c0a98a80a228f24cb403c5f14fc79bfa6156afa6b078aeca4661d"
       },
       {
         "file": "dist/content/events.js",
-        "sha256": "8534fe45f96d23eda740c51d5a98f558781a6c4c5771b459c36d69c0ed4ca7e7"
+        "sha256": "3b1c8053c7f72af2af951eecac57a3c504abfb773f18784366bf69fc494d7bf0"
       },
       {
         "file": "dist/world.js",
-        "sha256": "9f1afe1035419ba228c9640a5fffca813348d5a2394343e0dd189966d912079c"
+        "sha256": "94465b135a205333396948b3b46e7e8f68c084d0e2d429bce1a658be33936774"
+      },
+      {
+        "file": "dist/content/coast.js",
+        "sha256": "117bb9496a6311a37e5dd1dbc3ddeff851fb1c32cc7c22f73432c111a3c8184b"
+      },
+      {
+        "file": "dist/coast.js",
+        "sha256": "613923072fd6690ed88c2872f3d6182fa5e025622a3b90ac3ddb82dda2158873"
+      },
+      {
+        "file": "dist/content/places.js",
+        "sha256": "a64d05adc6e669288bd3566b92769abd3a4323c1aa7571165446fa86142ac897"
       }
     ]
   },
-  "durationMs": 187417,
+  "durationMs": 211694,
   "measuredScopes": [
     "Real 8000 kr start; no state grants",
     "Complete 2026–2036 campaigns through public G.act",
@@ -172,12 +204,26 @@
   ],
   "method": "Exploratory public-action heuristic. Starts from the real 8,000 kr campaign; no privileged cash, crew, stock, rank or clock mutation. Existing business agent plus injected story actions. This tests technical progression, not enjoyment or a balance approval.",
   "seedsPerProfile": 30,
+  "includeCoast": false,
   "progressionFailures": [],
   "summary": {
     "careful": {
       "runs": 30,
+      "medianLegacyGiven": 214347140,
+      "medianProductiveReinvestment": 265513580,
+      "medianPostGodfatherProductiveReinvestment": 123287327,
+      "medianNetWorth": 900763726,
+      "medianCashNetWorthDenominator": 900763726,
+      "medianCashNetWorthRatio": 0.11527311325145435,
+      "cashNetWorthRatioDefinedRuns": 30,
+      "medianImperialValue": 376205546,
+      "medianCashImperialValueDenominator": 376205546,
+      "medianCashImperialValueRatio": 0.2733676351757358,
+      "cashImperialValueRatioDefinedRuns": 30,
+      "coastCompleted": 0,
+      "coastChoices": 0,
       "godfathers": 30,
-      "medianGodfatherDay": 1330,
+      "medianGodfatherDay": 1309,
       "normalStarts": 30,
       "completed": 30,
       "invalid": 0,
@@ -185,24 +231,37 @@
       "stalled": 0,
       "arcResolved": 30,
       "threeActs": 30,
-      "medianObligations": 9602537,
-      "medianCash": 102021727,
-      "medianPlayerTimeShareAfterGodfather": 0.294478527607362,
+      "medianObligations": 9955101,
+      "medianCash": 102033065,
+      "medianPlayerTimeShareAfterGodfather": 0.2962962962962963,
       "minQuests": 4,
       "maxQuests": 4,
-      "crimeAttempts": 1917,
+      "crimeAttempts": 1885,
       "arcResponses": 180,
       "civicEvents": 1500,
       "civicAutomatic": 1500,
       "civicShocks": 1500,
-      "medianCivicSpend": 3096977,
+      "medianCivicSpend": 3005624,
       "qualifiedMandates": 30,
       "rejectedInjections": 0
     },
     "expansion": {
       "runs": 30,
+      "medianLegacyGiven": 317843847,
+      "medianProductiveReinvestment": 167029009,
+      "medianPostGodfatherProductiveReinvestment": 4460487,
+      "medianNetWorth": 1144841178,
+      "medianCashNetWorthDenominator": 1144841178,
+      "medianCashNetWorthRatio": 0.06762297186627522,
+      "cashNetWorthRatioDefinedRuns": 30,
+      "medianImperialValue": 270643897,
+      "medianCashImperialValueDenominator": 270643897,
+      "medianCashImperialValueRatio": 0.284327920055128,
+      "cashImperialValueRatioDefinedRuns": 30,
+      "coastCompleted": 0,
+      "coastChoices": 0,
       "godfathers": 30,
-      "medianGodfatherDay": 1239,
+      "medianGodfatherDay": 1225,
       "normalStarts": 30,
       "completed": 30,
       "invalid": 0,
@@ -210,24 +269,37 @@
       "stalled": 0,
       "arcResolved": 30,
       "threeActs": 30,
-      "medianObligations": 9820109,
-      "medianCash": 88380456,
-      "medianPlayerTimeShareAfterGodfather": 0.34615384615384615,
+      "medianObligations": 10648384,
+      "medianCash": 80270338,
+      "medianPlayerTimeShareAfterGodfather": 0.34806629834254144,
       "minQuests": 4,
       "maxQuests": 4,
-      "crimeAttempts": 2073,
+      "crimeAttempts": 2086,
       "arcResponses": 180,
       "civicEvents": 1500,
       "civicAutomatic": 1500,
       "civicShocks": 1500,
-      "medianCivicSpend": 3417493,
+      "medianCivicSpend": 3587885,
       "qualifiedMandates": 30,
       "rejectedInjections": 0
     },
     "aggressive": {
       "runs": 30,
+      "medianLegacyGiven": 233197312,
+      "medianProductiveReinvestment": 382013580,
+      "medianPostGodfatherProductiveReinvestment": 188445058,
+      "medianNetWorth": 1119405096,
+      "medianCashNetWorthDenominator": 1119405096,
+      "medianCashNetWorthRatio": 0.1107263876542546,
+      "cashNetWorthRatioDefinedRuns": 30,
+      "medianImperialValue": 504611606,
+      "medianCashImperialValueDenominator": 504611606,
+      "medianCashImperialValueRatio": 0.256585366289954,
+      "cashImperialValueRatioDefinedRuns": 30,
+      "coastCompleted": 0,
+      "coastChoices": 0,
       "godfathers": 30,
-      "medianGodfatherDay": 1435,
+      "medianGodfatherDay": 1386,
       "normalStarts": 30,
       "completed": 30,
       "invalid": 0,
@@ -235,17 +307,17 @@
       "stalled": 0,
       "arcResolved": 30,
       "threeActs": 30,
-      "medianObligations": 2843958,
-      "medianCash": 121810834,
-      "medianPlayerTimeShareAfterGodfather": 0.26877470355731226,
+      "medianObligations": 3510421,
+      "medianCash": 127200929,
+      "medianPlayerTimeShareAfterGodfather": 0.2737642585551331,
       "minQuests": 4,
       "maxQuests": 4,
-      "crimeAttempts": 2877,
+      "crimeAttempts": 2972,
       "arcResponses": 180,
       "civicEvents": 1500,
       "civicAutomatic": 1500,
       "civicShocks": 1500,
-      "medianCivicSpend": 3660195,
+      "medianCivicSpend": 3789938,
       "qualifiedMandates": 30,
       "rejectedInjections": 0
     }

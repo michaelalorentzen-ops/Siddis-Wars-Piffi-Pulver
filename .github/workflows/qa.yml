@@ -28,6 +28,8 @@ jobs:
         run: npm run qa:meta
       - name: Normal-start story and endgame smoke
         run: npm run qa:experience
+      - name: Coastal story campaign smoke
+        run: npm run qa:coast
       - name: Synthetic exchange stress
         run: npm run qa:exchange
       - name: Synthetic fixtures for visual reviewers

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "engineSha256": "898c320c824e3fba1464b77cad465da7371718f41daba02412a9eaa3ba0ba5b3",
+  "engineSha256": "300d3ad44aee1e6026018f5e6407c10b45073fc1b55c8ecd04fae269e581c513",
   "engineFiles": [
     "engine.js",
     "strategy.js",
@@ -19,15 +19,29 @@
     "crime.js",
     "arc.js",
     "content/events.js",
-    "world.js"
+    "world.js",
+    "content/coast.js",
+    "coast.js",
+    "content/places.js"
   ],
   "hashMethod": "SHA-256 of concatenated raw engineFiles bytes in listed order",
-  "qaAgentSha256": "6d0208dc98beff3157265554f7ea0aa9f3826714b1360ba1df4008f56e411fcd",
+  "qaAgentSha256": "96e1de3306105332a9be927f9d7c75bb93f774632f742828f6fe14d633bca177",
   "seedsPerProfile": 30,
   "balanceVerdict": "exploratory_only_not_a_balance_approval",
   "summary": {
     "careful": {
       "runs": 30,
+      "medianLegacyGiven": 585780546,
+      "medianProductiveReinvestment": 350513580,
+      "medianPostGodfatherProductiveReinvestment": 208445058,
+      "medianNetWorth": 294339679,
+      "medianCashNetWorthDenominator": 294339679,
+      "medianCashNetWorthRatio": 1,
+      "cashNetWorthRatioDefinedRuns": 30,
+      "medianImperialValue": 466738168,
+      "medianCashImperialValueDenominator": 466738168,
+      "medianCashImperialValueRatio": 0.6311916577604598,
+      "cashImperialValueRatioDefinedRuns": 30,
       "technicalFailures": 0,
       "stalled": 0,
       "completed": 30,
@@ -40,7 +54,6 @@
       "medianRecoveryWeeks": 0,
       "medianInvested": 350513580,
       "medianReinvestmentShare": 0.1916662204386752,
-      "medianImperialValue": 466738168,
       "medianAreaShare": 0.6111111111111112,
       "territoryCompositions": {
         "haugesund|randaberg|sandnes|sorlandet|stord|trondelag": 29,
@@ -65,6 +78,17 @@
     },
     "expansion": {
       "runs": 30,
+      "medianLegacyGiven": 729261324,
+      "medianProductiveReinvestment": 438171546,
+      "medianPostGodfatherProductiveReinvestment": 275603024,
+      "medianNetWorth": 306285737,
+      "medianCashNetWorthDenominator": 306285737,
+      "medianCashNetWorthRatio": 1,
+      "cashNetWorthRatioDefinedRuns": 30,
+      "medianImperialValue": 607615279,
+      "medianCashImperialValueDenominator": 607615279,
+      "medianCashImperialValueRatio": 0.5151498859701753,
+      "cashImperialValueRatioDefinedRuns": 30,
       "technicalFailures": 0,
       "stalled": 0,
       "completed": 30,
@@ -77,7 +101,6 @@
       "medianRecoveryWeeks": 0,
       "medianInvested": 438171546,
       "medianReinvestmentShare": 0.1784363898521409,
-      "medianImperialValue": 607615279,
       "medianAreaShare": 0.7777777777777778,
       "territoryCompositions": {
         "alesund|haugesund|jaeren|ostlandet|sandnes|sola|sorlandet|stord|trondelag": 26,
@@ -102,6 +125,17 @@
     },
     "aggressive": {
       "runs": 30,
+      "medianLegacyGiven": 634968914,
+      "medianProductiveReinvestment": 468016740,
+      "medianPostGodfatherProductiveReinvestment": 274448218,
+      "medianNetWorth": 405413461,
+      "medianCashNetWorthDenominator": 405413461,
+      "medianCashNetWorthRatio": 1,
+      "cashNetWorthRatioDefinedRuns": 30,
+      "medianImperialValue": 571188228,
+      "medianCashImperialValueDenominator": 571188228,
+      "medianCashImperialValueRatio": 0.7476302855346304,
+      "cashImperialValueRatioDefinedRuns": 30,
       "technicalFailures": 0,
       "stalled": 0,
       "completed": 30,
@@ -114,7 +148,6 @@
       "medianRecoveryWeeks": 0,
       "medianInvested": 468016740,
       "medianReinvestmentShare": 0.1466889401712424,
-      "medianImperialValue": 571188228,
       "medianAreaShare": 0.6666666666666666,
       "territoryCompositions": {
         "alesund|haugesund|ostlandet|sandnes|sola|sorlandet|trondelag": 20,
@@ -148,5 +181,13 @@
     "aggressive: low reinvestment share after Godfather",
     "aggressive: large accumulated endgame cash; assess capital uses and economic stakes"
   ],
-  "note": "Alpha 0.8: first-ten infrastructure curve and public guards, regional models/traits, voluntary legacy pledges. Standalone economic policies do not use stock mandates; integrated experience policies do. Protected expansion capital prevents mandatory progression starvation. Gifts and equity are reported separately from private cash/productive assets. High standalone cash and profile-score differences remain open. Not a balance or fun approval."
+  "note": "Alpha 0.9 round 7: 90 standalone economic campaigns, full source list including coast and geography. Productive investment, irrevocable legacy gifts, cash/net-worth and cash/imperial-value ratios are separate measures. Standalone policies already make eligible legacy pledges but do not use stock mandates; integrated experience policies do. High standalone cash and policy/profile differences remain open F28 findings. Exploratory technical baseline, not a balance or fun approval.",
+  "financialDefinitions": {
+    "legacyGiven": "s.legacyFund.paid: irreversible contributions to the chosen legacy recipients. Reported separately from productive reinvestment; never added into a combined reinvestment score.",
+    "productiveReinvestment": "s.scale.invested: cumulative recorded infrastructure, territory, route-capacity and factory investment. This engine counter is not a claim to include every capital purchase.",
+    "postGodfatherProductiveReinvestment": "s.scale.postInvested: the same recorded productive investment after reaching Godfather.",
+    "cashNetWorthRatio": "cash / cashNetWorthDenominator, where cashNetWorthDenominator is the reported netWorth in kroner. Null when netWorth is nonpositive; ratios may exceed 1 when liabilities reduce net worth. Summary median is the median of defined per-run ratios, not a ratio of medians.",
+    "cashImperialValueRatio": "cash / cashImperialValueDenominator, where cashImperialValueDenominator is G.empireScore(s).value (also reported as imperialValue), the engine productive imperial valuation in kroner. This is distinct from net worth. Null when imperial value is nonpositive; summary medians use defined per-run ratios, not a ratio of medians.",
+    "reinvestmentShare": "Existing s.scale.postInvested / s.scale.postOperating counter ratio, retained unchanged. legacyGiven is a separate use of cash and is not included in the numerator."
+  }
 }

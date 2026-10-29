@@ -2,7 +2,7 @@
 
 Arbeidsnavn i spillet: **Vestkyst**. En Stavanger-basert, nettleserlokal strategispill-alfa fra 2026 til 2036.
 
-**Status: alfa 0.8. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
+**Status: alfa 0.9. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
 
 ## Kjør lokalt
 
@@ -68,3 +68,10 @@ Alfa 0.7 prioriterer spillopplevelsen: fire oppdragslinjer, ni kontakter, opptje
 Alfa 0.8 knytter flere valg sammen: Nora leder Siddisbørsen, fem byhendelser påvirker både historie og marked, og langsiktig eierskap kan gi forhandlingsrom i sluttakten. Fire historier har nå elleve steg og alternative avslutningsbelønninger, med bevarte gamle lagringer. Se [COHESION.md](docs/COHESION.md) for omfang, QA og åpne spørsmål.
 
 Regional ekspansjon kan organiseres med lokale medeiere, ansatt regionledelse eller tett personlig kontroll. Regionene gir ulike praktiske fordeler. Som Gudfar kan du frivillig gi et stående løfte til laget, byen eller uavhengige avtaler; innbetalinger og virkninger er synlige. Ingen av disse løftene aktiveres automatisk for en menneskelig spiller.
+
+
+Alfa 0.9 utvider byen til 32 steder i fire regioner, med to sammenhengende kyst- og byhistorier, fire nye illustrasjoner og kildebelagt lokalhistorie. Valgene påvirker tid, penger, tillit og laget. Kysthistoriene kan delegeres etter at vanlig delegering er opptjent, med siste avgjørelse beholdt hos spilleren. Nye spillere får en kort oppstart med navn, ambisjon og et første møte med Raggen. Eksisterende lagringer går rett til spillet. Oppgjør vises med faktisk kontantendring og forløpt tid uten å stanse handlingen.
+
+## Publisering
+
+Vercel-prosjektet `siddiswars` bruker dette repoets `main`. `vercel.json` publiserer kun `dist/` som statiske filer uten installasjon eller bygg. Lagringer er fortsatt lokale og følger nettleserens domene: eksporter på den gamle adressen og importer på den nye for å fortsette en eksisterende runde.

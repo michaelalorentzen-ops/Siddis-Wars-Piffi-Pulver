@@ -2,7 +2,7 @@
 'use strict';
 const G=root.Game,old={fresh:G.fresh,upgrade:G.upgrade,valid:G.valid,act:G.act,week:G.onStrategicWeek};
 G.STOCKS=[
- {id:'NFE',name:'Nordsjø Fantasi Energi',sector:'Olje',price:14800,yield:.045,vol:.035,color:'#d7ac61'},
+ {id:'NFE',name:'Nordsjø Energi',sector:'Olje',price:14800,yield:.045,vol:.035,color:'#d7ac61'},
  {id:'RRS',name:'Rust & Regn Shipping',sector:'Shipping',price:9200,yield:.035,vol:.05,color:'#7fabb0'},
  {id:'PFS',name:'Piffi Sjømat',sector:'Sjømat',price:11400,yield:.03,vol:.04,color:'#ba927c'},
  {id:'BBE',name:'Betong & Bunad Eiendom',sector:'Eiendom',price:20500,yield:.055,vol:.025,color:'#a3ad7a'},
@@ -14,7 +14,7 @@ G.STOCKS=[
 G.MARKET_MANDATES=[{id:'harbor',name:'Havnealliansen',ids:['RRS','JMI'],text:'Nora bygger en langsiktig eierpost hos rederi og verksted. Gir inntil 6 prosentpoeng i fredelige Bjørnar-oppgjør.',rival:.06,case:0},{id:'governance',name:'Åpne bøker',ids:['SKS','NLK'],text:'Nora bygger dokumenterbare eierposter i bank og teknologi. Gir inntil 6 prosentpoeng overfor Haugland.',rival:0,case:.06},{id:'civic',name:'Byens bord',ids:['PFS','BBE'],text:'Nora samler langsiktig eierskap i sjømat og byliv. Gir 3,5 prosentpoeng i fredelige oppgjør og i saken.',rival:.035,case:.035}];
 const shocks=[
  {title:'Oljebrems i Nordsjøen',text:'Utbyggere kutter budsjetter. Olje og underleverandører faller.',fx:{Olje:-.12,Industri:-.06,Shipping:-.025}},
- {title:'Rederiene får fulle ordrebøker',text:'Fiktive fraktrater skyter fart. Shipping leder oppgangen.',fx:{Shipping:.14,Industri:.025}},
+ {title:'Rederiene får fulle ordrebøker',text:'Fraktratene skyter fart. Shipping leder oppgangen.',fx:{Shipping:.14,Industri:.025}},
  {title:'Renteryktet som snudde markedet',text:'Dyrere finansiering rammer eiendom. Finansaksjer får et løft.',fx:{Eiendom:-.10,Finans:.04,Teknologi:-.04}},
  {title:'Kodefest på Østlandet',text:'Optimismen løper foran resultatene. Teknologi og hydrogen prises opp.',fx:{Teknologi:.15,Hydrogen:.10}},
  {title:'Hydrogenløftet sprekker',text:'Et prosjekt utsettes. Hydrogenhåpet får en tung uke.',fx:{Hydrogen:-.24,Industri:-.02}},

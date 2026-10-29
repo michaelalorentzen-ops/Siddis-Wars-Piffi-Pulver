@@ -22,7 +22,7 @@ G.registerAction('dismissScene',(s,id)=>G.dismissScene(s,id)?'Meldingen er lest.
 G.upgrade=s=>migrate(legacy.upgrade(s));
 G.fresh=()=>migrate(legacy.fresh());
 G.onStrategicWeek=function(s){const before=s.rankLevel;legacy.week(s);migrate(s);G.emit('week',s,{week:s.week,day:s.day});if(actionDepth===0&&s.rankLevel>before)G.emit('rank',s,{from:before,to:s.rankLevel});};
-function snapshot(s){return {day:s.day,week:s.week,cash:s.cash,rankLevel:s.rankLevel,heat:s.heat,sales:s.sales,trips:s.trips,cities:s.cities.length,crew:s.crew.members,trained:s.crew.trained};}
+function snapshot(s){return {day:s.day,week:s.week,cash:s.cash,rankLevel:s.rankLevel,heat:s.heat,ledgerHead:s.ledger[0]||null,sales:s.sales,trips:s.trips,cities:s.cities.length,crew:s.crew.members,trained:s.crew.trained};}
 G.act=function(s,type,arg){G.upgrade(s);const registered=actions.get(type);if(registered){if(s.ended&&!registered.allowWhenEnded)return 'Runden er avsluttet.';if(s.trip&&!registered.allowDuringTrip)return 'Fullfør reisen først.';if(s.event&&!registered.allowDuringEvent)return 'En viktig avgjørelse venter først.';const denied=registered.guard?.(s,arg);if(denied)return String(denied);}
  const before=snapshot(s),outer=actionDepth===0,beforeState=outer?JSON.stringify(s):null;let result;actionDepth++;try{result=registered?registered.handler(s,arg):legacy.act(s,type,arg);}finally{actionDepth--;}
  if(registered&&!registered.silent){G.checkProgress?.(s);G.refreshRank(s);}

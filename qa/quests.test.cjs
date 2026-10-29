@@ -64,7 +64,7 @@ test('raw completed v1 imports remain complete without invented chapters, lost i
  const before=JSON.stringify(s);G.upgrade(s);G.act(s,'questChoice',{quest:'key',choice:'help'});assert.equal(JSON.stringify(s),before);
 });
 test('a v1 campaign with all four lines finished retains every item and all original closing choices',()=>{
- const s=oldSave();s.items.owned=Object.keys(G.QUEST_ITEMS);for(const line of G.QUEST_LINES){const a=s.quests.lines[line.id];a.step=7;a.status='done';a.announced=6;a.choices=line.steps.slice(0,7).map(t=>({id:t.choices[0].id,day:0,cost:100}));}
+ const s=oldSave();s.items.owned=['workshopKey','blueBook','crewRadio','tideChart','kitchenCard','stagePass','signedReceipt','coldContract'];for(const line of G.QUEST_LINES){const a=s.quests.lines[line.id];a.step=7;a.status='done';a.announced=6;a.choices=line.steps.slice(0,7).map(t=>({id:t.choices[0].id,day:0,cost:100}));}
  const histories=Object.fromEntries(Object.entries(s.quests.lines).map(([id,a])=>[id,structuredClone(a.choices)])),mods=G.itemModifiers(s);assert.equal(G.valid(s),true);G.upgrade(s);
  assert.equal(s.items.owned.length,8);assert.deepEqual(G.itemModifiers(s),mods);for(const line of G.QUEST_LINES){const a=s.quests.lines[line.id];assert.equal(a.status,'done');assert.equal(a.legacyComplete,true);assert.deepEqual(a.choices,histories[line.id]);assert.equal(a.choices.length,7);}
  const before=JSON.stringify(s);for(const line of G.QUEST_LINES)G.act(s,'questChoice',{quest:line.id,choice:'help'});assert.equal(JSON.stringify(s),before);assertState(s);
@@ -104,4 +104,23 @@ test('careful, expansion and aggressive networks can finish all lines through th
 test('inactive routes cannot satisfy delegated alternatives, and ended campaigns offer no choices',()=>{
  const s=achieved('growth',90);s.routes.forEach(r=>r.active=false);G.act(s,'questChoice',{quest:'key',choice:'help'});const q=G.questInfo(s,'key');assert.equal(q.step,1);assert.equal(q.ready,false);assert.match(q.reason,/aktive ruter/);
  s.ended=true;for(const line of G.questList(s)){assert.equal(line.ready,false);assert.equal(line.current,null);}
+});
+test('aggressive cash-led choices earn four distinct endpoint objects with paid and persistent tradeoffs',()=>{
+ const s=achieved('growth',90),expected={key:'coldContract',book:'debtLedger',harbor:'redManifest',table:'velvetList'},upfront={book:14000,harbor:28000,table:45000},settlement={book:20000,harbor:45000,table:70000};s.empire.nextCouncil=10000;
+ for(const line of G.QUEST_LINES){assert.equal(line.steps.length,11);let safety=0;while(s.quests.lines[line.id].status!=='done'&&safety++<40){
+  while(s.event)G.act(s,'choice',0);const q=G.questInfo(s,line.id);if(!q.ready&&/lojalitet/.test(q.reason)){if(s.lastCare===s.week)G.act(s,'week');else G.act(s,'crewCare');continue;}assert(q.ready,`${line.id}:${q.step} ${q.reason}`);
+  const c=q.current.choices.filter(c=>c.allowed).sort((a,b)=>(b.cash||0)-(a.cash||0))[0];assert(c);if(q.step===10){assert.equal(c.item,expected[line.id]);if(upfront[line.id]){assert(c.baseCost>=upfront[line.id]);assert.equal(c.cash,settlement[line.id]);assert(c.relation<0);assert(c.loyalty<0);}const count=s.items.owned.length;G.act(s,'questChoice',{quest:line.id,choice:c.id});assert.equal(s.items.owned.length,count+1);const row=s.ledger.find(r=>r.title==='Historie / '+q.current.title);assert.equal(row.cost,c.cost);assert.equal(row.gross,c.cash||0);assert.equal(row.net,(c.cash||0)-c.cost);assert.equal(s.quests.lines[line.id].choices.at(-1).cost,c.cost);}else G.act(s,'questChoice',{quest:line.id,choice:c.id});assertState(s);
+ }
+ assert.equal(s.quests.lines[line.id].step,11);assert.equal(s.quests.lines[line.id].choices.length,11);}
+ assert.deepEqual(s.items.owned,Object.values(expected));assert.equal(new Set(s.items.owned).size,4);
+ // Existing hooks consume the selected objects: more income and price, cheaper
+ // transport, higher failure risk, and more heat. Benefits are not free power.
+ const neutral=structuredClone(s);neutral.items.owned=[];s.heat=neutral.heat=40;const m=G.itemModifiers(s);assert.equal(G.income(s),Math.round(G.income(neutral)*m.income));assert(G.income(s)>G.income(neutral));assert.equal(G.market(s,0).price,Math.round(G.market(neutral,0).price*1.07));assert.equal(G.travelCost(s,0),Math.round(G.travelCost(neutral,0)*.90));const r=s.routes[0],route=G.quote(s,r),base=G.quote(neutral,r);assert(route.freight<base.freight);assert(route.risk>base.risk);G.addHeat(s,10);assert.equal(s.heat,40+10*m.heatGain);assert(m.heatGain>1);
+ const oldV2=structuredClone(s);oldV2.items.owned=['coldContract'];assert.equal(G.valid(oldV2),true);const before=JSON.stringify(oldV2);G.upgrade(oldV2);for(const line of G.QUEST_LINES)G.act(oldV2,'questChoice',{quest:line.id,choice:'exploit'});assert.equal(JSON.stringify(oldV2),before,'completed old v2 campaigns must not receive retroactive objects');
+});
+test('dark endpoint objects trade stronger specialist benefits for actual economic drawbacks',()=>{
+ const base=achieved('balanced',20),only=id=>{const s=structuredClone(base);s.items.owned=[id];return s;};
+ assert(G.income(only('debtLedger'))>G.income(only('blueBook')));const debt=only('debtLedger');G.addHeat(debt,10);assert(Math.abs(debt.heat-(20+11.8))<1e-9);
+ const red=only('redManifest'),tide=only('tideChart');assert(G.travelCost(red,0)<G.travelCost(tide,0));assert(G.quote(red,red.routes[0]).risk>G.quote(tide,tide.routes[0]).risk);
+ const velvet=only('velvetList'),stage=only('stagePass');assert(G.market(velvet,0).price>G.market(stage,0).price);assert(G.income(velvet)<G.income(stage));G.addHeat(velvet,10);assert(Math.abs(velvet.heat-(20+11.4))<1e-9);
 });

@@ -15,7 +15,11 @@ require('../dist/content/crimes.js');
 require('../dist/crime.js');
 require('../dist/arc.js');
 require('../dist/content/events.js');
-const Game=require('../dist/world.js');
+require('../dist/world.js');
+require('../dist/content/coast.js');
+require('../dist/coast.js');
+require('../dist/content/places.js');
+const Game=globalThis.Game;
 function create(seed=1){const s=Game.fresh();Game.seedCampaign(s,seed);return s;}
 function assertState(s){
  if(!Game.valid(s))throw new Error('Invalid state at day '+s.day);
