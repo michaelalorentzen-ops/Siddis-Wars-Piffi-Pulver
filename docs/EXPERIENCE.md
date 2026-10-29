@@ -1,5 +1,6 @@
 # Alfa 0.7: folk, løfter og følger
 
+Oppdatert i alfa 0.8: se [COHESION.md](COHESION.md) for nye kostnadskurver, regionmodeller, varige løfter, Siddisbørsen og historieprogresjon. Tallene under beskriver den tidligere alfaen der det er angitt.
 Målet er et morsomt strategispill om folk og makt. Flere skjermer eller høyere pengekrav er ikke i seg selv fremgang. Denne runden bygger et samlet spillbart grunnlag for å teste den retningen med mennesker.
 
 ## Hva spilleren gjør

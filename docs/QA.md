@@ -105,3 +105,18 @@ Les EXPERIENCE.md. `npm run qa:experience` kjører 3 seeds × 3 profiler fra ord
 - Rapporter om valgene er interessante, dominerende, gjentakende eller uforståelige. Antall oppdrag, meldinger eller klikk er ikke en moromåling.
 
 F11 er avgrenset med ærlig prognose og tryggere automatikk, F12 er fortsatt åpent og nå synlig i rapportene. F13 har bredere parvis dekning. Ikke meld alle tre som fullstendig løst.
+
+
+## Alfa 0.8 / QA runde 5-oppfølging
+
+Les COHESION.md. Bruk full motorrekkefølge fra qa/load.cjs. Kontroller særlig:
+
+- F21/F22: ett samlet Om-forbehold, replikkene i oppdrag og sluttakt, Nora, faktiske eierfullmakter og sammenheng med byhendelser. Ikke forvent at en modellert festivaluke er en offisiell fremtidig dato.
+- F23/F26/F27: avsluttet spill, meldingsarkiv, personlig epilog, ingen nye resultatmodaler, faktiske rangkrav og 44px faner på 390px.
+- F24: v1 aktiv/fullført lagring, historikk, allerede eide gjenstander og nye sluttvalg. Fullføring av fire historier er ikke automatisk en feil.
+- F25: forsøk å kjøpe ekstrem kommando i sen kampanje, både manuelt og gjennom en feilaktig kapitalplan. Kontroller at en serie nivåer faktisk øker kontrollspennet, og at ingen ukes-hook kan telle prosjektleveranser to ganger.
+- Regionvalg: sammenlign faktisk geografi, profit-sharing, lønn, produksjon, frakt og treningskostnad. Et tilbud og et oppgjør skal bruke samme beregning.
+- Stående løfte: initialgave, kvartalsandel, pause/gjenopptakelse, to byers leveranser, kontrollplass, gjeld og driftsreserve. Gaver skal ikke bli bokført som private eiendeler.
+- Mål private kontanter, produktiv imperieverdi, børsbeholdning og midler gitt videre separat. Vurder om avveiningene er interessante; ikke skjul økonomiske svakheter med en ny sammenblandet score.
+
+De integrerte kampanjene rapporterer Gudfar separat fra at sluttakten åpner ved sen dato. Minst 80 prosent av hver profil må nå Gudfar i denne QA-policyen; en teknisk gyldig runde som bare får datoutløst sluttakt er ikke nok. Dette fanget og stopper regresjon i Noras ekspansjonsreserve.

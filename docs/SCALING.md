@@ -1,5 +1,6 @@
 # Alfa 0.5: reinvestering, kontrollspenn og rivaler
 
+Oppdatert i alfa 0.8: se [COHESION.md](COHESION.md) for nye kostnadskurver, regionmodeller, varige løfter, Siddisbørsen og historieprogresjon. Tallene under beskriver den tidligere alfaen der det er angitt.
 Denne runden følger diskusjonen under QA-runde 2. Den erstatter ikke manuelt gatesalg med mer manuell logistikk. Lederne kan fortsatt selge hele beholdningen og følge en kapitalplan.
 
 ## Kapital skal bygge noe

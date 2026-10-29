@@ -2,7 +2,7 @@
 
 Arbeidsnavn i spillet: **Vestkyst**. En Stavanger-basert, nettleserlokal strategispill-alfa fra 2026 til 2036.
 
-**Status: alfa 0.7. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
+**Status: alfa 0.8. Dette er et review-grunnlag, ikke et ferdig eller balansert spill.**
 
 ## Kjør lokalt
 
@@ -63,3 +63,8 @@ Alfa 0.6 legger til en valgfri fiktiv Oslo-børs. Se docs/EXCHANGE.md. `npm run 
 
 
 Alfa 0.7 prioriterer spillopplevelsen: fire oppdragslinjer, ni kontakter, opptjente gjenstander med faktiske effekter, ni risikojobber, 14 steder og en rival-/etterforskningshistorie i tre akter. Se [EXPERIENCE.md](docs/EXPERIENCE.md). Kjør `npm run qa:experience` for ni ordinære kampanjer som også bruker disse handlingene.
+
+
+Alfa 0.8 knytter flere valg sammen: Nora leder Siddisbørsen, fem byhendelser påvirker både historie og marked, og langsiktig eierskap kan gi forhandlingsrom i sluttakten. Fire historier har nå elleve steg og alternative avslutningsbelønninger, med bevarte gamle lagringer. Se [COHESION.md](docs/COHESION.md) for omfang, QA og åpne spørsmål.
+
+Regional ekspansjon kan organiseres med lokale medeiere, ansatt regionledelse eller tett personlig kontroll. Regionene gir ulike praktiske fordeler. Som Gudfar kan du frivillig gi et stående løfte til laget, byen eller uavhengige avtaler; innbetalinger og virkninger er synlige. Ingen av disse løftene aktiveres automatisk for en menneskelig spiller.

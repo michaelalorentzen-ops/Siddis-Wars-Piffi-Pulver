@@ -12,42 +12,56 @@ function migrate(s){
  if(s.quests?.lines!=null&&!plain(s.quests.lines))return;
  if(s.story&&['relationships','flags'].some(k=>s.story[k]!=null&&!plain(s.story[k])))return;
  if(s.items?.owned!=null&&!Array.isArray(s.items.owned))return;
- s.quests??={version:1,lines:{}};
+ s.quests??={version:2,lines:{}};
  s.quests.lines??={};
  s.story??={};s.story.relationships??={};s.story.flags??={};
  s.items??={};s.items.owned??=[];
  for(const c of G.storyContacts)s.story.relationships[c.id]??=0;
- for(const q of lines)s.quests.lines[q.id]??={step:0,status:s.rankLevel>=q.rank?'active':'locked',choices:[],announced:-1};
+ // Never replay completed v1 chapters or invent history for new chapters.
+ // Validation also accepts intact raw v1 imports before this upgrade runs.
+ if(s.quests.version===1&&validate(s)){
+  for(const q of lines){const a=s.quests.lines[q.id];a.legacyComplete=a.status==='done';if(a.legacyComplete)a.step=q.steps.length;}
+  s.quests.version=2;
+ }
+ for(const q of lines)s.quests.lines[q.id]??={step:0,status:s.rankLevel>=q.rank?'active':'locked',choices:[],announced:-1,legacyComplete:false};
 }
 function validate(s){try{
  // Raw imports are validated before upgrade. Only a wholly absent quest
  // subsystem is legacy; present partial or malformed state is rejected.
  const legacy=s.quests===undefined&&s.story?.relationships===undefined&&s.items?.owned===undefined&&![...flags].some(id=>s.story?.flags&&Object.hasOwn(s.story.flags,id));
  if(legacy)return (s.story===undefined||plain(s.story)&&(s.story.flags===undefined||plain(s.story.flags)))&&(s.items===undefined||plain(s.items));
- if(!plain(s.quests)||s.quests.version!==1||!plain(s.quests.lines)||Object.keys(s.quests.lines).length!==lines.length||!plain(s.story)||!plain(s.story.relationships)||!plain(s.story.flags)||!plain(s.items)||!Array.isArray(s.items.owned)||s.items.owned.length>Object.keys(items).length||new Set(s.items.owned).size!==s.items.owned.length||!s.items.owned.every(id=>Object.hasOwn(items,id)))return false;
+ if(!plain(s.quests)||![1,2].includes(s.quests.version)||!plain(s.quests.lines)||Object.keys(s.quests.lines).length!==lines.length||!plain(s.story)||!plain(s.story.relationships)||!plain(s.story.flags)||!plain(s.items)||!Array.isArray(s.items.owned)||s.items.owned.length>Object.keys(items).length||new Set(s.items.owned).size!==s.items.owned.length||!s.items.owned.every(id=>Object.hasOwn(items,id)))return false;
  if(!Object.entries(s.story.relationships).every(([id,n])=>contact(id)&&Number.isInteger(n)&&n>=-5&&n<=5)||!G.storyContacts.every(c=>Object.hasOwn(s.story.relationships,c.id)))return false;
  // Other systems may own additional story flags; our branch flags must stay boolean.
  if([...flags].some(id=>Object.hasOwn(s.story.flags,id)&&typeof s.story.flags[id]!=='boolean'))return false;
- return lines.every(q=>{const a=s.quests.lines[q.id];return plain(a)&&Number.isInteger(a.step)&&a.step>=0&&a.step<=q.steps.length&&['locked','active','done'].includes(a.status)&&(a.status==='done')===(a.step===q.steps.length)&&(a.status!=='locked'||a.step===0)&&Number.isInteger(a.announced)&&a.announced>=-1&&a.announced<a.step+1&&Array.isArray(a.choices)&&a.choices.length===a.step&&a.choices.every((h,i)=>plain(h)&&q.steps[i].choices.some(c=>c.id===h.id)&&Number.isInteger(h.day)&&h.day>=0&&h.day<=s.day&&(i===0||h.day>=a.choices[i-1].day)&&Number.isSafeInteger(h.cost)&&h.cost>=0);});
+ const v1=s.quests.version===1;
+ return lines.every(q=>{const a=s.quests.lines[q.id],n=v1?7:q.steps.length,carried=!v1&&a?.legacyComplete===true;return plain(a)&&(v1?a.legacyComplete===undefined:typeof a.legacyComplete==='boolean')&&(!carried||a.status==='done')&&Number.isInteger(a.step)&&a.step>=0&&a.step<=n&&['locked','active','done'].includes(a.status)&&(a.status==='done')===(a.step===n)&&(a.status!=='locked'||a.step===0)&&Number.isInteger(a.announced)&&a.announced>=-1&&a.announced<=Math.min(a.step,carried?7:v1?n:n-1)&&Array.isArray(a.choices)&&a.choices.length===(carried?7:a.step)&&a.choices.every((h,i)=>plain(h)&&q.steps[i].choices.some(c=>c.id===h.id)&&Number.isInteger(h.day)&&h.day>=0&&h.day<=s.day&&(i===0||h.day>=a.choices[i-1].day)&&Number.isSafeInteger(h.cost)&&h.cost>=0);});
  }catch(_){return false;}}
 function requirement(s,need){
- const counts={trips:s.trips||0,sales:s.sales||0,crew:s.crew.members,trained:s.crew.trained,routes:s.routes.length,districts:s.districts.length,businesses:s.businesses.length,cities:s.cities.length,minLoyalty:s.crew.loyalty};
- const labels={trips:'innkjøpsreiser',sales:'salg',crew:'folk i laget',trained:'trente folk',routes:'faste ruter',districts:'distrikter',businesses:'bedrifter',cities:'byer',minLoyalty:'lojalitet'};
+ const active=s.routes.filter(r=>r.active);
+ const counts={trips:s.trips||0,sales:s.sales||0,crew:s.crew.members,trained:s.crew.trained,routes:s.routes.length,activeRoutes:active.length,servedCities:new Set(active.map(r=>r.city)).size,districts:s.districts.length,businesses:s.businesses.length,cities:s.cities.length,minLoyalty:s.crew.loyalty};
+ const labels={trips:'innkjøpsreiser',sales:'salg',crew:'folk i laget',trained:'trente folk',routes:'faste ruter',activeRoutes:'aktive ruter',servedCities:'byer med aktive ruter',districts:'distrikter',businesses:'bedrifter',cities:'byer',minLoyalty:'lojalitet'};
  for(const [k,v]of Object.entries(need)){
+  if(k==='any'){const reasons=v.map(n=>requirement(s,n));if(reasons.every(Boolean))return 'Velg en vei videre: '+reasons.join(' Eller ');continue;}
   if(k==='maxHeat'&&s.heat>v)return 'Senk søkelyset til '+v+' (nå '+Math.round(s.heat)+').';
   if(k==='city'&&!s.cities.includes(v))return 'Etabler '+G.CITIES[v].name+'.';
-  if(k==='routeCity'&&!s.routes.some(r=>r.city===v))return 'Opprett en rute til '+G.CITIES[v].name+'.';
+  if(k==='routeCity'&&!active.some(r=>r.city===v))return 'Opprett en aktiv rute til '+G.CITIES[v].name+'.';
   if(Object.hasOwn(counts,k)&&counts[k]<v)return labels[k]+': '+Math.floor(counts[k])+' / '+v+'.';
  }
  return null;
 }
-function quote(s,q,t,c){const speaker=c.contact||t.speaker||q.contact,baseCost=c.cost||0,cost=Math.round(baseCost*(1-s.story.relationships[speaker]*.04));return {...c,baseCost,cost,contact:speaker,itemInfo:c.item?items[c.item]:null};}
+function currentStep(s,q,index){
+ const t=q.steps[index];if(!t)return null;
+ const history=s.quests.lines[q.id].choices,callbacks=(t.callbacks||[]).filter(c=>c.flag?s.story.flags[c.flag]===true:history[c.step]?.id===c.choice),exposed=t.exposure&&s.heat>t.exposure.above;
+ return {...t,text:[t.text,...callbacks.map(c=>c.text),exposed?t.exposure.text:''].filter(Boolean).join(' '),callbackCost:callbacks.reduce((n,c)=>n+(c.cost||0),0)+(exposed?t.exposure.cost:0)};
+}
+function quote(s,q,t,c){const speaker=c.contact||t.speaker||q.contact,baseCost=(c.cost||0)+(t.callbackCost||0),cost=Math.round(baseCost*(1-s.story.relationships[speaker]*.04)),alreadyOwned=!!c.item&&s.items.owned.includes(c.item);return {...c,text:c.text+(alreadyOwned?' Du eier allerede '+items[c.item].name+'. Du kan beholde den, eller velge en annen avslutning.':''),baseCost,cost,contact:speaker,itemInfo:c.item?items[c.item]:null,alreadyOwned};}
 function info(s,id){
  const q=lines.find(q=>q.id===id);if(!q)return null;
- const a=s.quests.lines[id],t=q.steps[a.step];
- const reason=a.status==='locked'?'Åpner ved rang '+q.rank+'.':a.status==='done'?'Historien er fullført.':requirement(s,t.need);
+ const a=s.quests.lines[id],t=s.ended||a.status==='done'?null:currentStep(s,q,a.step);
+ const reason=s.ended?'Historien er avsluttet.':a.status==='locked'?'Åpner ved rang '+q.rank+'.':a.status==='done'?'Historien er fullført.':requirement(s,t.need);
  const current=t?{...t,choices:t.choices.map(c=>{const v=quote(s,q,t,c),r=reason||(G.END_DAY-s.day<v.days?'For få dager igjen til dette valget.':s.cash<v.cost?'Du trenger '+v.cost.toLocaleString('nb-NO')+' kr.':null);return {...v,allowed:!r,reason:r};})}:null;
- return {id:q.id,title:q.title,contact:q.contact,intro:q.intro,rank:q.rank,status:a.status,step:a.step,total:q.steps.length,current,objective:t?.objective||'Fullført',ready:!reason,reason,history:a.choices.map((h,i)=>({title:q.steps[i].title,...h,label:q.steps[i].choices.find(c=>c.id===h.id).label})),relationship:s.story.relationships[q.contact]};
+ return {id:q.id,title:q.title,contact:q.contact,intro:q.intro,rank:q.rank,status:a.status,step:a.step,total:q.steps.length,legacyComplete:a.legacyComplete===true,current,objective:a.status==='done'?'Fullført':s.ended?'Uavsluttet ved historiens slutt':t?.objective||'',ready:!reason,reason,history:a.choices.map((h,i)=>({title:q.steps[i].title,...h,label:q.steps[i].choices.find(c=>c.id===h.id).label})),relationship:s.story.relationships[q.contact]};
 }
 G.questInfo=(s,id)=>info(s,id);
 G.questList=s=>lines.map(q=>info(s,q.id));
@@ -58,7 +72,8 @@ G.itemModifiers=function(s){
  return out;
 };
 function announce(s){
- for(const q of lines){const a=s.quests.lines[q.id];if(a.status==='locked'&&s.rankLevel>=q.rank)a.status='active';if(a.status!=='active')continue;const t=q.steps[a.step];if(a.announced===a.step||requirement(s,t.need))continue;a.announced=a.step;G.notifyScene(s,{id:'quest:'+q.id+':'+a.step,title:t.title,speaker:t.speaker,text:t.text,kind:'quest',quest:q.id,objective:t.objective});}
+ if(s.ended)return;
+ for(const q of lines){const a=s.quests.lines[q.id];if(a.status==='locked'&&s.rankLevel>=q.rank)a.status='active';if(a.status!=='active')continue;const t=currentStep(s,q,a.step);if(a.announced===a.step||requirement(s,t.need))continue;a.announced=a.step;G.notifyScene(s,{id:'quest:'+q.id+':'+a.step,title:t.title,speaker:t.speaker,text:t.text,kind:'quest',quest:q.id,objective:t.objective});}
 }
 function guard(s,arg){
  if(!plain(arg)||typeof arg.quest!=='string'||typeof arg.choice!=='string')return 'Velg et gyldig oppdrag og svar.';
@@ -70,7 +85,7 @@ function guard(s,arg){
 function choose(s,arg){
  // Keep the handler safe if invoked directly by an integration or diagnostic tool.
  const denied=guard(s,arg);if(denied)return denied;
- const q=lines.find(q=>q.id===arg.quest),a=s.quests.lines[q.id],t=q.steps[a.step],c=quote(s,q,t,t.choices.find(c=>c.id===arg.choice)),start=s.day,cash=s.cash;
+ const q=lines.find(q=>q.id===arg.quest),a=s.quests.lines[q.id],t=currentStep(s,q,a.step),c=quote(s,q,t,t.choices.find(c=>c.id===arg.choice)),start=s.day,cash=s.cash;
  s.cash+= (c.cash||0)-c.cost;
  s.rep+=c.rep||0;s.influence=Math.max(0,s.influence+(c.influence||0));
  G.addHeat(s,c.heat||0);s.crew.loyalty=clamp(s.crew.loyalty+(c.loyalty||0),0,100);
@@ -84,10 +99,10 @@ function choose(s,arg){
  G.refreshRank(s);
  s.summary={days:s.day-start,weeks:(s.day-start)/7,net:s.cash-cash,stop:c.text};
  if(Array.isArray(s.ledger)){s.ledger.unshift({week:s.week,day:s.day,title:'Historie / '+t.title,gross:c.cash||0,cost:c.cost,net:(c.cash||0)-c.cost,status:c.label});s.ledger=s.ledger.slice(0,120);}
- G.notifyScene(s,{id:'quest-result:'+q.id+':'+a.step,title:a.status==='done'?q.title+' · fullført':t.title,speaker:c.contact,text:c.text,kind:'questResult',quest:q.id,item:c.item||null});
+ G.notifyScene(s,{id:'quest-result:'+q.id+':'+a.step,title:a.status==='done'?q.title+' · fullført':t.title,speaker:c.contact,text:c.text,kind:'questResult',quest:q.id,item:c.alreadyOwned?null:c.item||null});
  if(G.note)G.note(s,c.text);
  announce(s);
- return c.text+(c.item?' Du fikk '+items[c.item].name+'.':'');
+ return c.text+(c.item&&!c.alreadyOwned?' Du fikk '+items[c.item].name+'.':'');
 }
 G.registerSystem({id:'quests',migrate,validate,hooks:{afterAction:announce,week:announce,rank:announce},actions:{questChoice:{guard,handler:choose}}});
 if(typeof module!=='undefined')module.exports=G;

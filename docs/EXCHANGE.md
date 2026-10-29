@@ -1,5 +1,6 @@
 # Oslo Fantasibørs — alfa 0.6
 
+Oppdatert i alfa 0.8: se [COHESION.md](COHESION.md) for nye kostnadskurver, regionmodeller, varige løfter, Siddisbørsen og historieprogresjon. Tallene under beskriver den tidligere alfaen der det er angitt.
 En valgfri, oppdiktet børs ved siden av den operative virksomheten. Åtte selskaper dekker olje, shipping, sjømat, eiendom, industri, teknologi, hydrogen og finans. Ingen av kursene er markedsdata. Børsen åpner som Bakmann.
 
 ## Handel og risiko

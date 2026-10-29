@@ -1,6 +1,6 @@
 {
   "name": "siddis-wars-piffi-pulver",
-  "version": "0.7.0-alpha",
+  "version": "0.8.0-alpha",
   "private": true,
   "description": "Vestkyst: Stavanger strategy game and reproducible QA harness",
   "engines": {

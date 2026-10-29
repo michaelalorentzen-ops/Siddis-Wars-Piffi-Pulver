@@ -5,10 +5,10 @@ if(!G.registerSystem)require('../dist/bus.js');
 if(!G.storyContacts)require('../dist/content/characters.js');
 if(!G.QUEST_LINES)require('../dist/content/quests.js');
 if(!G.questList)require('../dist/quests.js');
-function mature(){const s=create(71);s.cash=1e7;s.rep=100;s.influence=100;s.managers=4;s.crew.members=8;s.crew.trained=6;s.crew.loyalty=80;s.trips=4;s.sales=8;s.districts=[0,1];s.businesses=[0];s.routes=[{id:1,city:0,good:0,qty:10,carrier:0,origin:0,adapt:true,active:true,last:'Venter'}];G.upgrade(s);G.act(s,'waitDay');return s;}
-test('fictional campaign has four substantive seven-step lines and nine distinct contacts',()=>{
+function mature(){const s=create(71);s.cash=1e7;s.rep=100;s.influence=100;s.managers=4;s.crew.members=8;s.crew.trained=6;s.crew.loyalty=80;s.trips=4;s.sales=8;s.districts=[0,1];s.businesses=[0];s.routes=[0,1].map((good,i)=>({id:i+1,city:0,good,qty:10,carrier:0,origin:0,adapt:true,active:true,last:'Venter'}));G.upgrade(s);G.act(s,'waitDay');return s;}
+test('campaign has four substantive eleven-step lines and nine distinct contacts',()=>{
  assert.equal(G.storyContacts.length,9);assert.equal(new Set(G.storyContacts.map(c=>c.voice)).size,9);
- assert.equal(G.QUEST_LINES.length,4);for(const q of G.QUEST_LINES){assert.equal(q.steps.length,7);assert(q.steps.every(t=>t.text.length>70&&t.objective.length>10&&t.choices.length>=2));}
+ assert.equal(G.QUEST_LINES.length,4);for(const q of G.QUEST_LINES){assert.equal(q.steps.length,11);assert(q.steps.every(t=>t.text.length>70&&t.objective.length>10&&t.choices.length>=2));assert(q.steps.slice(0,-1).every(t=>t.choices.every(c=>!c.item)));assert(q.steps.at(-1).choices.some(c=>c.item));}
  const s=create();assert.equal(G.questInfo(s,'key').status,'active');assert.equal(G.questInfo(s,'table').status,'locked');assertState(s);
 });
 test('quest choices charge their visible cost, advance a day, and cannot bypass real objectives',()=>{
@@ -17,13 +17,13 @@ test('quest choices charge their visible cost, advance a day, and cannot bypass 
  const before=JSON.stringify(s);G.act(s,'questChoice',{quest:'key',choice:'help'});assert.equal(JSON.stringify(s),before);assert.match(G.questInfo(s,'key').reason,/innkjøpsreiser/);assertState(s);
 });
 test('relationship changes affect actual quoted costs and rewards cannot be farmed',()=>{
- const s=mature();for(let i=0;i<7;i++){s.event=null;const q=G.questInfo(s,'key');assert(q.ready,q.reason);G.act(s,'questChoice',{quest:'key',choice:'help'});assertState(s);}
- assert.equal(G.questInfo(s,'key').status,'done');assert(s.items.owned.includes('workshopKey'));assert(s.items.owned.includes('crewRadio'));assert.equal(s.quests.lines.key.choices.length,7);
+ const s=mature();for(let i=0;i<11;i++){s.event=null;const q=G.questInfo(s,'key');assert(q.ready,q.reason);G.act(s,'questChoice',{quest:'key',choice:'help'});assertState(s);}
+ assert.equal(G.questInfo(s,'key').status,'done');assert.deepEqual(s.items.owned,['workshopKey']);assert.equal(s.quests.lines.key.choices.length,11);
  const before=JSON.stringify(s);G.act(s,'questChoice',{quest:'key',choice:'help'});assert.equal(JSON.stringify(s),before);
  const q=G.questInfo(s,'book');s.story.relationships.nora=5;const cheaper=G.questInfo(s,'book').current.choices[0];assert(cheaper.cost<q.current.choices[0].cost);
 });
 test('exploit branch has persistent relationship, heat, loyalty and item consequences',()=>{
- const s=mature();for(let i=0;i<7;i++){s.event=null;G.act(s,'questChoice',{quest:'key',choice:'exploit'});}
+ const s=mature();for(let i=0;i<11;i++){s.event=null;G.act(s,'questChoice',{quest:'key',choice:'exploit'});}
  assert.equal(s.story.flags.workshopSold,true);assert.equal(s.story.flags.soldWorkshopNight,true);assert(s.story.relationships.raggen<0);assert(s.items.owned.includes('coldContract'));assert(G.itemModifiers(s).heatGain>1);assertState(s);
 });
 test('waiting never expires a quest and migration is idempotent',()=>{
@@ -52,4 +52,56 @@ test('quest choices require their full duration before the campaign ends',()=>{
  const exact=create();exact.day=G.END_DAY-2;exact.week=Math.floor(exact.day/7);G.upgrade(exact);
  assert.equal(G.questInfo(exact,'key').current.choices.find(c=>c.id==='pass').allowed,true);
  G.act(exact,'questChoice',{quest:'key',choice:'pass'});assert.equal(exact.day,G.END_DAY);assert.equal(exact.summary.days,2);assert.equal(exact.quests.lines.key.step,1);assert.equal(exact.ended,true);assertState(exact);
+});
+function oldSave(step=0,done=false){
+ const s=mature();s.quests.version=1;for(const a of Object.values(s.quests.lines))delete a.legacyComplete;
+ const a=s.quests.lines.key;a.step=done?7:step;a.status=done?'done':'active';a.announced=Math.min(a.step,6);a.choices=Array.from({length:a.step},(_,i)=>({id:G.QUEST_LINES[0].steps[i].choices[0].id,day:0,cost:100}));return s;
+}
+test('raw completed v1 imports remain complete without invented chapters, lost items or replayed rewards',()=>{
+ const s=oldSave(7,true);s.quests.lines.key.announced=7;s.items.owned=['crewRadio','workshopKey'];assert.equal(G.valid(s),true);
+ const choices=structuredClone(s.quests.lines.key.choices),items=[...s.items.owned],cash=s.cash,day=s.day;G.upgrade(s);
+ assert.equal(s.quests.version,2);assert.equal(s.quests.lines.key.step,11);assert.equal(s.quests.lines.key.status,'done');assert.equal(s.quests.lines.key.legacyComplete,true);assert.deepEqual(s.quests.lines.key.choices,choices);assert.equal(s.quests.lines.key.choices.length,7);assert.deepEqual(s.items.owned,items);assert.equal(s.cash,cash);assert.equal(s.day,day);assertState(s);
+ const before=JSON.stringify(s);G.upgrade(s);G.act(s,'questChoice',{quest:'key',choice:'help'});assert.equal(JSON.stringify(s),before);
+});
+test('a v1 campaign with all four lines finished retains every item and all original closing choices',()=>{
+ const s=oldSave();s.items.owned=Object.keys(G.QUEST_ITEMS);for(const line of G.QUEST_LINES){const a=s.quests.lines[line.id];a.step=7;a.status='done';a.announced=6;a.choices=line.steps.slice(0,7).map(t=>({id:t.choices[0].id,day:0,cost:100}));}
+ const histories=Object.fromEntries(Object.entries(s.quests.lines).map(([id,a])=>[id,structuredClone(a.choices)])),mods=G.itemModifiers(s);assert.equal(G.valid(s),true);G.upgrade(s);
+ assert.equal(s.items.owned.length,8);assert.deepEqual(G.itemModifiers(s),mods);for(const line of G.QUEST_LINES){const a=s.quests.lines[line.id];assert.equal(a.status,'done');assert.equal(a.legacyComplete,true);assert.deepEqual(a.choices,histories[line.id]);assert.equal(a.choices.length,7);}
+ const before=JSON.stringify(s);for(const line of G.QUEST_LINES)G.act(s,'questChoice',{quest:line.id,choice:'help'});assert.equal(JSON.stringify(s),before);assertState(s);
+});
+test('every active v1 checkpoint migrates to exactly the same chapter and keeps its history',()=>{
+ for(const line of G.QUEST_LINES)for(let at=0;at<7;at++){
+  const s=oldSave();const a=s.quests.lines[line.id];a.step=at;a.status='active';a.announced=at;a.choices=line.steps.slice(0,at).map(t=>({id:t.choices[0].id,day:0,cost:100}));s.items.owned=at>5?['crewRadio','signedReceipt']:[];
+  assert.equal(G.valid(s),true,`${line.id}:${at} raw v1`);const history=structuredClone(a.choices),owned=[...s.items.owned];G.upgrade(s);
+  assert.equal(a.step,at);assert.equal(a.status,'active');assert.equal(a.legacyComplete,false);assert.deepEqual(a.choices,history);assert.deepEqual(s.items.owned,owned);assert.equal(G.questInfo(s,line.id).current.title,line.steps[at].title);assertState(s);
+ }
+ const malformed=oldSave(7,true);malformed.quests.lines.key.choices.pop();assert.equal(G.valid(malformed),false);
+});
+test('an active legacy player can keep an earned endpoint item or select an alternative without duplicating it',()=>{
+ const s=oldSave(6);s.items.owned=['crewRadio'];G.upgrade(s);for(let i=6;i<10;i++){s.event=null;G.act(s,'questChoice',{quest:'key',choice:'help'});assert.equal(s.quests.lines.key.step,i+1);}
+ const q=G.questInfo(s,'key'),radio=q.current.choices.find(c=>c.id==='radio'),key=q.current.choices.find(c=>c.id==='help');assert.equal(radio.alreadyOwned,true);assert.match(radio.text,/allerede/);assert.equal(key.alreadyOwned,false);assert.equal(key.item,'workshopKey');
+ const owned=[...s.items.owned];G.act(s,'questChoice',{quest:'key',choice:'radio'});assert.deepEqual(s.items.owned,owned);assert.equal(s.quests.lines.key.status,'done');assert.equal(s.quests.lines.key.choices.length,11);assertState(s);
+ const before=JSON.stringify(s);G.act(s,'questChoice',{quest:'key',choice:'radio'});assert.equal(JSON.stringify(s),before);
+});
+test('earlier treatment of Siv changes the later scene and an actual quoted repair charge',()=>{
+ const good=mature(),bad=mature();for(let i=0;i<7;i++)for(const s of [good,bad]){s.event=null;G.act(s,'questChoice',{quest:'key',choice:s===bad&&i===2?'exploit':'help'});}
+ const g=G.questInfo(good,'key'),b=G.questInfo(bad,'key');assert.equal(g.step,7);assert.equal(b.step,7);assert(!g.current.text.includes('regninga du skjøv'));assert.match(b.current.text,/regninga du skjøv/);assert.equal(b.current.callbackCost,1800);assert.equal(b.current.choices[0].baseCost,g.current.choices[0].baseCost+1800);
+ const cash=bad.cash,cost=b.current.choices.find(c=>c.id==='help').cost;G.act(bad,'questChoice',{quest:'key',choice:'help'});assert.equal(bad.cash,cash-cost);assert.equal(bad.story.flags.sivIndependent,true);assertState(bad);
+});
+function achieved(policy,heat){
+ const s=mature();s.policy=policy;s.cash=25000000;s.crew.members=15;s.crew.trained=12;s.crew.loyalty=80;s.cities=[0,1,2,3];s.businesses=[0,1];s.trips=0;s.sales=0;s.routes=s.cities.map((city,i)=>({id:i+1,city,good:0,qty:10,carrier:0,origin:0,adapt:true,active:true,last:'Venter'}));G.upgrade(s);G.act(s,'waitDay');s.heat=heat;return s;
+}
+test('careful, expansion and aggressive networks can finish all lines through their own achievements',()=>{
+ for(const [policy,heat]of [['safe',20],['balanced',60],['growth',90]]){
+  const s=achieved(policy,heat);for(const line of G.QUEST_LINES)for(let i=0;i<11;i++){
+   while(s.event){const e=G.eventInfo(s),choice=e.choices.findIndex(c=>s.cash+c.cash>=0);assert(choice>=0);G.act(s,'choice',choice);}
+   // Persistently high exposure must not be the only way an established network can be blocked.
+   s.heat=heat;const q=G.questInfo(s,line.id);assert.equal(q.step,i);assert(q.ready,`${policy} ${line.id}:${i}: ${q.reason}`);const c=q.current.choices.find(c=>c.id==='help');assert(c.allowed,c.reason);G.act(s,'questChoice',{quest:line.id,choice:c.id});assert.equal(s.quests.lines[line.id].step,i+1);assertState(s);
+  }
+  assert(G.questList(s).every(q=>q.status==='done'));assert.equal(s.items.owned.length,4);assert.equal(s.trips,0);assert.equal(s.sales,0);
+ }
+});
+test('inactive routes cannot satisfy delegated alternatives, and ended campaigns offer no choices',()=>{
+ const s=achieved('growth',90);s.routes.forEach(r=>r.active=false);G.act(s,'questChoice',{quest:'key',choice:'help'});const q=G.questInfo(s,'key');assert.equal(q.step,1);assert.equal(q.ready,false);assert.match(q.reason,/aktive ruter/);
+ s.ended=true;for(const line of G.questList(s)){assert.equal(line.ready,false);assert.equal(line.current,null);}
 });
